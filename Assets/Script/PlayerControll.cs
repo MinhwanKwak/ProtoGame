@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 
 public enum PlayerStatus
@@ -51,7 +53,7 @@ public class PlayerControll : MonoBehaviour
     void Start()
     {
         Attacktime = new WaitForSeconds(0.02f);
-
+       
 
     }
 
