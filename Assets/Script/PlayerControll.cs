@@ -69,13 +69,9 @@ public class PlayerControll : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
-    }
-
-    private void FixedUpdate()
-    {
         if (!isAttack)
         {
-            
+
             if (direction.sqrMagnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -93,8 +89,9 @@ public class PlayerControll : MonoBehaviour
 
             }
         }
+
     }
-    
+
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
