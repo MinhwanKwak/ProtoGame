@@ -21,7 +21,7 @@ public class MouseLook : MonoBehaviour
 
     Vector3 Velocity;
 
-    Vector3 CameraMousepos;
+    public Vector3 CameraMousepos;
     
 
     public float CameraSmoothspeed;
