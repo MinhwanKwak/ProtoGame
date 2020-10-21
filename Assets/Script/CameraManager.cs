@@ -8,72 +8,37 @@ public class CameraManager : MonoBehaviour
 
     public MouseLook playerlook;
     
-    [Range(-100,100)]
+    [Range(0,100)]
     public float offsetX;
 
-    [Range(-100, 100)]
+    [Range(0, 100)]
     public float offsetY;
 
-    [Range(-100, 100)]
+    [Range(0, 100)]
     public float offsetZ;
-    
+
+    public CinemachineCameraOffset cam;
+
     private Vector3 CameraVec;
-
-    public MouseLook lookmouse;
-
-    Vector3 velocity;
-    Ray CameraRay;
-
-    Plane GroupPlane = new Plane(Vector3.up, Vector3.zero);
-
-    float rayLength;
-
-
-    public Transform PlayerBody;
-
-    private Vector3 pointTolook;
-
-
-
-    Vector3 Velocity;
-
-    public Vector3 CameraMousepos;
-
-
-    public float CameraSmoothspeed;
-
-    public float Cameraoffsetpos;
-
+    
     private void Start()
     {
         CameraVec = new Vector3();
 
-        
+        float a = cam.m_Offset.x;
 
-
+        int b = 4;
 
     }
     private void Update()
     {
-        CameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (GroupPlane.Raycast(CameraRay, out rayLength))
-        {
-            pointTolook = CameraRay.GetPoint(rayLength);
-
-
-            CameraMousepos = new Vector3(Mathf.Clamp(pointTolook.x, -Cameraoffsetpos, Cameraoffsetpos), 0f, Mathf.Clamp(pointTolook.z, -Cameraoffsetpos, Cameraoffsetpos));
-
-            transform.position = Vector3.SmoothDamp(transform.position, CameraMousepos, ref Velocity, CameraSmoothspeed);
-            
-            PlayerBody.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
-        }
-
-        //움직임이 있을때만으로 변경하는게 좋음 
-        Vector3 te1 = CameraVec;
+    //    //움직임이 있을때만으로 변경하는게 좋음 
+    //    CameraVec.x = target.transform.position.x + offsetX;
+    //    CameraVec.y = target.transform.position.y + offsetY;
+    //    CameraVec.z = target.transform.position.z + offsetZ;
         
-        
-     
+
+        transform.position = CameraVec;
         
     }
 }
