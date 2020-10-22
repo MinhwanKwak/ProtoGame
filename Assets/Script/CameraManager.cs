@@ -4,41 +4,73 @@ using UnityEngine;
 using Cinemachine;
 public class CameraManager : MonoBehaviour
 {
-    public GameObject target;
+    public Transform PlayerBodyTransform;
+    public Transform PlayerTransform;
 
-    public MouseLook playerlook;
+    public Vector3 pointTolook;
+    public Vector3 Playerlook;
+
+    public GameObject playercam;
+
+    public Camera MainCamera;
     
-    [Range(0,100)]
-    public float offsetX;
 
-    [Range(0, 100)]
-    public float offsetY;
+    public float CameraSmoothspeed;
 
-    [Range(0, 100)]
-    public float offsetZ;
+    public float Cameraoffsetpos;
 
-    public GameObject cam;
 
-    private Vector3 CameraVec;
+    public Vector3 CameraMousepos;
+ 
+    public Vector3 CameraFinal;
+   
+    public Vector3 offsetpos;
     
+    private Vector3 Velocity;
+    
+    private Ray CameraRay;
+
+    private Ray PlayerportRay;
+
+    private Plane GroupPlane;
+
+    private float rayLength;
+    private float playerlength;
+
+
+
     private void Start()
     {
-        CameraVec = new Vector3();
-        
-
-        int b = 4;
-
+         GroupPlane = new Plane(Vector3.up, Vector3.zero);
     }
-
-    private void LateUpdate()
+    // Update is called once per frame
+    void FixedUpdate()
     {
-        //움직임이 있을때만으로 변경하는게 좋음 
-        CameraVec.x = target.transform.position.x + offsetX;
-        CameraVec.y = target.transform.position.y + offsetY;
-        CameraVec.z = target.transform.position.z + offsetZ;
-        Vector3 ta = CameraVec + playerlook.temp;
+        CameraRay = MainCamera.ScreenPointToRay(Input.mousePosition);
 
-        transform.position = ta;
-        
+        if (GroupPlane.Raycast(CameraRay, out rayLength))
+        {
+            pointTolook = CameraRay.GetPoint(rayLength);
+
+            Playerlook = pointTolook - PlayerTransform.transform.position;
+
+            CameraMousepos = new Vector3(Mathf.Clamp(Playerlook.x, -Cameraoffsetpos, Cameraoffsetpos), 0f, Mathf.Clamp(Playerlook.z, -Cameraoffsetpos, Cameraoffsetpos));
+
+            CameraFinal = Vector3.SmoothDamp(CameraFinal, CameraMousepos, ref Velocity, CameraSmoothspeed);
+
+            transform.position = CameraFinal+ PlayerBodyTransform.transform.position;
+
+            
+
+            transform.LookAt(PlayerBodyTransform.transform);
+            transform.eulerAngles = Vector3.zero;   
+
+            PlayerBodyTransform.LookAt(new Vector3(pointTolook.x, PlayerBodyTransform.position.y, pointTolook.z));
+
+
+        }
+
+
     }
+
 }

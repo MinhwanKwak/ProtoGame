@@ -14,8 +14,9 @@ public enum PlayerStatus
 
 public class PlayerControll : MonoBehaviour
 {
-    public CharacterController controller;
-    public Transform cam;
+
+
+    public Rigidbody PlayerRigidbody;
 
     [Range(0, 50)]
     public float speed = 4f;
@@ -29,8 +30,11 @@ public class PlayerControll : MonoBehaviour
     float horizontal;
     float vertical;
     Vector3 direction;
+    Vector3 movementset;
 
     WaitForSeconds Attacktime;
+
+
 
     [SerializeField]
     private float AttackDelay = 1f;
@@ -69,18 +73,23 @@ public class PlayerControll : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
+      
+
+    }
+
+    private void FixedUpdate()
+    {
         if (!isAttack)
         {
 
-            if (direction.sqrMagnitude >= 0.1f)
+            if (direction.sqrMagnitude > 0.1f)
             {
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-
-                Vector3 MoveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(MoveDir.normalized * speed * Time.deltaTime);
-                ChangeAnimationState(PLAYER_RUN);
                 playerStatu = PlayerStatus.RUN;
-
+                ChangeAnimationState(PLAYER_RUN);
+                movementset.Set(horizontal, 0f, vertical);
+                movementset = movementset.normalized * speed * Time.deltaTime;
+                PlayerRigidbody.MovePosition(transform.position + movementset);
+               
             }
             else
             {
@@ -89,8 +98,8 @@ public class PlayerControll : MonoBehaviour
 
             }
         }
-
     }
+
 
     void ChangeAnimationState(string newState)
     {
@@ -144,4 +153,6 @@ public class PlayerControll : MonoBehaviour
         Invoke("AttackDelayTIme", AttackDelay);
     }
 
+
+ 
 }
