@@ -2,37 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using UnityEngine.InputSystem;
 
 
 public enum PlayerStatus
 {
     IDLE,
     ATTACK,
-    RUN
+    RUN,
+    DASH,
 }
 
 public class PlayerControll : MonoBehaviour
 {
-
 
     public Rigidbody PlayerRigidbody;
 
     [Range(0, 50)]
     public float speed = 4f;
 
-    public float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
+    [Range(0, 50)]
+    public float DashSpeed = 25f;
+
+    public float Dashpower = 20f;
+
+    public float DashTime = 0.5f;
+
+    private float delTime = 0f;
+
 
     public Animator animator;
     private string currentState;
 
-    float horizontal;
-    float vertical;
-    Vector3 direction;
-    Vector3 movementset;
+
+    Vector2 CurrentInput;
+    Vector2 CurrentInputMouseright;
+    Vector2 CurrentInputMouserLeft;
+
+    Vector3 CurrentMouseLook;
 
     WaitForSeconds Attacktime;
+
+
 
 
 
@@ -50,52 +61,54 @@ public class PlayerControll : MonoBehaviour
     public const string PLAYER_ATTACK4 = "Player_Attack4";
     public const string PLAYER_ATTACK5 = "Player_Attack5";
 
-    
+
     private bool isAttack = false;
+
 
     private int AttackCombo = 1;
     void Start()
     {
         Attacktime = new WaitForSeconds(0.02f);
-       
+
 
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-         horizontal = Input.GetAxis("Horizontal");
-         vertical = Input.GetAxis("Vertical");
+        delTime += Time.deltaTime;
 
-         direction = new Vector3(horizontal, 0f, vertical).normalized;
- 
-        if(Input.GetMouseButtonDown(0) && !isAttack)
-        {
-            StartCoroutine(Attack());
-        }
-      
-
+     
     }
 
     private void FixedUpdate()
     {
-        if (!isAttack)
+        if (Mouse.current.leftButton.isPressed && playerStatu != PlayerStatus.ATTACK)
+        {
+            StartCoroutine(Attack());
+        }
+        if (Mouse.current.rightButton.isPressed && playerStatu != PlayerStatus.ATTACK)
+        {
+            StartCoroutine(Dash());
+        }
+
+        if (playerStatu != PlayerStatus.ATTACK)
         {
 
-            if (direction.sqrMagnitude > 0.1f)
+            if (CurrentInput.sqrMagnitude > 0.1f)
             {
+                Vector3 moveValue = CurrentInput.y * transform.forward + CurrentInput.x * transform.right;
+
                 playerStatu = PlayerStatus.RUN;
                 ChangeAnimationState(PLAYER_RUN);
-                movementset.Set(horizontal, 0f, vertical);
-                movementset = movementset.normalized * speed * Time.deltaTime;
-                PlayerRigidbody.MovePosition(transform.position + movementset);
-               
+
+                transform.position += moveValue * speed * Time.deltaTime;
             }
             else
             {
+              if(playerStatu != PlayerStatus.DASH)
+              { 
                 ChangeAnimationState(PLAYER_IDLE);
                 playerStatu = PlayerStatus.IDLE;
-
+              }
             }
         }
     }
@@ -113,7 +126,7 @@ public class PlayerControll : MonoBehaviour
 
     void AttackDelayTIme()
     {
-        isAttack = false;
+        playerStatu = PlayerStatus.IDLE;
     }
 
 
@@ -122,7 +135,7 @@ public class PlayerControll : MonoBehaviour
         isAttack = true;
         playerStatu = PlayerStatus.ATTACK;
 
-        switch(AttackCombo)
+        switch (AttackCombo)
         {
             case 1:
                 ChangeAnimationState(PLAYER_ATTACK1);
@@ -144,8 +157,6 @@ public class PlayerControll : MonoBehaviour
                 ChangeAnimationState(PLAYER_ATTACK5);
                 AttackCombo = 1;
                 break;
-           
-            
         }
         yield return Attacktime;
 
@@ -153,6 +164,39 @@ public class PlayerControll : MonoBehaviour
         Invoke("AttackDelayTIme", AttackDelay);
     }
 
+    IEnumerator Dash()
+    {
+        
 
- 
+        if (playerStatu != PlayerStatus.ATTACK)
+        {
+            //대쉬 에 힘에 의해 이 방향으로 dash time 만큼 이동한다 
+
+            if(DashTime <= delTime)
+            {
+                delTime = 0f;
+                playerStatu = PlayerStatus.DASH;
+                transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower , 0 , CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
+            }
+        }
+
+        yield return new WaitForSeconds(DashTime);
+
+        playerStatu = PlayerStatus.IDLE;
+    }
+
+
+
+    public void SetPositionInput(Vector2 input)
+    {
+        CurrentInput = input;
+    }
+
+
+    public void SetMousePointLook(Vector3 look)
+    {
+        CurrentMouseLook = look;
+    }
+
+
 }
