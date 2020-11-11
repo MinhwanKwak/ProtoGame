@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c18e5966c1d4a2e4ab25a823a3e0c7b6
+guid: 869686b6caf04364ba2c0407885d415f
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
@@ -28,7 +28,7 @@ ModelImporter:
     importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
-    animationPositionError: 0.5
+    animationPositionError: 0
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []

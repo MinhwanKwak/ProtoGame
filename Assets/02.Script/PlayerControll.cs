@@ -43,6 +43,7 @@ public class PlayerControll : MonoBehaviour
 
     WaitForSeconds Attacktime;
 
+    public GameObject DashEffect;
 
 
 
@@ -52,12 +53,7 @@ public class PlayerControll : MonoBehaviour
 
     public PlayerStatus playerStatu = PlayerStatus.IDLE;
 
-
-    public const string PLAYER_IDLE = "Player_Idle";
-    public const string PLAYER_RUN = "Player_Run";
-    public const string PLAYER_DASH = "Player_Dash";
-    public const string PLAYER_ATTACK1 = "Player_Attack1";
-    public const string PLAYER_ATTACK2 = "Player_Attack2";
+    
 
 
     private bool isAttack = false;
@@ -87,10 +83,7 @@ public class PlayerControll : MonoBehaviour
 
     private void PlayerMouseCheck()
     {
-        if (Input.GetMouseButtonDown(0) && playerStatu != PlayerStatus.ATTACK )
-        {
-            StartCoroutine(Attack());
-        }
+      
         if (Input.GetMouseButtonDown(1) && playerStatu != PlayerStatus.ATTACK)
         {
             StartCoroutine(Dash());
@@ -109,7 +102,7 @@ public class PlayerControll : MonoBehaviour
                 Vector3 moveValue = CurrentInput.y * transform.forward + CurrentInput.x * transform.right;
 
                 playerStatu = PlayerStatus.RUN;
-                ChangeAnimationState(PLAYER_RUN);
+                animator.SetBool("Run", true);
 
                 transform.position += moveValue * speed * Time.deltaTime;
             }
@@ -117,64 +110,16 @@ public class PlayerControll : MonoBehaviour
             {
                 if (playerStatu != PlayerStatus.DASH)
                 {
-                    ChangeAnimationState(PLAYER_IDLE);
+                    animator.SetBool("Run", false);
                     playerStatu = PlayerStatus.IDLE;
                 }
             }
         }
     }
 
-
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-
-        animator.Play(newState);
-
-        currentState = newState;
-
-    }
-
-    void AttackDelayTIme()
-    {
-        playerStatu = PlayerStatus.IDLE;
-    }
-
-
-    IEnumerator Attack()
-    {
-        isAttack = true;
-        playerStatu = PlayerStatus.ATTACK;
-
-        switch (AttackCombo)
-        {
-            case 1:
-                ChangeAnimationState(PLAYER_ATTACK1);
-                ++AttackCombo;
-                break;
-            case 2:
-                ChangeAnimationState(PLAYER_ATTACK2);
-                AttackCombo = 1;
-               break;
-            //case 3:
-            //    ChangeAnimationState(PLAYER_ATTACK3);
-            //    ++AttackCombo;
-            //    break;
-            //case 4:
-            //    ChangeAnimationState(PLAYER_ATTACK4);
-            //    ++AttackCombo;
-            //    break;
-            //case 5:
-            //    ChangeAnimationState(PLAYER_ATTACK5);
-            //    AttackCombo = 1;
-            //    break;
-        }
-        yield return Attacktime;
-
-        AttackDelay = animator.GetCurrentAnimatorStateInfo(0).length;
-        Invoke("AttackDelayTIme", AttackDelay);
-    }
-
+    
+    
+    
     IEnumerator Dash()
     {
         
@@ -184,8 +129,9 @@ public class PlayerControll : MonoBehaviour
 
             if(DashTime <= delTime)
             {
-                //애니메이션이 약함 
-                //ChangeAnimationState(PLAYER_DASH);
+
+                animator.SetTrigger("Dash");
+                DashEffect.SetActive(true);
                 delTime = 0f;
                 playerStatu = PlayerStatus.DASH;
                 transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower , 0 , CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
@@ -193,7 +139,7 @@ public class PlayerControll : MonoBehaviour
         }
 
         yield return new WaitForSeconds(DashTime);
-        
+        DashEffect.SetActive(false);
         playerStatu = PlayerStatus.IDLE;
     }
 
