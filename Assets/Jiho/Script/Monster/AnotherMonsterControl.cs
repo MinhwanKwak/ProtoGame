@@ -9,10 +9,10 @@ public class AnotherMonsterControl : MonsterBasic
     void Start()
     {
         GameObject go = Instantiate(hpImage, Vector3.zero, Quaternion.identity);
-        go.transform.SetParent(hpCanvas.GetAnchorRect());
+       // go.transform.SetParent(hpCanvas.GetAnchorRect());
         go.transform.localScale = Vector3.one;
         uiHpBar = go.GetComponent<UIHPBar>();
-        uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
+     //   uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
         //uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
     }
 
@@ -20,6 +20,6 @@ public class AnotherMonsterControl : MonsterBasic
     {
         base.Update();
         //ApproachToPlayer();
-        uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
+      //  uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
     }
 }

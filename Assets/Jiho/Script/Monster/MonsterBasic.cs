@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+﻿//using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,11 +30,11 @@ public class MonsterBasic : MonoBehaviour
 
     protected UIHPBar uiHpBar;
 
-    public TemporaryCam Camera;
+    //public TemporaryCam Camera;
 
 
     public Transform HpTransform;
-    public HPCanvas hpCanvas;
+    //public HPCanvas hpCanvas;
 
     public Transform playerPos; // navigation으로 쫓아갈 플레이어 좌표
     protected Transform tr;
@@ -121,7 +121,7 @@ public class MonsterBasic : MonoBehaviour
             else
             {
                 IsInSight = false;
-                DOTween.Kill(this.gameObject);
+                //DOTween.Kill(this.gameObject);
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+﻿//using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,7 @@ public class UIHPBar : MonoBehaviour
 {
     public Image image;
 
-    private Sequence sequence;
+    //private Sequence sequence;
 
     private void Start()
     {

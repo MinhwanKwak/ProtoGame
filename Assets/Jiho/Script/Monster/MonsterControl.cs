@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+﻿//using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,10 +17,10 @@ public class MonsterControl : MonsterBasic
     void Start()
     {
         GameObject go = Instantiate(hpImage);
-        go.transform.SetParent(hpCanvas.GetAnchorRect());
+        //go.transform.SetParent(hpCanvas.GetAnchorRect());
         go.transform.localScale = Vector3.one;
         uiHpBar = go.GetComponent<UIHPBar>();
-        uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
+        //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
         //uiHpBar.image.rectTransform.anchoredPosition = CameraManager.MainCamera.WorldToScreenPoint(HpTransform.position);
         //uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
 
@@ -32,7 +32,7 @@ public class MonsterControl : MonsterBasic
     {
         base.Update();
         
-        uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
+        //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
 
         if (MonsterStatusValue.hp <= 0)
         {
@@ -58,7 +58,7 @@ public class MonsterControl : MonsterBasic
         Nav.isStopped = true;
         animator.SetTrigger("Attack");
         Vector3 transform = new Vector3(playerPos.position.x, 0, playerPos.position.z);
-        tr.DOLookAt(transform, 0.2f);
+       // tr.DOLookAt(transform, 0.2f);
     }
 
     public override void ReceivedAttack()
