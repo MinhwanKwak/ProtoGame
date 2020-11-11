@@ -46,7 +46,7 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        CameraRay = MainCamera.ScreenPointToRay(GameManager.Instance.inputController.GetMousePosition());
+        CameraRay = MainCamera.ScreenPointToRay(Input.mousePosition);
 
         if (GroupPlane.Raycast(CameraRay, out rayLength))
         {
@@ -57,20 +57,20 @@ public class CameraManager : MonoBehaviour
             CameraMousepos = new Vector3(Mathf.Clamp(Playerlook.x, -Cameraoffsetpos, Cameraoffsetpos), 0f, Mathf.Clamp(Playerlook.z, -Cameraoffsetpos, Cameraoffsetpos));
 
             CameraFinal = Vector3.SmoothDamp(CameraFinal, CameraMousepos, ref Velocity, CameraSmoothspeed);
-            
+
             transform.position = CameraFinal+ PlayerBodyTransform.transform.position;
 
             
-            
-            transform.eulerAngles = Vector3.zero;
 
-
-            GameManager.Instance.playercontroller.SetMousePointLook(Playerlook);
+            transform.LookAt(PlayerBodyTransform.transform);
+            transform.eulerAngles = Vector3.zero;   
 
             PlayerBodyTransform.LookAt(new Vector3(pointTolook.x, PlayerBodyTransform.position.y, pointTolook.z));
 
 
         }
+
+
     }
-    
+
 }
