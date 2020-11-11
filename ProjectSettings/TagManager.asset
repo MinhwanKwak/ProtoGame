@@ -14,8 +14,13 @@ TagManager:
   - 
   - 
   - Ground
+<<<<<<< Updated upstream
   - Enemy
   - Weapon
+=======
+  - Player
+  - Obstacle
+>>>>>>> Stashed changes
   - 
   - 
   - 
