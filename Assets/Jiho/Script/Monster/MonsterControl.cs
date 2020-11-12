@@ -1,4 +1,4 @@
-﻿//using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +31,6 @@ public class MonsterControl : MonsterBasic
     protected override void Update()
     {
         base.Update();
-        
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
 
         if (MonsterStatusValue.hp <= 0)
@@ -57,8 +56,9 @@ public class MonsterControl : MonsterBasic
         MonsterStatus = Status.ATTACK;
         Nav.isStopped = true;
         animator.SetTrigger("Attack");
+
         Vector3 transform = new Vector3(playerPos.position.x, 0, playerPos.position.z);
-       // tr.DOLookAt(transform, 0.2f);
+        tr.DOLookAt(transform, 0.2f);
     }
 
     public override void ReceivedAttack()
@@ -87,22 +87,33 @@ public class MonsterControl : MonsterBasic
         if (Vector3.Distance(tr.position, playerPos.position) < MonsterStatusValue.range && !IsInSight)
         {
             animator.SetTrigger("Idle");
-            Nav.isStopped = false;
+            //Nav.isStopped = false;
             MonsterStatus = Status.IDLE;
         }
         else if (Vector3.Distance(tr.position, playerPos.position) > MonsterStatusValue.range && IsInSight)
         {
             animator.SetTrigger("Run");
             MonsterStatus = Status.RUN;
-            Nav.isStopped = false;
+            //Nav.isStopped = false;
             Nav.SetDestination(playerPos.position);
         }
         else
         {
-            //animator.SetTrigger("Attack");
-            //MonsterStatus = Status.ATTACK;
+            animator.SetTrigger("Attack");
+            MonsterStatus = Status.ATTACK;
+            Attack();
         }
             
+    }
+
+    public void StartAttack()
+    {
+        Nav.isStopped = true;
+    }
+
+    public void FinishedAttack()
+    {
+        Nav.isStopped = false;
     }
 
     //IEnumerator AI()
@@ -112,7 +123,7 @@ public class MonsterControl : MonsterBasic
     //        if (Vector3.Distance(tr.position, playerPos.position) < MonsterStatusValue.range && IsInSight)
     //        {
     //            Attack();
-                
+
     //        }
     //        yield return new WaitForSeconds(MonsterStatusValue.tickRate);
     //        //Nav.isStopped = false;

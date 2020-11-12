@@ -9177,6 +9177,7 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 350190512
+
       attribute: 2
       script: {fileID: 0}
       typeID: 4
