@@ -58,7 +58,8 @@ public class MonsterControl : MonsterBasic
         animator.SetTrigger("Attack");
 
         Vector3 transform = new Vector3(playerPos.position.x, 0, playerPos.position.z);
-        tr.DOLookAt(transform, 0.2f);
+        //tr.LookAt(playerPos);
+        tr.DOLookAt(playerPos.position, 0.2f);
     }
 
     public override void ReceivedAttack()
