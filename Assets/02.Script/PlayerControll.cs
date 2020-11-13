@@ -45,6 +45,7 @@ public class PlayerControll : MonoBehaviour
 
     public GameObject DashEffect;
 
+    public bool isGround;
 
 
 

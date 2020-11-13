@@ -64,7 +64,7 @@ public class CameraManager : MonoBehaviour
             GameManager.Instance.playercontroller.SetMousePointLook(Playerlook);
 
             PlayerBodyTransform.LookAt(new Vector3(pointTolook.x, PlayerBodyTransform.position.y, pointTolook.z));
-
+            Vector3 test = PlayerBodyTransform.position;
 
         }
     }
