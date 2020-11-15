@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:Assets/03.Material/Player.meta
-guid: c83188070d9372c41a21fc2ba49a3423
+guid: 59fded9dfce098347825c04abf4e0b53
 folderAsset: yes
 DefaultImporter:
-=======
-guid: c422c44e2a7ee4241a5fb0fc517bfe72
-NativeFormatImporter:
->>>>>>> Stashed changes:Assets/Jiho/MonsterController.controller.meta
   externalObjects: {}
-  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

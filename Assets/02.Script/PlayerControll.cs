@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum PlayerStatus
 {
-    IDLE,
+    IDLE = 1,
     ATTACK,
     RUN,
     DASH,
@@ -33,6 +33,8 @@ public class PlayerControll : MonoBehaviour
 
     public Animator animator;
 
+    public Transform PlayerBody;
+
     private float delTime = 0f;
     
     private string currentState;
@@ -43,10 +45,7 @@ public class PlayerControll : MonoBehaviour
 
     WaitForSeconds Attacktime;
 
-    public GameObject DashEffect;
-
-    public bool isGround;
-
+    
 
 
     [SerializeField]
@@ -54,15 +53,14 @@ public class PlayerControll : MonoBehaviour
 
     public PlayerStatus playerStatu = PlayerStatus.IDLE;
 
-    
-
-
     private bool isAttack = false;
     
     private float h;
     private float v;
 
     private int AttackCombo = 1;
+
+    public GameObject[] Effects;
     void Start()
     {
 
@@ -100,7 +98,7 @@ public class PlayerControll : MonoBehaviour
 
             if (CurrentInput.sqrMagnitude > 0.1f)
             {
-                Vector3 moveValue = CurrentInput.y * transform.forward + CurrentInput.x * transform.right;
+                Vector3 moveValue = CurrentInput.x * transform.right + CurrentInput.y * transform.forward;
 
                 playerStatu = PlayerStatus.RUN;
                 animator.SetBool("Run", true);
@@ -132,7 +130,7 @@ public class PlayerControll : MonoBehaviour
             {
 
                 animator.SetTrigger("Dash");
-                DashEffect.SetActive(true);
+                Effects[0].SetActive(true);
                 delTime = 0f;
                 playerStatu = PlayerStatus.DASH;
                 transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower , 0 , CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
@@ -140,7 +138,7 @@ public class PlayerControll : MonoBehaviour
         }
 
         yield return new WaitForSeconds(DashTime);
-        DashEffect.SetActive(false);
+        Effects[0].SetActive(false);
         playerStatu = PlayerStatus.IDLE;
     }
 
@@ -152,5 +150,14 @@ public class PlayerControll : MonoBehaviour
         CurrentMouseLook = look;
     }
 
+
+    public void SetisAttack(bool attack)
+    {
+        isAttack = attack;
+    }
+    public bool GetAttack()
+    {
+        return isAttack;
+    }
 
 }

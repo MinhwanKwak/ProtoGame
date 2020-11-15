@@ -24,7 +24,7 @@ public class CombatManager : MonoBehaviour
 
     public void Attack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !GameManager.Instance.playercontroller.GetAttack())
         {
             inputReceived = true;
             CanReciveInput = false;

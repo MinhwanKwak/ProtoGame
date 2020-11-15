@@ -37,6 +37,8 @@ public class CameraManager : MonoBehaviour
     private float playerlength;
 
 
+    public CameraShaek camerashake;
+
 
     private void Start()
     {
@@ -56,15 +58,15 @@ public class CameraManager : MonoBehaviour
             CameraMousepos = new Vector3(Mathf.Clamp(Playerlook.x, -Cameraoffsetpos, Cameraoffsetpos), 0f, Mathf.Clamp(Playerlook.z, -Cameraoffsetpos, Cameraoffsetpos));
 
             CameraFinal = Vector3.SmoothDamp(CameraFinal, CameraMousepos, ref Velocity, CameraSmoothspeed);
-            
-            transform.position = CameraFinal + PlayerBodyTransform.transform.position;
 
+            transform.position = CameraFinal + PlayerBodyTransform.transform.position;
+         
             transform.eulerAngles = Vector3.zero;
         
             GameManager.Instance.playercontroller.SetMousePointLook(Playerlook);
 
             PlayerBodyTransform.LookAt(new Vector3(pointTolook.x, PlayerBodyTransform.position.y, pointTolook.z));
-            Vector3 test = PlayerBodyTransform.position;
+
 
         }
     }
