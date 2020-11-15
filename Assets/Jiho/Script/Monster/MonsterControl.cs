@@ -60,6 +60,7 @@ public class MonsterControl : MonsterBasic
         Vector3 transform = new Vector3(playerPos.position.x, 0, playerPos.position.z);
         //tr.LookAt(playerPos);
         tr.DOLookAt(playerPos.position, 0.2f);
+        //tr.DOLookAt(transform, 0.2f);
     }
 
     public override void ReceivedAttack()
@@ -85,7 +86,7 @@ public class MonsterControl : MonsterBasic
     public override void ApproachToPlayer()
     {
         base.ApproachToPlayer();
-        if (Vector3.Distance(tr.position, playerPos.position) < MonsterStatusValue.range && !IsInSight)
+        if (Vector3.Distance(tr.position, playerPos.position) < MonsterStatusValue.range && IsInSight)
         {
             animator.SetTrigger("Idle");
             //Nav.isStopped = false;
