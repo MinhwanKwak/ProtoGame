@@ -54,6 +54,7 @@ public class MonsterBasic : MonoBehaviour
         if (IsDestination() && !IsInSight)
         {
             MonsterStatus = Status.IDLE;
+            animator.SetTrigger("Idle");
         }
         if (MonsterStatus == Status.RECEIVEDATTACK)
         {
