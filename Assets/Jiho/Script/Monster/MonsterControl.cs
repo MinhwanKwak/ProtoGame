@@ -17,7 +17,7 @@ public class MonsterControl : MonsterBasic
     void Start()
     {
         GameObject go = Instantiate(hpImage);
-        //go.transform.SetParent(hpCanvas.GetAnchorRect());
+        go.transform.SetParent(hpCanvas.GetAnchorRect());
         go.transform.localScale = Vector3.one;
         uiHpBar = go.GetComponent<UIHPBar>();
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
@@ -32,6 +32,7 @@ public class MonsterControl : MonsterBasic
     {
         base.Update();
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
+        uiHpBar.image.rectTransform.anchoredPosition = Camera.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         if (MonsterStatusValue.hp <= 0)
         {

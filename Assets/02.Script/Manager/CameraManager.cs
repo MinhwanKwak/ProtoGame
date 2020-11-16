@@ -70,5 +70,10 @@ public class CameraManager : MonoBehaviour
 
         }
     }
-    
+
+    public Camera GetMainCamera()
+    {
+        return MainCamera;
+    }
+
 }

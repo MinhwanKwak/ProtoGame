@@ -24,11 +24,12 @@ public class MonsterBasic : MonoBehaviour
 
     protected UIHPBar uiHpBar;
 
-    //public TemporaryCam Camera;
+    //public DummyCamera Camera;
+    public CameraManager Camera;
 
 
     public Transform HpTransform;
-    //public HPCanvas hpCanvas;
+    public HPCanvas hpCanvas;
 
     public Transform playerPos; // navigation으로 쫓아갈 플레이어 좌표
     protected Transform tr;
