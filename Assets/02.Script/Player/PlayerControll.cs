@@ -34,6 +34,7 @@ public class PlayerControll : MonoBehaviour
 
     Vector2 CurrentInput;
     Vector3 CurrentMouseLook;
+    Vector3 MoveVec;
 
     WaitForSeconds Attacktime;
 
@@ -83,12 +84,13 @@ public class PlayerControll : MonoBehaviour
 
     private void PlayerMoveCheck()
     {
+        
         if (playerStatu != PlayerStatus.ATTACK)
         {
 
             if (CurrentInput.sqrMagnitude > 0.1f)
             {
-                Vector3 moveValue = CurrentInput.x * transform.forward + CurrentInput.y * transform.right;
+                Vector3 moveValue = CurrentInput.x * transform.right + CurrentInput.y * transform.forward;
 
                 playerStatu = PlayerStatus.RUN;
                 animator.SetBool("Run", true);
