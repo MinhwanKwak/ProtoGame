@@ -4,14 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum Status
-{
-    IDLE,
-    RUN,
-    ATTACK,
-    RECEIVEDATTACK,
-    DEAD,
-}
+
+
 
 public class MonsterBasic : MonoBehaviour
 {
@@ -42,7 +36,7 @@ public class MonsterBasic : MonoBehaviour
 
     public Animator animator;
 
-    public Status MonsterStatus;
+    public MonsterStatus monsterStatus;
 
     private void Awake()
     {
@@ -53,10 +47,10 @@ public class MonsterBasic : MonoBehaviour
         FindTarget();
         if (IsDestination() && !IsInSight)
         {
-            MonsterStatus = Status.IDLE;
+            monsterStatus = MonsterStatus.IDLE;
             animator.SetTrigger("Idle");
         }
-        if (MonsterStatus == Status.RECEIVEDATTACK)
+        if (monsterStatus == MonsterStatus.RECEIVEDATTACK)
         {
 
         }
@@ -83,7 +77,7 @@ public class MonsterBasic : MonoBehaviour
     }
     public virtual void ApproachToPlayer() // 플레이어를 쫓아감
     {
-        if(MonsterStatus == Status.ATTACK)
+        if(monsterStatus == MonsterStatus.ATTACK)
         {
             return;
         }
@@ -110,7 +104,7 @@ public class MonsterBasic : MonoBehaviour
                 //Debug.DrawRay(transform.position, dirToTarget,Color.blue);
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
                 {
-                    if(MonsterStatus == Status.ATTACK)
+                    if(monsterStatus == MonsterStatus.ATTACK)
                     {
                         Nav.isStopped = true;
                     }

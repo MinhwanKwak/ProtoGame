@@ -24,7 +24,7 @@ public class MonsterControl : MonsterBasic
         //uiHpBar.image.rectTransform.anchoredPosition = CameraManager.MainCamera.WorldToScreenPoint(HpTransform.position);
         //uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
 
-        this.MonsterStatus = Status.IDLE;
+        this.monsterStatus = MonsterStatus.IDLE;
         this.animator = animator.GetComponent<Animator>();
     }
 
@@ -44,7 +44,7 @@ public class MonsterControl : MonsterBasic
     public override void Idle()
     {
         base.Idle();
-        MonsterStatus = Status.IDLE;
+        monsterStatus = MonsterStatus.IDLE;
         Nav.isStopped = false;
         animator.SetTrigger("Idle");
 
@@ -53,7 +53,7 @@ public class MonsterControl : MonsterBasic
     public override void Attack()
     {
         base.Attack();
-        MonsterStatus = Status.ATTACK;
+        monsterStatus = MonsterStatus.ATTACK;
         Nav.isStopped = true;
         animator.SetTrigger("Attack");
 
@@ -66,7 +66,7 @@ public class MonsterControl : MonsterBasic
     public override void ReceivedAttack()
     {
         base.ReceivedAttack();
-        MonsterStatus = Status.RECEIVEDATTACK;
+        monsterStatus = MonsterStatus.RECEIVEDATTACK;
         Nav.isStopped = true;
         animator.SetTrigger("ReceivedAttack");
         MonsterStatusValue.hp -= 5;
@@ -78,7 +78,7 @@ public class MonsterControl : MonsterBasic
     public override void Dead()
     {
         base.Dead();
-        MonsterStatus = Status.DEAD;
+        monsterStatus = MonsterStatus.DEAD;
         Nav.isStopped = true;
         animator.SetTrigger("Dead");
     }
@@ -90,19 +90,19 @@ public class MonsterControl : MonsterBasic
         {
             animator.SetTrigger("Idle");
             //Nav.isStopped = false;
-            MonsterStatus = Status.IDLE;
+            monsterStatus = MonsterStatus.IDLE;
         }
         else if (Vector3.Distance(tr.position, playerPos.position) > MonsterStatusValue.range && IsInSight)
         {
             animator.SetTrigger("Run");
-            MonsterStatus = Status.RUN;
+            monsterStatus = MonsterStatus.RUN;
             //Nav.isStopped = false;
             Nav.SetDestination(playerPos.position);
         }
         else
         {
             animator.SetTrigger("Attack");
-            MonsterStatus = Status.ATTACK;
+            monsterStatus = MonsterStatus.ATTACK;
             Attack();
         }
             

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 //근거리 원거리
-public enum Type {Almost, Distance};
 
 public class Weapon : MonoBehaviour
 {
-    public Type type;
+    public WeaponType type;
     public int damage;
     public float rate;
     public BoxCollider MeleeArea;
@@ -27,24 +26,20 @@ public class Weapon : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & targetMask) != 0)
         {
-            StartCoroutine(TestTime());
-            GameObject newProjectile = GameObject.Instantiate(GameManager.Instance.playercontroller.Effects[3]) as GameObject;
-            newProjectile.transform.position = other.gameObject.transform.position;
-            DestroyTest(newProjectile);
-           
+            StartCoroutine(DamageTime());
+            GameObject Effect =   ObjectPooler.Instance.SpawnFromPool("HitEffect", other.gameObject.transform.position, Quaternion.identity);
+            // GameObject newProjectile = GameObject.Instantiate(GameManager.Instance.playercontroller.Effects[3]) as GameObject;
+            StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
+
+
             //  StartCoroutine(GameManager.Instance.cameraManager.camerashake.ShakeCamera());
 
         }
     }
     
-
-    //오브젝트풀링으로 바꿀예정
-    void DestroyTest(GameObject Test)
-    {
-        Destroy(Test, 1.0f);
-    }
     
-    IEnumerator TestTime()
+    
+    IEnumerator DamageTime()
     {
         Time.timeScale = 0f;
 
@@ -53,5 +48,7 @@ public class Weapon : MonoBehaviour
         Time.timeScale = 1f;
 
     }
+
+
 
 }
