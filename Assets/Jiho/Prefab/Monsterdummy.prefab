@@ -54,10 +54,10 @@ MonoBehaviour:
   viewAngle: 120
   targetMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   IsInSight: 0
   MonsterStatusValue:
     monsterName: Monster
@@ -66,11 +66,13 @@ MonoBehaviour:
     range: 3
     tickRate: 5
   hpImage: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676, type: 3}
+  Camera: {fileID: 0}
   HpTransform: {fileID: 7092566185863846220}
+  hpCanvas: {fileID: 0}
   playerPos: {fileID: 0}
   Nav: {fileID: 2798687274847169551}
   animator: {fileID: 2042150455}
-  MonsterStatus: 0
+  monsterStatus: 0
 --- !u!195 &2798687274847169551
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -231,6 +233,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f8088297537565442bc83264e47111eb, type: 2}
+    - target: {fileID: 13700002, guid: 28b668865ad9a884395ab10f675feb53, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22aa45262c3f0694c9743de165e9f107, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b668865ad9a884395ab10f675feb53, type: 3}
 --- !u!4 &3488740500854337442 stripped
@@ -301,6 +307,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 3d3186a5f3d5e6849be86b011aef3b09,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22aa45262c3f0694c9743de165e9f107, type: 2}
     - target: {fileID: -927199367670048503, guid: 3d3186a5f3d5e6849be86b011aef3b09,
         type: 3}
       propertyPath: m_Name
