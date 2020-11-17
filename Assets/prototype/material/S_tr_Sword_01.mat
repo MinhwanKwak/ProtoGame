@@ -23,6 +23,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _T_gra_02:
+        m_Texture: {fileID: 2800000, guid: 42955562b12faa3458a5a720b711361d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _T_sword_01:
         m_Texture: {fileID: 2800000, guid: 8928bc2e8d8a77e4d9fe1e53c0f02d65, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -31,11 +35,37 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5a45e470dddac1d40aaa94a29d42698e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - __gra_011:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex:
+        m_Texture: {fileID: 2800000, guid: 8928bc2e8d8a77e4d9fe1e53c0f02d65, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AlphaCutoff: 0.5
     - _Float0: 4
     - _InvFade: 1
+    - _TessEdgeLength: 16
+    - _TessMax: 25
+    - _TessMaxDisp: 25
+    - _TessMin: 10
+    - _TessPhongStrength: 0.5
+    - _TessValue: 16
     - _Uoffset: 0
     - _Voffset: 0
+    - __dirty: 0
+    - _distance: 3
     m_Colors:
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _Vector0: {r: 1, g: 0, b: 0, a: 0}
