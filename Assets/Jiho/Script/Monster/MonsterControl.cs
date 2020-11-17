@@ -8,6 +8,14 @@ using UnityEngine.AI;
 
 public class MonsterControl : MonsterBasic
 {
+   public LayerMask HitLayerMask;
+
+   public float TimeStop = 0f;
+
+   WaitForSecondsRealtime timestop;
+
+  public bool IsAttack;
+
     private void Awake()
     {
         MonsterStatusValue.Initialize();
@@ -16,6 +24,9 @@ public class MonsterControl : MonsterBasic
 
     void Start()
     {
+
+        timestop = new WaitForSecondsRealtime(TimeStop);
+
         GameObject go = Instantiate(hpImage);
         go.transform.SetParent(hpCanvas.GetAnchorRect());
         go.transform.localScale = Vector3.one;
@@ -108,6 +119,33 @@ public class MonsterControl : MonsterBasic
         }
             
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (((1 << other.gameObject.layer) & targetMask) != 0 && GameManager.Instance.playercontroller.playerAnimationEvent.GetDamageCheck())
+        {
+            GameManager.Instance.playercontroller.playerAnimationEvent.SetDamageCheck(false);
+            StartCoroutine(DamageTime());
+            GameObject Effect = ObjectPooler.Instance.SpawnFromPool("HitEffect", other.gameObject.transform.position, Quaternion.identity);
+            StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
+
+        }
+    }
+
+
+
+    IEnumerator DamageTime()
+    {
+        Time.timeScale = 0f;
+
+        yield return timestop;
+
+        Time.timeScale = 1f;
+
+    }
+
+
 
     public void StartAttack()
     {
