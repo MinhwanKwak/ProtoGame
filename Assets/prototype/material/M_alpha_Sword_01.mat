@@ -107,6 +107,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     - _blue: 0.4
+    - _distance: 500
     - _distance1: 3
     - _green: 1.09
     - _red: 7.25

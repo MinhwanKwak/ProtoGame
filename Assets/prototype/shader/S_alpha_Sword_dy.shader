@@ -10,7 +10,6 @@ Shader "S_alpha_Sword_dy"
 		_Uoffset("Uoffset", Float) = 0
 		_Voffset("Voffset", Float) = 0
 		_red("red", Float) = 1
-		_distance1("distance", Float) = 0
 		_blue("blue", Float) = 0.1
 		_green("green", Float) = 0.5
 		_T_gra_02("T_gra_02", 2D) = "white" {}
@@ -152,7 +151,6 @@ Shader "S_alpha_Sword_dy"
 			HLSLPROGRAM
 			#pragma multi_compile_instancing
 			#define ASE_SRP_VERSION 70108
-			#define REQUIRE_DEPTH_TEXTURE 1
 
 			#pragma prefer_hlslcc gles
 			#pragma exclude_renderers d3d11_9x
@@ -200,7 +198,6 @@ Shader "S_alpha_Sword_dy"
 				float4 ase_texcoord3 : TEXCOORD3;
 				float4 ase_texcoord4 : TEXCOORD4;
 				float4 ase_texcoord5 : TEXCOORD5;
-				float4 ase_texcoord6 : TEXCOORD6;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -212,7 +209,6 @@ Shader "S_alpha_Sword_dy"
 			float _red;
 			float _blue;
 			float _green;
-			float _distance1;
 			float _TessPhongStrength;
 			float _TessValue;
 			float _TessMin;
@@ -221,7 +217,6 @@ Shader "S_alpha_Sword_dy"
 			float _TessMaxDisp;
 			CBUFFER_END
 			sampler2D _T_sword_01;
-			uniform float4 _CameraDepthTexture_TexelSize;
 			sampler2D _T_gra_02;
 
 
@@ -233,10 +228,6 @@ Shader "S_alpha_Sword_dy"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
-				float4 screenPos = ComputeScreenPos(ase_clipPos);
-				o.ase_texcoord6 = screenPos;
-				
 				o.ase_color = v.ase_color;
 				o.ase_texcoord3 = v.ase_texcoord2;
 				o.ase_texcoord4.xy = v.ase_texcoord.xy;
@@ -385,13 +376,9 @@ Shader "S_alpha_Sword_dy"
 				float2 appendResult5 = (float2(( IN.ase_texcoord5.x + _Uoffset ) , ( IN.ase_texcoord5.y + _Voffset )));
 				float2 uv06 = IN.ase_texcoord4.xy * float2( 1,1 ) + appendResult5;
 				float4 tex2DNode1 = tex2D( _T_sword_01, uv06 );
-				float4 screenPos = IN.ase_texcoord6;
-				float4 ase_screenPosNorm = screenPos / screenPos.w;
-				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
-				float screenDepth112 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
-				float distanceDepth112 = abs( ( screenDepth112 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _distance1 ) );
+				float4 temp_output_14_0 = ( ( IN.ase_color * IN.ase_texcoord3 ) * ( IN.ase_color.a * ( ( ( ( tex2DNode1.r * _red ) + ( tex2DNode1.b * _blue ) ) + ( tex2DNode1.g * _green ) ) - IN.ase_texcoord5.w ) ) );
 				float2 uv_T_gra_02 = IN.ase_texcoord4.xy * _T_gra_02_ST.xy + _T_gra_02_ST.zw;
-				float4 temp_output_115_0 = ( ( ( ( IN.ase_color * IN.ase_texcoord3 ) * ( IN.ase_color.a * ( ( ( ( tex2DNode1.r * _red ) + ( tex2DNode1.b * _blue ) ) + ( tex2DNode1.g * _green ) ) - IN.ase_texcoord5.w ) ) ) * distanceDepth112 ) * tex2D( _T_gra_02, uv_T_gra_02 ) );
+				float4 temp_output_115_0 = ( temp_output_14_0 * tex2D( _T_gra_02, uv_T_gra_02 ) );
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
@@ -430,7 +417,6 @@ Shader "S_alpha_Sword_dy"
 			HLSLPROGRAM
 			#pragma multi_compile_instancing
 			#define ASE_SRP_VERSION 70108
-			#define REQUIRE_DEPTH_TEXTURE 1
 
 			#pragma prefer_hlslcc gles
 			#pragma exclude_renderers d3d11_9x
@@ -470,7 +456,6 @@ Shader "S_alpha_Sword_dy"
 				float4 ase_texcoord2 : TEXCOORD2;
 				float4 ase_texcoord3 : TEXCOORD3;
 				float4 ase_texcoord4 : TEXCOORD4;
-				float4 ase_texcoord5 : TEXCOORD5;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -482,7 +467,6 @@ Shader "S_alpha_Sword_dy"
 			float _red;
 			float _blue;
 			float _green;
-			float _distance1;
 			float _TessPhongStrength;
 			float _TessValue;
 			float _TessMin;
@@ -491,7 +475,6 @@ Shader "S_alpha_Sword_dy"
 			float _TessMaxDisp;
 			CBUFFER_END
 			sampler2D _T_sword_01;
-			uniform float4 _CameraDepthTexture_TexelSize;
 			sampler2D _T_gra_02;
 
 
@@ -505,10 +488,6 @@ Shader "S_alpha_Sword_dy"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
-				float4 screenPos = ComputeScreenPos(ase_clipPos);
-				o.ase_texcoord5 = screenPos;
-				
 				o.ase_color = v.ase_color;
 				o.ase_texcoord2 = v.ase_texcoord2;
 				o.ase_texcoord3.xy = v.ase_texcoord.xy;
@@ -667,13 +646,9 @@ Shader "S_alpha_Sword_dy"
 				float2 appendResult5 = (float2(( IN.ase_texcoord4.x + _Uoffset ) , ( IN.ase_texcoord4.y + _Voffset )));
 				float2 uv06 = IN.ase_texcoord3.xy * float2( 1,1 ) + appendResult5;
 				float4 tex2DNode1 = tex2D( _T_sword_01, uv06 );
-				float4 screenPos = IN.ase_texcoord5;
-				float4 ase_screenPosNorm = screenPos / screenPos.w;
-				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
-				float screenDepth112 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
-				float distanceDepth112 = abs( ( screenDepth112 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _distance1 ) );
+				float4 temp_output_14_0 = ( ( IN.ase_color * IN.ase_texcoord2 ) * ( IN.ase_color.a * ( ( ( ( tex2DNode1.r * _red ) + ( tex2DNode1.b * _blue ) ) + ( tex2DNode1.g * _green ) ) - IN.ase_texcoord4.w ) ) );
 				float2 uv_T_gra_02 = IN.ase_texcoord3.xy * _T_gra_02_ST.xy + _T_gra_02_ST.zw;
-				float4 temp_output_115_0 = ( ( ( ( IN.ase_color * IN.ase_texcoord2 ) * ( IN.ase_color.a * ( ( ( ( tex2DNode1.r * _red ) + ( tex2DNode1.b * _blue ) ) + ( tex2DNode1.g * _green ) ) - IN.ase_texcoord4.w ) ) ) * distanceDepth112 ) * tex2D( _T_gra_02, uv_T_gra_02 ) );
+				float4 temp_output_115_0 = ( temp_output_14_0 * tex2D( _T_gra_02, uv_T_gra_02 ) );
 				
 				float Alpha = temp_output_115_0.r;
 				float AlphaClipThreshold = 0.5;
@@ -704,7 +679,6 @@ Shader "S_alpha_Sword_dy"
 			HLSLPROGRAM
 			#pragma multi_compile_instancing
 			#define ASE_SRP_VERSION 70108
-			#define REQUIRE_DEPTH_TEXTURE 1
 
 			#pragma prefer_hlslcc gles
 			#pragma exclude_renderers d3d11_9x
@@ -744,7 +718,6 @@ Shader "S_alpha_Sword_dy"
 				float4 ase_texcoord2 : TEXCOORD2;
 				float4 ase_texcoord3 : TEXCOORD3;
 				float4 ase_texcoord4 : TEXCOORD4;
-				float4 ase_texcoord5 : TEXCOORD5;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -756,7 +729,6 @@ Shader "S_alpha_Sword_dy"
 			float _red;
 			float _blue;
 			float _green;
-			float _distance1;
 			float _TessPhongStrength;
 			float _TessValue;
 			float _TessMin;
@@ -765,7 +737,6 @@ Shader "S_alpha_Sword_dy"
 			float _TessMaxDisp;
 			CBUFFER_END
 			sampler2D _T_sword_01;
-			uniform float4 _CameraDepthTexture_TexelSize;
 			sampler2D _T_gra_02;
 
 
@@ -777,10 +748,6 @@ Shader "S_alpha_Sword_dy"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
-				float4 screenPos = ComputeScreenPos(ase_clipPos);
-				o.ase_texcoord5 = screenPos;
-				
 				o.ase_color = v.ase_color;
 				o.ase_texcoord2 = v.ase_texcoord2;
 				o.ase_texcoord3.xy = v.ase_texcoord.xy;
@@ -928,13 +895,9 @@ Shader "S_alpha_Sword_dy"
 				float2 appendResult5 = (float2(( IN.ase_texcoord4.x + _Uoffset ) , ( IN.ase_texcoord4.y + _Voffset )));
 				float2 uv06 = IN.ase_texcoord3.xy * float2( 1,1 ) + appendResult5;
 				float4 tex2DNode1 = tex2D( _T_sword_01, uv06 );
-				float4 screenPos = IN.ase_texcoord5;
-				float4 ase_screenPosNorm = screenPos / screenPos.w;
-				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
-				float screenDepth112 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
-				float distanceDepth112 = abs( ( screenDepth112 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _distance1 ) );
+				float4 temp_output_14_0 = ( ( IN.ase_color * IN.ase_texcoord2 ) * ( IN.ase_color.a * ( ( ( ( tex2DNode1.r * _red ) + ( tex2DNode1.b * _blue ) ) + ( tex2DNode1.g * _green ) ) - IN.ase_texcoord4.w ) ) );
 				float2 uv_T_gra_02 = IN.ase_texcoord3.xy * _T_gra_02_ST.xy + _T_gra_02_ST.zw;
-				float4 temp_output_115_0 = ( ( ( ( IN.ase_color * IN.ase_texcoord2 ) * ( IN.ase_color.a * ( ( ( ( tex2DNode1.r * _red ) + ( tex2DNode1.b * _blue ) ) + ( tex2DNode1.g * _green ) ) - IN.ase_texcoord4.w ) ) ) * distanceDepth112 ) * tex2D( _T_gra_02, uv_T_gra_02 ) );
+				float4 temp_output_115_0 = ( temp_output_14_0 * tex2D( _T_gra_02, uv_T_gra_02 ) );
 				
 				float Alpha = temp_output_115_0.r;
 				float AlphaClipThreshold = 0.5;
@@ -959,7 +922,7 @@ Shader "S_alpha_Sword_dy"
 }
 /*ASEBEGIN
 Version=18100
-191.2;432;1536;785;492.0499;560.217;1;True;False
+32;235.2;1536;763;533.0499;453.217;1;True;False
 Node;AmplifyShaderEditor.RangedFloatNode;2;-1735.006,139.1428;Inherit;False;Property;_Voffset;Voffset;2;0;Create;True;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;3;-1756.754,12.67831;Inherit;False;Property;_Uoffset;Uoffset;1;0;Create;True;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TexCoordVertexDataNode;8;-1890.205,-29.54399;Inherit;True;1;4;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
@@ -981,18 +944,19 @@ Node;AmplifyShaderEditor.VertexColorNode;11;-770.6317,-409.6274;Inherit;False;0;
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;72;-66.6664,-115.0817;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;62;-241.9564,-365.7466;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT4;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;67;-54.83183,-261.6093;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;111;-132.2432,50.96165;Inherit;False;Property;_distance1;distance;4;0;Create;True;0;0;False;0;False;0;3;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;74.42825,-424.0225;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.DepthFade;112;35.31132,23.05778;Inherit;False;True;False;True;2;1;FLOAT3;0,0,0;False;0;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;113;298.7213,-165.318;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SamplerNode;114;229.5921,79.63388;Inherit;True;Property;_T_gra_02;T_gra_02;7;0;Create;True;0;0;False;0;False;-1;42955562b12faa3458a5a720b711361d;42955562b12faa3458a5a720b711361d;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.WorldPosInputsNode;116;-231.0499,28.28302;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.RangedFloatNode;111;-166.2432,192.9617;Inherit;False;Property;_distance;distance;4;0;Create;True;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;113;298.7213,-165.318;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.DynamicAppendNode;16;-443.9614,-352.9172;Inherit;False;FLOAT3;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;115;495.7329,-109.6625;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;109;410.7953,-432.2704;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthOnly;0;3;DepthOnly;0;False;False;False;True;0;False;-1;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;True;False;False;False;False;0;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=DepthOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;0
+Node;AmplifyShaderEditor.DepthFade;112;35.31132,23.05778;Inherit;False;False;False;True;2;1;FLOAT3;0,0,0;False;0;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;107;602.0732,-324.5079;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;3;S_alpha_Sword_dy;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;7;False;False;False;True;2;False;-1;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;0;True;1;1;False;-1;1;False;-1;1;1;False;-1;10;False;-1;False;False;False;True;True;True;True;True;0;False;-1;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;2;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;0;Hidden/InternalErrorShader;0;0;Standard;21;Surface;1;  Blend;2;Two Sided;0;Cast Shadows;1;Receive Shadows;1;GPU Instancing;1;LOD CrossFade;0;Built-in Fog;0;Meta Pass;0;DOTS Instancing;0;Extra Pre Pass;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;5;False;True;True;True;False;False;;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;109;410.7953,-432.2704;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthOnly;0;3;DepthOnly;0;False;False;False;True;0;False;-1;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;True;False;False;False;False;0;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=DepthOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;110;410.7953,-432.2704;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;Meta;0;4;Meta;0;False;False;False;True;0;False;-1;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;True;2;False;-1;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;106;410.7953,-432.2704;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;True;0;False;-1;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;True;0;False;-1;True;True;True;True;True;0;False;-1;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;0;False;0;Hidden/InternalErrorShader;0;0;Standard;0;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;108;410.7953,-432.2704;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;True;0;False;-1;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;110;410.7953,-432.2704;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;Meta;0;4;Meta;0;False;False;False;True;0;False;-1;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;True;2;False;-1;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;0
 WireConnection;4;0;8;2
 WireConnection;4;1;2;0
 WireConnection;9;0;8;1
@@ -1019,15 +983,16 @@ WireConnection;67;0;11;4
 WireConnection;67;1;72;0
 WireConnection;14;0;62;0
 WireConnection;14;1;67;0
-WireConnection;112;0;111;0
 WireConnection;113;0;14;0
 WireConnection;113;1;112;0
 WireConnection;16;0;11;1
 WireConnection;16;1;11;2
 WireConnection;16;2;11;3
-WireConnection;115;0;113;0
+WireConnection;115;0;14;0
 WireConnection;115;1;114;0
+WireConnection;112;1;116;0
+WireConnection;112;0;111;0
 WireConnection;107;2;115;0
 WireConnection;107;3;115;0
 ASEEND*/
-//CHKSM=94B97A7BCEEB858D1A32181A788D0D38BB2FC415
+//CHKSM=29C59574355FB8E90A0C6705AC4C257AA310DE06
