@@ -47,7 +47,7 @@ public class MonsterControl : MonsterBasic
 
         if (MonsterStatusValue.hp <= 0)
         {
-            ProcessDead();
+            Dead();
         }
     }
 
@@ -81,26 +81,18 @@ public class MonsterControl : MonsterBasic
         monsterStatus = MonsterStatus.RECEIVEDATTACK;
         Nav.isStopped = true;
         animator.SetTrigger("ReceivedAttack");
-
-        MonsterStatusValue.hp -= 5; // 쉴드 유뮤따라 if문 정리해야함
+        MonsterStatusValue.hp -= 5;
 
         uiHpBar.SetHPUIFill();
-
-    }
-
-    public override void ProcessDead()
-    {
-        base.ProcessDead();
-        monsterStatus = MonsterStatus.DEAD;
-        Nav.isStopped = true;
-        animator.SetTrigger("Dead");
 
     }
 
     public override void Dead()
     {
         base.Dead();
-       
+        monsterStatus = MonsterStatus.DEAD;
+        Nav.isStopped = true;
+        animator.SetTrigger("Dead");
     }
 
     public override void ApproachToPlayer()
@@ -109,12 +101,14 @@ public class MonsterControl : MonsterBasic
         if (Vector3.Distance(tr.position, playerPos.position) < MonsterStatusValue.range && IsInSight)
         {
             animator.SetTrigger("Idle");
+            //Nav.isStopped = false;
             monsterStatus = MonsterStatus.IDLE;
         }
         else if (Vector3.Distance(tr.position, playerPos.position) > MonsterStatusValue.range && IsInSight)
         {
             animator.SetTrigger("Run");
             monsterStatus = MonsterStatus.RUN;
+            //Nav.isStopped = false;
             Nav.SetDestination(playerPos.position);
         }
         else
@@ -129,7 +123,7 @@ public class MonsterControl : MonsterBasic
 
     private void OnTriggerEnter(Collider other)
     {
-        if (((1 << other.gameObject.layer) & SighttargetMask) != 0 && GameManager.Instance.playercontroller.playerAnimationEvent.GetDamageCheck())
+        if (((1 << other.gameObject.layer) & targetMask) != 0 && GameManager.Instance.playercontroller.playerAnimationEvent.GetDamageCheck())
         {
             GameManager.Instance.playercontroller.playerAnimationEvent.SetDamageCheck(false);
             StartCoroutine(DamageTime());

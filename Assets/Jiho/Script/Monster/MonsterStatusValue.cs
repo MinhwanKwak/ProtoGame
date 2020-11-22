@@ -6,8 +6,6 @@ public class MonsterStatusValue
     public string monsterName;
     public float hp;
     public float maxHp;
-    public float shiled;
-    public float maxShiled;
     public float range;
 
     public float tickRate;
