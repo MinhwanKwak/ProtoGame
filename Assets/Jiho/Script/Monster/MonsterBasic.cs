@@ -13,14 +13,15 @@ public class MonsterBasic : MonoBehaviour
     [Range(0, 360)]
     public float viewAngle;
 
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
+    public LayerMask SighttargetMask;
+    public LayerMask SightobstacleMask;
 
     public bool IsInSight; // 시야에 들어와있을 때
 
     public MonsterStatusValue MonsterStatusValue;
 
-    public GameObject hpImage;
+    public GameObject hpImage;  // hp ui image
+    public GameObject shiledImage; // shiled ui image
 
     protected UIHPBar uiHpBar;
 
@@ -72,6 +73,11 @@ public class MonsterBasic : MonoBehaviour
       
     }
 
+    public virtual void ProcessDead()
+    {
+
+    }
+
     public virtual void Dead() // 죽음
     {
     
@@ -92,7 +98,7 @@ public class MonsterBasic : MonoBehaviour
         Vector3 forwardVector = transform.forward;
         Vector3 viewAngleVector = RotateviewAngle * forwardVector;
 
-        Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, SighttargetMask);
         for (int i = 0; i < targetInViewRadius.Length; i++)
         {
             Transform target = targetInViewRadius[i].transform;
@@ -103,7 +109,7 @@ public class MonsterBasic : MonoBehaviour
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 //Debug.DrawRay(transform.position, dirToTarget,Color.blue);
-                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
+                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, SightobstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
                 {
                     if(monsterStatus == MonsterStatus.ATTACK)
                     {
@@ -137,8 +143,4 @@ public class MonsterBasic : MonoBehaviour
         }
         return false;
     }
-
-    // 시야 만들어서 안에들어오면 쫓아가고
-    // 걷기, 공격, 피격 작용 및 애니메이션, hpui의 감소
-    // 
 }
