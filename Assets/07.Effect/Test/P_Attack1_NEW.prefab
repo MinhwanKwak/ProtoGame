@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 8721322466089732319}
   - component: {fileID: 2979101468247991686}
   m_Layer: 0
-  m_Name: Attack1_NEW
+  m_Name: P_Attack1_NEW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2817103114837784986
 Transform:
   m_ObjectHideFlags: 0
