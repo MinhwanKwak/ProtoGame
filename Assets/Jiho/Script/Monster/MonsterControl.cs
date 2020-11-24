@@ -124,7 +124,7 @@ public class MonsterControl : MonsterBasic
 
     private void OnTriggerEnter(Collider other)
     {
-        if (((1 << other.gameObject.layer) & HitLayerMask) != 0 && GameManager.Instance.playercontroller.playerAnimationEvent.GetDamageCheck())
+        if (((1 << other.gameObject.layer) & viewTargetMask) != 0 && GameManager.Instance.playercontroller.playerAnimationEvent.GetDamageCheck())
         {
             GameManager.Instance.playercontroller.playerAnimationEvent.SetDamageCheck(false);
             StartCoroutine(DamageTime());

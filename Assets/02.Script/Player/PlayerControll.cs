@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControll : MonoBehaviour
 {
+    public int playerHP = 10;
 
     public Rigidbody PlayerRigidbody;
 
@@ -28,6 +29,8 @@ public class PlayerControll : MonoBehaviour
     public Transform PlayerBody;
 
     public float CurrentSpeed;
+
+    public LayerMask monsterWeaponLayer;
     
     private float delTime = 0f;
     
@@ -51,6 +54,7 @@ public class PlayerControll : MonoBehaviour
     public PlayerStatus playerStatu = PlayerStatus.IDLE;
 
     public GroundStatus groundStatus;
+
 
     private bool isAttack = false;
     
@@ -178,6 +182,21 @@ public class PlayerControll : MonoBehaviour
     public bool GetAttack()
     {
         return isAttack;
+    }
+
+    public int GetDamageUI()
+    {
+        playerHP--;
+
+        return playerHP;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (((1 << other.gameObject.layer) & monsterWeaponLayer) != 0 )//&& other.gameObject.GetComponentInParent<MonsterBasic>().monsterStatus == MonsterStatus.ATTACK)
+        {
+            GetDamageUI();
+        }
     }
 
 }
