@@ -124,12 +124,13 @@ public class MonsterControl : MonsterBasic
 
     private void OnTriggerEnter(Collider other)
     {
-        if (((1 << other.gameObject.layer) & targetMask) != 0 && GameManager.Instance.playercontroller.playerAnimationEvent.GetDamageCheck())
+        if (((1 << other.gameObject.layer) & HitLayerMask) != 0 && GameManager.Instance.playercontroller.playerAnimationEvent.GetDamageCheck())
         {
             GameManager.Instance.playercontroller.playerAnimationEvent.SetDamageCheck(false);
             StartCoroutine(DamageTime());
             StartCoroutine(GameManager.Instance.cameraManager.camerashake.Shake(0.5f, 0.5f));
             GameObject Effect = ObjectPooler.Instance.SpawnFromPool("HitEffect", hittarget.transform.position, Quaternion.identity);
+            Effect.transform.parent = hittarget.transform;
             StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
 
         }
