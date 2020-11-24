@@ -82,10 +82,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: 10
   viewAngle: 120
-  targetMask:
+  viewTargetMask:
     serializedVersion: 2
     m_Bits: 2048
-  obstacleMask:
+  viewObstacleMask:
     serializedVersion: 2
     m_Bits: 0
   IsInSight: 0
@@ -322,6 +322,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2798687274847169545}
     m_Modifications:
+    - target: {fileID: -7551398136165543123, guid: 6585c53b691178944b6dca0011935258,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -7179394545242994651, guid: 6585c53b691178944b6dca0011935258,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6585c53b691178944b6dca0011935258,
         type: 3}
       propertyPath: m_LocalPosition.x

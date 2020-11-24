@@ -1133,6 +1133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9939083ffcc9c044181609e63215b9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHP: 10
   PlayerRigidbody: {fileID: 8222273910918929479}
   speed: 15
   DashSpeed: 25
@@ -1144,8 +1145,13 @@ MonoBehaviour:
   - {fileID: 0}
   animator: {fileID: 8740497721016742451}
   PlayerBody: {fileID: 5945233541062676819}
+  CurrentSpeed: 0
+  monsterWeaponLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   AttackDelay: 1
   playerStatu: 0
+  groundStatus: 0
   Effects:
   - {fileID: 8071110153943414948}
   - {fileID: 0}

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -542,7 +542,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2105669350}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -688,7 +688,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2105669350}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 333469209}
   - component: {fileID: 333469208}
   m_Layer: 5
-  m_Name: HalfHP4
+  m_Name: HalfHP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 491740411}
   - component: {fileID: 491740410}
   m_Layer: 5
-  m_Name: HalfHP2
+  m_Name: HalfHP4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2050,6 +2050,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1554728909}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1554728912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8740497721218633981, guid: 24c16aa7137b7674f871e3c7b140284c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1554728909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9939083ffcc9c044181609e63215b9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1579379340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,7 +2151,7 @@ GameObject:
   - component: {fileID: 1661279590}
   - component: {fileID: 1661279589}
   m_Layer: 5
-  m_Name: HalfHP1
+  m_Name: HalfHP5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2356,6 +2368,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27a7f4f4ff97254093abd3122033a3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeBar:
+  - {fileID: 2062314815}
+  - {fileID: 234465661}
+  - {fileID: 258066783}
+  - {fileID: 269668845}
+  - {fileID: 1776581561}
+  halfBar:
+  - {fileID: 2004154428}
+  - {fileID: 333469206}
+  - {fileID: 1160804354}
+  - {fileID: 491740408}
+  - {fileID: 1661279587}
+  playerControl: {fileID: 1554728912}
 --- !u!114 &1738977912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2441,12 +2466,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776581561}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2105669350}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2814,7 +2839,7 @@ GameObject:
   - component: {fileID: 2004154431}
   - component: {fileID: 2004154430}
   m_Layer: 5
-  m_Name: HalfHP
+  m_Name: HalfHP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2905,7 +2930,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2105669350}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2982,11 +3007,11 @@ RectTransform:
   - {fileID: 806750372}
   - {fileID: 1866993249}
   - {fileID: 1049113423}
-  - {fileID: 1776581562}
-  - {fileID: 269668846}
-  - {fileID: 258066784}
-  - {fileID: 234465662}
   - {fileID: 2062314816}
+  - {fileID: 234465662}
+  - {fileID: 258066784}
+  - {fileID: 269668846}
+  - {fileID: 1776581562}
   - {fileID: 123110927}
   - {fileID: 457448722}
   - {fileID: 1777488664}
