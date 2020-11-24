@@ -27,10 +27,13 @@ public class PlayerControll : MonoBehaviour
 
     public Transform PlayerBody;
 
+    public float CurrentSpeed;
+    
     private float delTime = 0f;
     
     private string currentState;
 
+ 
 
     Vector2 CurrentInput;
     Vector3 CurrentMouseLook;
@@ -41,14 +44,13 @@ public class PlayerControll : MonoBehaviour
     Vector3 moveNormalized;
 
     WaitForSeconds Attacktime;
-
     
-
-
     [SerializeField]
     private float AttackDelay = 1f;
 
     public PlayerStatus playerStatu = PlayerStatus.IDLE;
+
+    public GroundStatus groundStatus;
 
     private bool isAttack = false;
     
@@ -58,7 +60,7 @@ public class PlayerControll : MonoBehaviour
     public GameObject[] Effects;
     void Start()
     {
-
+        CurrentSpeed = speed;
         CurrentWeapon = weapons[0];
         
     }
@@ -73,6 +75,18 @@ public class PlayerControll : MonoBehaviour
         
         PlayerMouseCheck();
         PlayerMoveCheck();
+    }
+
+    private void Update()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down , 1.0f))
+        {
+            groundStatus = GroundStatus.GROUND;
+        }
+        else
+        {
+            groundStatus = GroundStatus.NONGROUND;
+        }
     }
 
     private void PlayerMouseCheck()
