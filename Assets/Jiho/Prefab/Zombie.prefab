@@ -84,7 +84,7 @@ MonoBehaviour:
   viewAngle: 120
   targetMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2048
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
@@ -145,7 +145,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &537843567
 BoxCollider:
