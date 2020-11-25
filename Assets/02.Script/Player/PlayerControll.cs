@@ -53,8 +53,7 @@ public class PlayerControll : MonoBehaviour
 
     public PlayerStatus playerStatu = PlayerStatus.IDLE;
 
-    public GroundStatus groundStatus;
-
+    
 
     private bool isAttack = false;
     
@@ -83,14 +82,7 @@ public class PlayerControll : MonoBehaviour
 
     private void Update()
     {
-        if(Physics.Raycast(transform.position, Vector3.down , 1.0f))
-        {
-            groundStatus = GroundStatus.GROUND;
-        }
-        else
-        {
-            groundStatus = GroundStatus.NONGROUND;
-        }
+      
     }
 
     private void PlayerMouseCheck()
@@ -198,5 +190,7 @@ public class PlayerControll : MonoBehaviour
             GetDamageUI();
         }
     }
+
+
 
 }
