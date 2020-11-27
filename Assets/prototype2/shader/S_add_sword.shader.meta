@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 8dc1a7736d122a64aa72aa7ac7a748c2
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _T_sword_01: {fileID: 2800000, guid: 8928bc2e8d8a77e4d9fe1e53c0f02d65, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
