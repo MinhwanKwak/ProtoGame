@@ -72,11 +72,6 @@ public class MonsterBasic : MonoBehaviour
       
     }
 
-    public virtual void ProcessDead()
-    {
-
-    }
-
     public virtual void Dead() // 죽음
     {
     
@@ -110,10 +105,10 @@ public class MonsterBasic : MonoBehaviour
                 //Debug.DrawRay(transform.position, dirToTarget,Color.blue);
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, viewObstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
                 {
-                    //if(monsterStatus == MonsterStatus.ATTACK)
-                    //{
-                    //    Nav.isStopped = true;
-                    //}
+                    if(monsterStatus == MonsterStatus.ATTACK)
+                    {
+                        Nav.isStopped = true;
+                    }
                     
                     IsInSight = true;
                     ApproachToPlayer();

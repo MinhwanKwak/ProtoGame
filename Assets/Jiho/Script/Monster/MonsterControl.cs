@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
+
+
 public class MonsterControl : MonsterBasic
 {
    public LayerMask HitLayerMask;
@@ -11,7 +14,7 @@ public class MonsterControl : MonsterBasic
 
    WaitForSecondsRealtime timestop;
 
-  public bool IsProgressAttack = false;
+  public bool IsAttack;
 
     public GameObject hittarget;
     private void Awake()
@@ -63,8 +66,6 @@ public class MonsterControl : MonsterBasic
     public override void Attack()
     {
         base.Attack();
-        IsProgressAttack = true;
-
         monsterStatus = MonsterStatus.ATTACK;
         Nav.isStopped = true;
         animator.SetTrigger("Attack");
@@ -79,17 +80,11 @@ public class MonsterControl : MonsterBasic
     {
         base.ReceivedAttack();
         monsterStatus = MonsterStatus.RECEIVEDATTACK;
-        //Nav.isStopped = true;
+        Nav.isStopped = true;
         animator.SetTrigger("ReceivedAttack");
         MonsterStatusValue.hp -= 5;
 
         uiHpBar.SetHPUIFill();
-
-    }
-
-    public override void ProcessDead()
-    {
-        base.ProcessDead();
 
     }
 
@@ -104,23 +99,24 @@ public class MonsterControl : MonsterBasic
     public override void ApproachToPlayer()
     {
         base.ApproachToPlayer();
-        if (Vector3.Distance(tr.position, playerPos.position) < MonsterStatusValue.range && IsInSight && !IsProgressAttack)
+        if (Vector3.Distance(tr.position, playerPos.position) < MonsterStatusValue.range && IsInSight)
         {
-            animator.SetTrigger("Attack");
-            monsterStatus = MonsterStatus.ATTACK;
-            Attack();
+            animator.SetTrigger("Idle");
+            //Nav.isStopped = false;
+            monsterStatus = MonsterStatus.IDLE;
         }
         else if (Vector3.Distance(tr.position, playerPos.position) > MonsterStatusValue.range && IsInSight)
         {
-            
             animator.SetTrigger("Run");
             monsterStatus = MonsterStatus.RUN;
+            //Nav.isStopped = false;
             Nav.SetDestination(playerPos.position);
         }
         else
         {
-            animator.SetTrigger("Idle");
-            monsterStatus = MonsterStatus.IDLE;
+            animator.SetTrigger("Attack");
+            monsterStatus = MonsterStatus.ATTACK;
+            Attack();
         }
             
     }
@@ -140,6 +136,8 @@ public class MonsterControl : MonsterBasic
         }
     }
 
+
+
     IEnumerator DamageTime()
     {
         Time.timeScale = 0f;
@@ -151,6 +149,16 @@ public class MonsterControl : MonsterBasic
     }
 
 
+
+    public void StartAttack()
+    {
+        Nav.isStopped = true;
+    }
+
+    public void FinishedAttack()
+    {
+        Nav.isStopped = false;
+    }
 
     //IEnumerator AI()
     //{
