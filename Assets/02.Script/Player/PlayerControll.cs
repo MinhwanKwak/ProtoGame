@@ -43,6 +43,10 @@ public class PlayerControll : MonoBehaviour
     Vector3 CurrentMouseLook;
     Vector3 MoveVec;
 
+    Vector3 PlayerBodyVec;
+    Vector3 moveValue;
+    Vector3 moveNormalized;
+
     WaitForSeconds Attacktime;
     
     [SerializeField]
@@ -50,8 +54,7 @@ public class PlayerControll : MonoBehaviour
 
     public PlayerStatus playerStatu = PlayerStatus.IDLE;
 
-    public GroundStatus groundStatus;
-
+    
 
     private bool isAttack = false;
     
@@ -80,20 +83,13 @@ public class PlayerControll : MonoBehaviour
 
     private void Update()
     {
-        if(Physics.Raycast(transform.position, Vector3.down , 1.0f))
-        {
-            groundStatus = GroundStatus.GROUND;
-        }
-        else
-        {
-            groundStatus = GroundStatus.NONGROUND;
-        }
+      
     }
 
     private void PlayerMouseCheck()
     {
       
-        if (Input.GetMouseButtonDown(1) && playerStatu != PlayerStatus.ATTACK)
+        if (Input.GetMouseButtonDown(1) && playerStatu != PlayerStatus.ATTACK && DashTime <= delTime)
         {
             StartCoroutine(Dash());
         }
@@ -109,10 +105,13 @@ public class PlayerControll : MonoBehaviour
     {
             if (CurrentInput.sqrMagnitude > 0.1f && playerStatu != PlayerStatus.ATTACK)
             {
-                Vector3 moveValue = CurrentInput.x * transform.right + CurrentInput.y * transform.forward;
+                moveValue = CurrentInput.x * transform.right + CurrentInput.y * transform.forward;
 
                 playerStatu = PlayerStatus.RUN;
                 animator.SetBool("Run", true);
+
+                MoveAnimCheck();
+
 
                 transform.position += moveValue * speed * Time.deltaTime;
             }
@@ -127,12 +126,24 @@ public class PlayerControll : MonoBehaviour
         
     }
 
-    
-    
-    
+
+    public void MoveAnimCheck()
+    {
+        PlayerBodyVec = GameManager.Instance.cameraManager.PlayerBodyTransform.forward.normalized;
+        moveNormalized = moveValue.normalized;
+        Vector3 test = PlayerBodyVec + moveNormalized;
+
+
+        animator.SetFloat("DirX", Mathf.Abs(test.x));
+        animator.SetFloat("DirZ", Mathf.Abs(test.z));
+
+
+    }
+
+
+
     IEnumerator Dash()
     {
-<<<<<<< HEAD
         delTime = 0f;
 
         animator.SetTrigger("Dash");
@@ -140,30 +151,10 @@ public class PlayerControll : MonoBehaviour
 
         playerStatu = PlayerStatus.DASH;
         transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower, 0, CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
-=======
-        
-        if (playerStatu != PlayerStatus.ATTACK)
-        {
-            //대쉬 에 힘에 의해 이 방향으로 dash time 만큼 이동한다 
 
-            if(DashTime <= delTime)
-            {
->>>>>>> 83fe2a5d0f8533a523408737abb65c97ddb04d2a
 
-                animator.SetTrigger("Dash");
-                Effects[0].SetActive(true);
-                delTime = 0f;
-                playerStatu = PlayerStatus.DASH;
-                transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower , 0 , CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
-            }
-        }
-
-<<<<<<< HEAD
         float ReTime = DashTime - 0.2f;
         yield return new WaitForSeconds(ReTime);
-=======
-        yield return new WaitForSeconds(DashTime);
->>>>>>> 83fe2a5d0f8533a523408737abb65c97ddb04d2a
         Effects[0].SetActive(false);
         playerStatu = PlayerStatus.IDLE;
     }
@@ -218,5 +209,7 @@ public class PlayerControll : MonoBehaviour
     //        GetDamageUI();
     //    }
     //}
+
+
 
 }

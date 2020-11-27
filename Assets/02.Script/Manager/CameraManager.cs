@@ -37,8 +37,7 @@ public class CameraManager : MonoBehaviour
     private float playerlength;
 
 
-    public CameraShaek camerashake;
-
+    public CameraShake camerashake;
 
     private void Start()
     {
