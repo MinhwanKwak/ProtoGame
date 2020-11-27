@@ -13,8 +13,8 @@ public class MonsterBasic : MonoBehaviour
     [Range(0, 360)]
     public float viewAngle;
 
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
+    public LayerMask viewTargetMask;
+    public LayerMask viewObstacleMask;
 
     public bool IsInSight; // 시야에 들어와있을 때
 
@@ -92,7 +92,7 @@ public class MonsterBasic : MonoBehaviour
         Vector3 forwardVector = transform.forward;
         Vector3 viewAngleVector = RotateviewAngle * forwardVector;
 
-        Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, viewTargetMask);
         for (int i = 0; i < targetInViewRadius.Length; i++)
         {
             Transform target = targetInViewRadius[i].transform;
@@ -103,7 +103,7 @@ public class MonsterBasic : MonoBehaviour
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 //Debug.DrawRay(transform.position, dirToTarget,Color.blue);
-                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
+                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, viewObstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
                 {
                     if(monsterStatus == MonsterStatus.ATTACK)
                     {

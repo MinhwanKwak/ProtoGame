@@ -35,3 +35,18 @@ public enum WeaponHandStatus
     LEFT = 0,
     RIGHT= 1
 }
+
+
+public enum ItemStatus
+{
+    SPEEDITEM, 
+    DAMAGEITEM,
+
+}
+
+
+public enum GroundStatus
+{
+    GROUND,
+    NONGROUND
+}

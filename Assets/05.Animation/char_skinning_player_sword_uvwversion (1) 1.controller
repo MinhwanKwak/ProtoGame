@@ -458,6 +458,42 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+<<<<<<< HEAD
+=======
+--- !u!206 &8357347164567893952
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Move
+  m_Childs:
+  - serializedVersion: 2
+    m_Motion: {fileID: -2196787181363846624, guid: ae88e67a14aeb704d9c928dc1cf7a929,
+      type: 3}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 2}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: DirZ
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 9121790299209789690, guid: 112717335fad98c418d6f4cf2de8c45c,
+      type: 3}
+    m_Threshold: 1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: DirZ
+    m_Mirror: 0
+  m_BlendParameter: DirX
+  m_BlendParameterY: DirZ
+  m_MinThreshold: 0
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 1
+  m_NormalizedBlendValues: 0
+  m_BlendType: 2
+>>>>>>> 7624130514c97f507d28ba8aa191423bb5e88601
 --- !u!1101 &8795070170957722479
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
