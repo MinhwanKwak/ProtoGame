@@ -1151,6 +1151,7 @@ MonoBehaviour:
     m_Bits: 4096
   AttackDelay: 1
   playerStatu: 0
+  groundStatus: 0
   Effects:
 <<<<<<< HEAD
   - {fileID: 7893576600210175305}
