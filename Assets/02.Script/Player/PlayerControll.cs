@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerControll : MonoBehaviour
 {
-    public int playerHP = 10;
 
     public Rigidbody PlayerRigidbody;
-
+    
     [Range(0, 50)]
     public float speed = 4f;
 
@@ -17,6 +16,8 @@ public class PlayerControll : MonoBehaviour
     public float Dashpower = 20f;
 
     public float DashTime;
+
+    public float DashAttackTime;
 
     public PlayerAnimationEvent playerAnimationEvent;
 
@@ -92,17 +93,17 @@ public class PlayerControll : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+       else if(playerStatu == PlayerStatus.RUN && Input.GetMouseButton(0) && playerStatu != PlayerStatus.ATTACK && DashAttackTime <= delTime)
+        {
+            StartCoroutine(DashAttack());
+        }
 
     }
 
 
     private void PlayerMoveCheck()
     {
-        
-        if (playerStatu != PlayerStatus.ATTACK)
-        {
-
-            if (CurrentInput.sqrMagnitude > 0.1f)
+            if (CurrentInput.sqrMagnitude > 0.1f && playerStatu != PlayerStatus.ATTACK)
             {
                 moveValue = CurrentInput.x * transform.right + CurrentInput.y * transform.forward;
 
@@ -118,11 +119,11 @@ public class PlayerControll : MonoBehaviour
             {
                 if (playerStatu != PlayerStatus.DASH)
                 {
-                    animator.SetBool("Run", false);
                     playerStatu = PlayerStatus.IDLE;
+                    animator.SetBool("Run", false);
                 }
             }
-        }
+        
     }
 
 
@@ -147,17 +148,35 @@ public class PlayerControll : MonoBehaviour
 
         animator.SetTrigger("Dash");
         Effects[0].SetActive(true);
-        
+
         playerStatu = PlayerStatus.DASH;
-        transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower , 0 , CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
+        transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower, 0, CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
 
 
-        float ReTime  = DashTime - 0.2f;
+        float ReTime = DashTime - 0.2f;
         yield return new WaitForSeconds(ReTime);
         Effects[0].SetActive(false);
         playerStatu = PlayerStatus.IDLE;
     }
 
+     IEnumerator DashAttack()
+    {
+
+        delTime = 0f;
+
+        animator.SetTrigger("DashAttack");
+        Effects[4].SetActive(true);
+        playerStatu = PlayerStatus.DASHATTACK;
+
+        transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower, 0, CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
+
+
+        float ReTime = DashAttackTime - 0.2f;
+        yield return new WaitForSeconds(ReTime);
+
+        Effects[4].SetActive(false);
+        playerStatu = PlayerStatus.DASHATTACK;
+    }
 
     
 
@@ -176,20 +195,20 @@ public class PlayerControll : MonoBehaviour
         return isAttack;
     }
 
-    public int GetDamageUI()
-    {
-        playerHP--;
+    //public int GetDamageUI()
+    //{
+    //    playerHP--;
 
-        return playerHP;
-    }
+    //    return playerHP;
+    //}
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (((1 << other.gameObject.layer) & monsterWeaponLayer) != 0 )//&& other.gameObject.GetComponentInParent<MonsterBasic>().monsterStatus == MonsterStatus.ATTACK)
-        {
-            GetDamageUI();
-        }
-    }
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (((1 << other.gameObject.layer) & monsterWeaponLayer) != 0 )//&& other.gameObject.GetComponentInParent<MonsterBasic>().monsterStatus == MonsterStatus.ATTACK)
+    //    {
+    //        GetDamageUI();
+    //    }
+    //}
 
 
 

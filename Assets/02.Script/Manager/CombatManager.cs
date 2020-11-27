@@ -19,7 +19,10 @@ public class CombatManager : MonoBehaviour
     }
     private void Update()
     {
-        Attack();
+        if (GameManager.Instance.playercontroller.playerStatu != PlayerStatus.RUN )
+        {
+            Attack();
+        }
     }
 
     public void Attack()
@@ -28,6 +31,7 @@ public class CombatManager : MonoBehaviour
         {
             inputReceived = true;
             CanReciveInput = false;
+            GameManager.Instance.playercontroller.playerStatu = PlayerStatus.ATTACK;
         }
         else
         {
