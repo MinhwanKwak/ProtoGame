@@ -3,9 +3,19 @@
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.1.4",
+<<<<<<< HEAD
     "com.unity.ide.vscode": "1.2.3",
+<<<<<<< HEAD
+    "com.unity.render-pipelines.lightweight": "7.3.1",
+=======
     "com.unity.render-pipelines.lightweight": "7.4.3",
+>>>>>>> 7624130514c97f507d28ba8aa191423bb5e88601
     "com.unity.test-framework": "1.1.18",
+=======
+    "com.unity.ide.vscode": "1.1.4",
+    "com.unity.render-pipelines.lightweight": "7.1.8",
+    "com.unity.test-framework": "1.1.11",
+>>>>>>> parent of 65a452b... 2020-11-25
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.timeline": "1.2.12",
     "com.unity.ugui": "1.0.0",
