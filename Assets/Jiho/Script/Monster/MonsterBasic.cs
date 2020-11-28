@@ -39,6 +39,8 @@ public class MonsterBasic : MonoBehaviour
 
     public MonsterStatus monsterStatus;
 
+    public bool IsProgressAttack = false;
+
     private void Awake()
     {
         IsInSight = false;
@@ -83,7 +85,7 @@ public class MonsterBasic : MonoBehaviour
     }
     public virtual void ApproachToPlayer() // 플레이어를 쫓아감
     {
-        if(monsterStatus == MonsterStatus.ATTACK)
+        if (monsterStatus == MonsterStatus.ATTACK)
         {
             return;
         }
@@ -108,12 +110,7 @@ public class MonsterBasic : MonoBehaviour
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 //Debug.DrawRay(transform.position, dirToTarget,Color.blue);
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, viewObstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
-                {
-                    //if(monsterStatus == MonsterStatus.ATTACK)
-                    //{
-                    //    Nav.isStopped = true;
-                    //}
-                    
+                {                    
                     IsInSight = true;
                     ApproachToPlayer();
                     return;

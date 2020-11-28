@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonsterAnimationEvent : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MonsterAnimationEvent : MonoBehaviour
         if(!monster.IsInSight)
         {
             monster.animator.SetTrigger("Idle");
+            monster.monsterStatus = MonsterStatus.IDLE;
         }
         monster.Nav.isStopped = true;
     }
@@ -18,7 +20,17 @@ public class MonsterAnimationEvent : MonoBehaviour
     public void FinishedAttack()
     {
         monster.Nav.isStopped = false;
-        monster.GetComponent<MonsterControl>().IsProgressAttack = false;
+        monster.IsProgressAttack = false;
 
+    }
+
+    public void StartWalk()
+    {
+        monster.Nav.isStopped = false;
+    }
+
+    public void EndWalk()
+    {
+        monster.Nav.isStopped = false;
     }
 }
