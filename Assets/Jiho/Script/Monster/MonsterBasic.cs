@@ -17,6 +17,7 @@ public class MonsterBasic : MonoBehaviour
     public LayerMask viewObstacleMask;
 
     public bool IsInSight; // 시야에 들어와있을 때
+    public bool wasInSight; // 시야에 들어온 적이 있는지
 
     public MonsterStatusValue MonsterStatusValue;
 
@@ -112,16 +113,28 @@ public class MonsterBasic : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, viewObstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
                 {                    
                     IsInSight = true;
+                    wasInSight = true;
                     ApproachToPlayer();
                     return;
                 }
             }
-            else
+            else if(wasInSight)
             {
-                IsInSight = false;
+                //IsInSight = false;
+
+                StartCoroutine(OutSight());
                 DOTween.Kill(this.gameObject);
             }
         }
+    }
+
+    IEnumerator OutSight()
+    {
+        //wasInSight = true;
+        ApproachToPlayer();
+        yield return new WaitForSeconds(5f);
+        wasInSight = false;
+        IsInSight = false;
     }
 
     public bool IsDestination() // 네비게이션 도착했는지 안했는지
@@ -138,8 +151,4 @@ public class MonsterBasic : MonoBehaviour
         }
         return false;
     }
-
-    // 시야 만들어서 안에들어오면 쫓아가고
-    // 걷기, 공격, 피격 작용 및 애니메이션, hpui의 감소
-    // 
 }

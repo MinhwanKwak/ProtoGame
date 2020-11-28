@@ -14,17 +14,17 @@ public class WitchDoctorDollControl : MonsterBasic
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject go = Instantiate(hpImage);
-        //go.transform.SetParent(hpCanvas.GetAnchorRect());
-        //go.transform.localScale = Vector3.one;
-        //uiHpBar = go.GetComponent<UIHPBar>();
+        GameObject go = Instantiate(hpImage);
+        go.transform.SetParent(hpCanvas.GetAnchorRect());
+        go.transform.localScale = Vector3.one;
+        uiHpBar = go.GetComponent<UIHPBar>();
 
         this.monsterStatus = MonsterStatus.IDLE;
     }
 
     protected override void Update()
     {
-        //InAttackRange();
+       
         
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
@@ -36,7 +36,7 @@ public class WitchDoctorDollControl : MonsterBasic
 
     private void FixedUpdate()
     {
-        InAttackRange();
+        InAttackRange(); // 공격범위 안에 드는 지 체크
 
         if(IsProgressAttack)
         {
