@@ -42,7 +42,8 @@ public enum WeaponHandStatus
 public enum ItemStatus
 {
     SPEEDITEM, 
-    DAMAGEITEM,
+    ATTACKITEM,
+    ARMORITEM,
 
 }
 

@@ -61,8 +61,8 @@ public class CameraManager : MonoBehaviour
             transform.position = CameraFinal + PlayerBodyTransform.transform.position;
          
             transform.eulerAngles = Vector3.zero;
-        
-            GameManager.Instance.playercontroller.SetMousePointLook(Playerlook);
+
+            PlayerManager.Instance.playerControll.SetMousePointLook(Playerlook);
 
             PlayerBodyTransform.LookAt(new Vector3(pointTolook.x, PlayerBodyTransform.position.y, pointTolook.z));
 

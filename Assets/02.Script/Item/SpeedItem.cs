@@ -7,21 +7,15 @@ public class SpeedItem : ItemBase
     [Range(0,20)]
     public float SpeedIncrease = 0f;
 
-    WaitForSeconds RespawnTime;
-    
     [Range(0, 10)]
-    public float ItemRespawnTime;
+    public float BuffTime;
 
-    MeshRenderer meshRenderer;
-    SphereCollider HitCollider;
+
     private void Start()
     {
         Initialize(ItemStatus.SPEEDITEM);
 
-        RespawnTime = new WaitForSeconds(ItemRespawnTime);
-
-        meshRenderer =  GetComponent<MeshRenderer>();
-        HitCollider = GetComponent<SphereCollider>();
+      
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,22 +26,25 @@ public class SpeedItem : ItemBase
         }
     }
 
-    IEnumerator ItemGet()
-    {
-        player.speed += SpeedIncrease;
-        meshRenderer.enabled = false;
-        HitCollider.enabled = false;
-        Invoke("BuffpersistTime", BuffTime);
-        yield return RespawnTime;
-        
-        meshRenderer.enabled = true;
-        HitCollider.enabled = true;
-    }
+  
 
     
    private void BuffpersistTime()
     {
-        player.speed = player.CurrentSpeed;
+        PlayerManager.Instance.playerControll.speed = PlayerManager.Instance.playerControll.CurrentSpeed;
     }
 
+
+    public override IEnumerator ItemGet()
+    {
+        PlayerManager.Instance.playerControll.speed += SpeedIncrease;
+        meshRenderer.enabled = false;
+        HitCollider.enabled = false;
+        Invoke("BuffpersistTime", BuffTime);
+        yield return RespawnTime;
+
+        meshRenderer.enabled = true;
+        HitCollider.enabled = true;
+
+    }
 }

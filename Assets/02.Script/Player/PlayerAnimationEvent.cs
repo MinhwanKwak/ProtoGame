@@ -10,9 +10,9 @@ public class PlayerAnimationEvent : MonoBehaviour
     private void AttackStart1()
     {
         isDamageCheck = true;
-        GameManager.Instance.playercontroller.SetisAttack(true);
-        GameManager.Instance.playercontroller.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = true;
-        GameManager.Instance.playercontroller.Effects[(int)EffectStatus.ATTACK1].SetActive(true);
+        PlayerManager.Instance.playerControll.SetisAttack(true);
+        PlayerManager.Instance.playerControll.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = true;
+        PlayerManager.Instance.playerControll.Effects[(int)EffectStatus.ATTACK1].SetActive(true);
       
 
 
@@ -21,10 +21,10 @@ public class PlayerAnimationEvent : MonoBehaviour
     private void AttackEnd1()
     {
         isDamageCheck = true;
-        GameManager.Instance.playercontroller.SetisAttack(false);
-        GameManager.Instance.playercontroller.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = false;
-        GameManager.Instance.playercontroller.Effects[(int)EffectStatus.ATTACK1].SetActive(false);
-        GameManager.Instance.playercontroller.playerStatu = PlayerStatus.IDLE;
+       PlayerManager.Instance.playerControll.SetisAttack(false);
+       PlayerManager.Instance.playerControll.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = false;
+       PlayerManager.Instance.playerControll.Effects[(int)EffectStatus.ATTACK1].SetActive(false);
+        PlayerManager.Instance.playerControll.playerStatu = PlayerStatus.IDLE;
       
 
 
@@ -34,9 +34,9 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         isDamageCheck = true;
         
-        GameManager.Instance.playercontroller.SetisAttack(true);
-        GameManager.Instance.playercontroller.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = true;
-        GameManager.Instance.playercontroller.Effects[(int)EffectStatus.ATTACK2].SetActive(true);
+        PlayerManager.Instance.playerControll.SetisAttack(true);
+        PlayerManager.Instance.playerControll.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = true;
+        PlayerManager.Instance.playerControll.Effects[(int)EffectStatus.ATTACK2].SetActive(true);
         
     }
 
@@ -44,18 +44,18 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         isDamageCheck = false;
         
-        GameManager.Instance.playercontroller.SetisAttack(false);
-        GameManager.Instance.playercontroller.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = false;
-        GameManager.Instance.playercontroller.Effects[(int)EffectStatus.ATTACK2].SetActive(false);
-        GameManager.Instance.playercontroller.playerStatu = PlayerStatus.IDLE;
+       PlayerManager.Instance.playerControll.SetisAttack(false);
+       PlayerManager.Instance.playerControll.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = false;
+       PlayerManager.Instance.playerControll.Effects[(int)EffectStatus.ATTACK2].SetActive(false);
+        PlayerManager.Instance.playerControll.playerStatu = PlayerStatus.IDLE;
         
     }
 
     private void DashAttackStart()
     {
         isDamageCheck = true;
-        GameManager.Instance.playercontroller.SetisAttack(true);
-        GameManager.Instance.playercontroller.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = true;
+        PlayerManager.Instance.playerControll.SetisAttack(true);
+        PlayerManager.Instance.playerControll.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = true;
     
 
     }
@@ -63,8 +63,8 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         isDamageCheck = false;
 
-        GameManager.Instance.playercontroller.SetisAttack(false);
-        GameManager.Instance.playercontroller.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = false;
+        PlayerManager.Instance.playerControll.SetisAttack(false);
+        PlayerManager.Instance.playerControll.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = false;
 
     }
 
