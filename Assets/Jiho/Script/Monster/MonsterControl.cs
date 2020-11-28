@@ -34,7 +34,6 @@ public class MonsterControl : MonsterBasic
         //uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
 
         this.monsterStatus = MonsterStatus.IDLE;
-        this.animator = animator.GetComponent<Animator>();
     }
 
     protected override void Update()

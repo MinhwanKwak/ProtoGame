@@ -106,7 +106,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   TimeStop: 0
-  IsAttack: 0
+  IsProgressAttack: 0
   hittarget: {fileID: 0}
 --- !u!195 &2798687274847169551
 NavMeshAgent:
@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8b69e28ba7bb34980f240e98fd17bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 0}
 --- !u!65 &8712392657509094505
 BoxCollider:
   m_ObjectHideFlags: 0

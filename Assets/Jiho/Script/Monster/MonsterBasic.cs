@@ -103,7 +103,6 @@ public class MonsterBasic : MonoBehaviour
             Transform target = targetInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
 
-
             if (Vector3.Dot(transform.forward, dirToTarget) > Vector3.Dot(transform.forward, viewAngleVector)) // 타겟벡터와의 내적값이 시야벡터와의 내적값보다 크면 시야 안에 들어옴
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);

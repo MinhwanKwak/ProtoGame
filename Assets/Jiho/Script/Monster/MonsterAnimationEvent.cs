@@ -13,7 +13,6 @@ public class MonsterAnimationEvent : MonoBehaviour
             monster.animator.SetTrigger("Idle");
         }
         monster.Nav.isStopped = true;
-
     }
 
     public void FinishedAttack()
