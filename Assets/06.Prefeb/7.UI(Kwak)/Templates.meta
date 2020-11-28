@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/06.Prefeb/7.UI(Kwak)/Templates.meta
+guid: 82b39c978468cc94da2983e30b8c91c9
+=======
+guid: db85c512de24912418b95e8c2f6158db
+>>>>>>> a9544a4857c1ad0dbecb6f47e304ed3ab0d61bfc:Assets/06.Prefeb/7.UI(Kwak)/Templates/SRP (Legacy).meta
+=======
 guid: 748ea35dd86a34c4b8bc1a481fb41f76
+>>>>>>> a9544a4857c1ad0dbecb6f47e304ed3ab0d61bfc
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

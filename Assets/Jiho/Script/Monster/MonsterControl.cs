@@ -131,7 +131,7 @@ public class MonsterControl : MonsterBasic
         {
             GameManager.Instance.playercontroller.playerAnimationEvent.SetDamageCheck(false);
             StartCoroutine(DamageTime());
-            StartCoroutine(GameManager.Instance.cameraManager.camerashake.Shake(0.5f, 0.5f));
+            StartCoroutine(GameManager.Instance.cameraManager.camerashake.Shake(0.25f, 0.25f));
             GameObject Effect = ObjectPooler.Instance.SpawnFromPool("HitEffect", hittarget.transform.position, hittarget.transform.rotation);
             Effect.transform.parent = hittarget.transform;
             StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
