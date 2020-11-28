@@ -9,6 +9,8 @@ public class WitchDoctorDollControl : MonsterBasic
 
     Vector3 Attackplace;
 
+    float bulletSpeed = 10f;
+
     GameObject go;
 
     // Start is called before the first frame update
@@ -96,6 +98,6 @@ public class WitchDoctorDollControl : MonsterBasic
     public void Launch() // 투사체 발사
     {
         Vector3 getDirection = (Attackplace - launchPos.position).normalized;
-        go.transform.Translate(getDirection * Time.deltaTime);        
+        go.transform.Translate(getDirection * Time.deltaTime * bulletSpeed);        
     }
 }
