@@ -11,7 +11,7 @@ public class MonsterControl : MonsterBasic
 
    WaitForSecondsRealtime timestop;
 
-  public bool IsProgressAttack = false;
+    
 
     public GameObject hittarget;
     private void Awake()
@@ -34,7 +34,6 @@ public class MonsterControl : MonsterBasic
         //uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
 
         this.monsterStatus = MonsterStatus.IDLE;
-        this.animator = animator.GetComponent<Animator>();
     }
 
     protected override void Update()
@@ -65,11 +64,11 @@ public class MonsterControl : MonsterBasic
         base.Attack();
         IsProgressAttack = true;
 
-        monsterStatus = MonsterStatus.ATTACK;
-        Nav.isStopped = true;
-        animator.SetTrigger("Attack");
+        //monsterStatus = MonsterStatus.ATTACK;
+        //Nav.isStopped = true;
+        //animator.SetTrigger("Attack");
 
-        Vector3 transform = new Vector3(playerPos.position.x, 0, playerPos.position.z);
+        //Vector3 transform = new Vector3(playerPos.position.x, 0, playerPos.position.z);
         //tr.LookAt(playerPos);
         tr.DOLookAt(playerPos.position, 0.2f);
         //tr.DOLookAt(transform, 0.2f);
@@ -104,7 +103,7 @@ public class MonsterControl : MonsterBasic
     public override void ApproachToPlayer()
     {
         base.ApproachToPlayer();
-        if (Vector3.Distance(tr.position, playerPos.position) < MonsterStatusValue.range && IsInSight && !IsProgressAttack)
+        if (Vector3.Distance(tr.position, playerPos.position) <= MonsterStatusValue.range && IsInSight && !IsProgressAttack)
         {
             animator.SetTrigger("Attack");
             monsterStatus = MonsterStatus.ATTACK;
@@ -115,9 +114,10 @@ public class MonsterControl : MonsterBasic
             
             animator.SetTrigger("Run");
             monsterStatus = MonsterStatus.RUN;
+            //Nav.isStopped = false;
             Nav.SetDestination(playerPos.position);
         }
-        else
+        else if(!IsProgressAttack)
         {
             animator.SetTrigger("Idle");
             monsterStatus = MonsterStatus.IDLE;

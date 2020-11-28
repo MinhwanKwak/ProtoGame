@@ -17,6 +17,7 @@ public class MonsterBasic : MonoBehaviour
     public LayerMask viewObstacleMask;
 
     public bool IsInSight; // 시야에 들어와있을 때
+    public bool wasInSight; // 시야에 들어온 적이 있는지
 
     public MonsterStatusValue MonsterStatusValue;
 
@@ -38,6 +39,8 @@ public class MonsterBasic : MonoBehaviour
     public Animator animator;
 
     public MonsterStatus monsterStatus;
+
+    public bool IsProgressAttack = false;
 
     private void Awake()
     {
@@ -83,7 +86,7 @@ public class MonsterBasic : MonoBehaviour
     }
     public virtual void ApproachToPlayer() // 플레이어를 쫓아감
     {
-        if(monsterStatus == MonsterStatus.ATTACK)
+        if (monsterStatus == MonsterStatus.ATTACK)
         {
             return;
         }
@@ -103,29 +106,35 @@ public class MonsterBasic : MonoBehaviour
             Transform target = targetInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
 
-
             if (Vector3.Dot(transform.forward, dirToTarget) > Vector3.Dot(transform.forward, viewAngleVector)) // 타겟벡터와의 내적값이 시야벡터와의 내적값보다 크면 시야 안에 들어옴
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 //Debug.DrawRay(transform.position, dirToTarget,Color.blue);
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, viewObstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
-                {
-                    //if(monsterStatus == MonsterStatus.ATTACK)
-                    //{
-                    //    Nav.isStopped = true;
-                    //}
-                    
+                {                    
                     IsInSight = true;
+                    wasInSight = true;
                     ApproachToPlayer();
                     return;
                 }
             }
-            else
+            else if(wasInSight)
             {
-                IsInSight = false;
+                //IsInSight = false;
+
+                StartCoroutine(OutSight());
                 DOTween.Kill(this.gameObject);
             }
         }
+    }
+
+    IEnumerator OutSight()
+    {
+        //wasInSight = true;
+        ApproachToPlayer();
+        yield return new WaitForSeconds(5f);
+        wasInSight = false;
+        IsInSight = false;
     }
 
     public bool IsDestination() // 네비게이션 도착했는지 안했는지
@@ -142,8 +151,4 @@ public class MonsterBasic : MonoBehaviour
         }
         return false;
     }
-
-    // 시야 만들어서 안에들어오면 쫓아가고
-    // 걷기, 공격, 피격 작용 및 애니메이션, hpui의 감소
-    // 
 }
