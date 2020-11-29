@@ -37,5 +37,6 @@ public class MonsterAnimationEvent : MonoBehaviour
     public void ZombieDead()
     {
         monster.Dead();
-    }    
+        
+    }
 }

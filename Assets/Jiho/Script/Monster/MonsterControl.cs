@@ -91,6 +91,7 @@ public class MonsterControl : MonsterBasic
         base.ProcessDead();
         monsterStatus = MonsterStatus.DEAD;
         Nav.isStopped = true;
+        IsDead = true;
         animator.SetBool("Dead", true);
     }
 
@@ -98,8 +99,14 @@ public class MonsterControl : MonsterBasic
     {
         base.Dead();
 
-        Destroy(this.gameObject);
+        StartCoroutine(DeadDelay());
         
+    }
+
+    IEnumerator DeadDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
     }
 
     public override void ApproachToPlayer()
@@ -143,11 +150,11 @@ public class MonsterControl : MonsterBasic
             
             MonsterStatusValue.hp -= 1;
 
-            if(MonsterStatusValue.hp <= 0) // 사망
+            if(MonsterStatusValue.hp <= 0 && !IsDead) // 사망
             {
                 ProcessDead();
             }
-            else
+            else if(!IsDead)
             {
                 animator.SetTrigger("BeAttacked");
             }

@@ -44,6 +44,8 @@ public class MonsterBasic : MonoBehaviour
 
     public bool IsProgressAttack = false;
 
+    public bool IsDead = false;
+
     protected virtual void Awake()
     {
         IsInSight = false;
@@ -84,7 +86,7 @@ public class MonsterBasic : MonoBehaviour
 
     public virtual void Dead() // 죽음
     {
-    
+        animator.SetBool("Dead", false);
     }
     public virtual void ApproachToPlayer() // 플레이어를 쫓아감
     {
