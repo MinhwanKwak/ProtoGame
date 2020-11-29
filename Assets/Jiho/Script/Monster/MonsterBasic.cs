@@ -16,6 +16,8 @@ public class MonsterBasic : MonoBehaviour
     public LayerMask viewTargetMask;
     public LayerMask viewObstacleMask;
 
+    public LayerMask HitLayerMask;
+
     public bool IsInSight; // 시야에 들어와있을 때
     public bool wasInSight; // 시야에 들어온 적이 있는지
 
@@ -42,7 +44,7 @@ public class MonsterBasic : MonoBehaviour
 
     public bool IsProgressAttack = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         IsInSight = false;
     }

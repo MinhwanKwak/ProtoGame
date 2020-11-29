@@ -5,21 +5,31 @@ using UnityEngine;
 public class WitchDoctorDollControl : MonsterBasic
 {
     public GameObject bullet;
+    public WitchDoctorDollWeapon Weapon;
     public Transform launchPos;
 
-    Vector3 Attackplace;
+    public Vector3 Attackplace;
 
     float bulletSpeed = 10f;
 
-    GameObject go;
+    public GameObject go;
+
+    float getTime = 0.0f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Weapon = bullet.GetComponent<WitchDoctorDollWeapon>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject go = Instantiate(hpImage);
-        go.transform.SetParent(hpCanvas.GetAnchorRect());
-        go.transform.localScale = Vector3.one;
-        uiHpBar = go.GetComponent<UIHPBar>();
+        //GameObject go = Instantiate(hpImage);
+        //go.transform.SetParent(hpCanvas.GetAnchorRect());
+        //go.transform.localScale = Vector3.one;
+        //uiHpBar = go.GetComponent<UIHPBar>();
 
         this.monsterStatus = MonsterStatus.IDLE;
     }
@@ -30,22 +40,23 @@ public class WitchDoctorDollControl : MonsterBasic
         
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
-        if (MonsterStatusValue.hp <= 0)
-        {
-            Dead();
-        }
     }
 
     private void FixedUpdate()
     {
         InAttackRange(); // 공격범위 안에 드는 지 체크
 
-        if(IsProgressAttack)
+        getTime += Time.deltaTime;
+
+        if (IsProgressAttack && getTime >= 5f)
         {
-            Launch();
+            IsProgressAttack = false;
+            getTime = 0.0f;
         }
-        
+
     }
+
+ 
 
     public void InAttackRange()
     {
@@ -54,6 +65,7 @@ public class WitchDoctorDollControl : MonsterBasic
         if(InRangeTarget.Length == 0)
         {
             IsInSight = false;
+            //IsProgressAttack = false;
             return;
         }
 
@@ -98,6 +110,32 @@ public class WitchDoctorDollControl : MonsterBasic
     public void Launch() // 투사체 발사
     {
         Vector3 getDirection = (Attackplace - launchPos.position).normalized;
-        go.transform.Translate(getDirection * Time.deltaTime * bulletSpeed);        
+        //go.transform.Translate(getDirection * Time.deltaTime * bulletSpeed);
+        go.transform.position += (getDirection * Time.deltaTime * bulletSpeed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (((1 << other.gameObject.layer) & HitLayerMask) != 0 && PlayerManager.Instance.playerControll.playerAnimationEvent.GetDamageCheck())
+        {
+            //PlayerManager.Instance.playerControll.playerAnimationEvent.SetDamageCheck(false);
+            //StartCoroutine(DamageTime());
+            //StartCoroutine(GameManager.Instance.cameraManager.camerashake.Shake(0.25f, 0.25f));
+            //GameObject Effect = ObjectPooler.Instance.SpawnFromPool("HitEffect", hittarget.transform.position, hittarget.transform.rotation);
+            //Effect.transform.parent = hittarget.transform;
+            //StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
+
+            // 피격
+            MonsterStatusValue.hp -= 1;
+
+            if (MonsterStatusValue.hp <= 0) // 사망
+            {
+                ProcessDead();
+            }
+            //else
+            //{
+            //    animator.SetTrigger("BeAttacked");
+            //}
+        }
     }
 }

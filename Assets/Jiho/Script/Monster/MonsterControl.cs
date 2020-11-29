@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class MonsterControl : MonsterBasic
 {
-   public LayerMask HitLayerMask;
+   
 
    public float TimeStop = 0f;
 
@@ -40,12 +40,12 @@ public class MonsterControl : MonsterBasic
     {
         base.Update();
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
-        uiHpBar.image.rectTransform.anchoredPosition = Camera.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
-        if (MonsterStatusValue.hp <= 0)
-        {
-            Dead();
-        }
+        //if (MonsterStatusValue.hp <= 0)
+        //{
+        //    Dead();
+        //}
     }
 
    
@@ -89,15 +89,17 @@ public class MonsterControl : MonsterBasic
     public override void ProcessDead()
     {
         base.ProcessDead();
-
+        monsterStatus = MonsterStatus.DEAD;
+        Nav.isStopped = true;
+        animator.SetBool("Dead", true);
     }
 
     public override void Dead()
     {
         base.Dead();
-        monsterStatus = MonsterStatus.DEAD;
-        Nav.isStopped = true;
-        animator.SetTrigger("Dead");
+
+        Destroy(this.gameObject);
+        
     }
 
     public override void ApproachToPlayer()
@@ -137,6 +139,18 @@ public class MonsterControl : MonsterBasic
             Effect.transform.parent = hittarget.transform;
             StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
 
+            // 피격
+            
+            MonsterStatusValue.hp -= 1;
+
+            if(MonsterStatusValue.hp <= 0) // 사망
+            {
+                ProcessDead();
+            }
+            else
+            {
+                animator.SetTrigger("BeAttacked");
+            }
         }
     }
 

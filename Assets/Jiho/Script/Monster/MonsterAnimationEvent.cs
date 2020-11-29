@@ -33,4 +33,9 @@ public class MonsterAnimationEvent : MonoBehaviour
     {
         monster.Nav.isStopped = false;
     }
+
+    public void ZombieDead()
+    {
+        monster.Dead();
+    }    
 }
