@@ -14,7 +14,7 @@ public class MonsterControl : MonsterBasic
     
 
     public GameObject hittarget;
-    private void Awake()
+    protected override void Awake()
     {
         MonsterStatusValue.Initialize();
         tr = GetComponent<Transform>();
@@ -31,7 +31,7 @@ public class MonsterControl : MonsterBasic
         uiHpBar = go.GetComponent<UIHPBar>();
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
         //uiHpBar.image.rectTransform.anchoredPosition = CameraManager.MainCamera.WorldToScreenPoint(HpTransform.position);
-        //uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
+        uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
 
         this.monsterStatus = MonsterStatus.IDLE;
     }
@@ -40,7 +40,7 @@ public class MonsterControl : MonsterBasic
     {
         base.Update();
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
-        //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        uiHpBar.image.rectTransform.anchoredPosition = Camera.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         //if (MonsterStatusValue.hp <= 0)
         //{
@@ -112,8 +112,9 @@ public class MonsterControl : MonsterBasic
     public override void ApproachToPlayer()
     {
         base.ApproachToPlayer();
-        if (Vector3.Distance(tr.position, playerPos.position) <= MonsterStatusValue.range && IsInSight && !IsProgressAttack)
+        if (Vector3.Distance(tr.position, playerPos.position) <= MonsterStatusValue.range && IsInSight && !IsProgressAttack && MonsterAttackDelayTime >= 2f)
         {
+            MonsterAttackDelayTime = 0.0f;
             animator.SetTrigger("Attack");
             monsterStatus = MonsterStatus.ATTACK;
             Attack();
@@ -130,8 +131,12 @@ public class MonsterControl : MonsterBasic
         {
             animator.SetTrigger("Idle");
             monsterStatus = MonsterStatus.IDLE;
-        }
-            
+        }   
+    }
+
+    IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
     }
 
 
@@ -154,7 +159,7 @@ public class MonsterControl : MonsterBasic
             {
                 ProcessDead();
             }
-            else if(!IsDead)
+            else if(!IsDead && !IsProgressAttack)
             {
                 animator.SetTrigger("BeAttacked");
             }

@@ -43,8 +43,11 @@ public class MonsterBasic : MonoBehaviour
     public MonsterStatus monsterStatus;
 
     public bool IsProgressAttack = false;
+    public bool IsAttackOneTouch = false;
 
     public bool IsDead = false;
+
+    public float MonsterAttackDelayTime = 0.0f;
 
     protected virtual void Awake()
     {
@@ -52,6 +55,8 @@ public class MonsterBasic : MonoBehaviour
     }
     protected virtual void Update()
     {
+        MonsterAttackDelayTime += Time.deltaTime;
+
         FindTarget();
         if (IsDestination() && !IsInSight)
         {

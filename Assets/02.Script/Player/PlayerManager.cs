@@ -37,11 +37,22 @@ public class PlayerManager : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        bool IsAttackTime = other.gameObject.GetComponent<MonsterBasic>().IsProgressAttack;
+        bool ProgressAttackCheck = false;
 
-        if (((1 << other.gameObject.layer) & playerControll.monsterWeaponLayer) != 0 && IsAttackTime)
+        if (((1 << other.gameObject.layer) & playerControll.monsterWeaponLayer) != 0)
         {
-            Damage();
+            ProgressAttackCheck = other.gameObject.GetComponentInParent<MonsterBasic>().IsProgressAttack;
+        }
+       
+
+        if (((1 << other.gameObject.layer) & playerControll.monsterWeaponLayer) != 0 && ProgressAttackCheck)
+        {
+            if(!other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch)
+            {
+                Damage();
+            }
+            other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch = true;
+
             //check player에 armor가 있는지 없는지 hp 가 있는지 
             //check후 ui에 표시 
         }

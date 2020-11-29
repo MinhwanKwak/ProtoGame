@@ -21,6 +21,7 @@ public class MonsterAnimationEvent : MonoBehaviour
     {
         monster.Nav.isStopped = false;
         monster.IsProgressAttack = false;
+        monster.IsAttackOneTouch = false;
 
     }
 
