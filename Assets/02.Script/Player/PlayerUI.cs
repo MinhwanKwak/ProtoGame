@@ -16,6 +16,13 @@ public struct HpUIToggle
     public bool isHpToggle;
 };
 
+[System.Serializable]
+public struct HalfHPUIToggle
+{
+    public GameObject halfHpUI;
+    public bool ishalfHpToggle;
+};
+
 
 [System.Serializable]
 public struct AttackUIToggle
@@ -29,6 +36,7 @@ public class PlayerUI : UIBase
 {
     public  AttackUIToggle[] AttackUIs;
     public HpUIToggle[] HpUIs;
+    public HalfHPUIToggle[] halfHPUIs;
     public ArmorUIToggle[] ArmorUIs;
 
 
@@ -40,7 +48,7 @@ public class PlayerUI : UIBase
     {
         Cursor.SetCursor(MouseNonClick, Vector2.zero, CursorMode.Auto);
         for (int i = 0; i < PlayerManager.Instance.Armor; ++i) { ArmorUIs[i].isArmorToggl = true; }
-        for (int i = 0; i < PlayerManager.Instance.Hp; ++i) { HpUIs[i].isHpToggle = true; }
+        for (int i = 0; i < PlayerManager.Instance.Hp/2; ++i) { HpUIs[i].isHpToggle = true; halfHPUIs[i].ishalfHpToggle = false; }
         for (int i = 0; i < PlayerManager.Instance.AttackPower; ++i) { AttackUIs[i].IsAttackBufToggle = true; }
         UpdateDisplayUI();
     }
@@ -59,7 +67,7 @@ public class PlayerUI : UIBase
                 ArmorUIs[i].ArmorUI.SetActive(false);
             }
         }
-        for (int i = 0; i < PlayerManager.Instance.maxHp; ++i)
+        for (int i = 0; i < PlayerManager.Instance.maxHp-5; ++i)
         {
             if (HpUIs[i].isHpToggle)
             {
@@ -70,6 +78,18 @@ public class PlayerUI : UIBase
                 HpUIs[i].HpUI.SetActive(false);
             }
         }
+        for(int i = 0; i < PlayerManager.Instance.maxHp-5; i++)
+        {
+            if(halfHPUIs[i].ishalfHpToggle)
+            {
+                halfHPUIs[i].halfHpUI.SetActive(true);
+            }
+            else
+            {
+                halfHPUIs[i].halfHpUI.SetActive(false);
+            }
+        }
+
         for (int i = 0; i < PlayerManager.Instance.maxAttackPower; ++i)
         {
             if (AttackUIs[i].IsAttackBufToggle)

@@ -67,7 +67,7 @@ public class MonsterControl : MonsterBasic
         //monsterStatus = MonsterStatus.ATTACK;
         //Nav.isStopped = true;
         //animator.SetTrigger("Attack");
-
+         
         //Vector3 transform = new Vector3(playerPos.position.x, 0, playerPos.position.z);
         //tr.LookAt(playerPos);
         tr.DOLookAt(playerPos.position, 0.2f);
@@ -106,6 +106,7 @@ public class MonsterControl : MonsterBasic
     IEnumerator DeadDelay()
     {
         yield return new WaitForSeconds(1f);
+        Destroy(this.hpCanvas.GetComponentInChildren<UIHPBar>().gameObject);
         Destroy(this.gameObject);
     }
 
