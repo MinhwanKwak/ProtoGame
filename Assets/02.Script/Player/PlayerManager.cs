@@ -43,15 +43,22 @@ public class PlayerManager : MonoBehaviour
         {
             ProgressAttackCheck = other.gameObject.GetComponentInParent<MonsterBasic>().IsProgressAttack;
         }
-       
+        if (other.gameObject.name == "Bullet(Clone)")
+        {
+            other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch = false;
+        }
+
 
         if (((1 << other.gameObject.layer) & playerControll.monsterWeaponLayer) != 0 && ProgressAttackCheck)
         {
             if(!other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch)
             {
                 Damage();
+               
             }
+
             other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch = true;
+
 
             //check player에 armor가 있는지 없는지 hp 가 있는지 
             //check후 ui에 표시 
@@ -132,7 +139,6 @@ public class PlayerManager : MonoBehaviour
         if(Hp <= 0)
         {
             Debug.Log("Dead");
-           // Time.timeScale = 0;
         }
     }
 

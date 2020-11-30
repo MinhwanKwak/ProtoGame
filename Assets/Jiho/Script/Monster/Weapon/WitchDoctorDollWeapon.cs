@@ -20,6 +20,7 @@ public class WitchDoctorDollWeapon : MonoBehaviour
         getTime += Time.deltaTime;
         if (getTime >= 2f)
         {
+            
             Destroy(this.gameObject);
         }
     }
@@ -41,6 +42,7 @@ public class WitchDoctorDollWeapon : MonoBehaviour
         //{
 
         //}
+        owner.IsAttackOneTouch = false;
         Destroy(this.gameObject);
     }
 

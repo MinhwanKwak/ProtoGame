@@ -30,7 +30,6 @@ public class WitchDoctorDollControl : MonsterBasic
         //go.transform.SetParent(hpCanvas.GetAnchorRect());
         //go.transform.localScale = Vector3.one;
         //uiHpBar = go.GetComponent<UIHPBar>();
-
         this.monsterStatus = MonsterStatus.IDLE;
     }
 
