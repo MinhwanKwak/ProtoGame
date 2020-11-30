@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
 
 
 
-    [Range(0, 5)]
+    [Range(0, 10)]
     public int Hp;
     [Range(0, 5)]
     public int Armor;
@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
         {
             Instance = this;
         }
-        maxHp = 5;
+        maxHp = 10;
         maxArmor = 5;
         maxAttackPower = 5;
 
@@ -70,7 +70,57 @@ public class PlayerManager : MonoBehaviour
         else
         {
             --Hp;
-            PlayerUI.HpUIs[Hp].isHpToggle = false;
+            //PlayerUI.HpUIs[Hp].isHpToggle = false;
+
+            switch(Hp)
+            {
+                case 10:
+                    break;
+                case 9:
+                    PlayerUI.HpUIs[4].isHpToggle = false;
+                    PlayerUI.halfHPUIs[4].ishalfHpToggle = true;
+                    break;
+
+                case 8:
+                    PlayerUI.halfHPUIs[4].ishalfHpToggle = false;
+                    break;
+
+                case 7:
+                    PlayerUI.HpUIs[3].isHpToggle = false;
+                    PlayerUI.halfHPUIs[3].ishalfHpToggle = true;
+                    break;
+
+                case 6:
+                    PlayerUI.halfHPUIs[3].ishalfHpToggle = false;
+                    break;
+
+                case 5:
+                    PlayerUI.HpUIs[2].isHpToggle = false;
+                    PlayerUI.halfHPUIs[2].ishalfHpToggle = true;
+                    break;
+
+                case 4:
+                    PlayerUI.halfHPUIs[2].ishalfHpToggle = false;
+                    break;
+
+                case 3:
+                    PlayerUI.HpUIs[1].isHpToggle = false;
+                    PlayerUI.halfHPUIs[1].ishalfHpToggle = true;
+                    break;
+
+                case 2:
+                    PlayerUI.halfHPUIs[1].ishalfHpToggle = false;
+                    break;
+
+                case 1:
+                    PlayerUI.HpUIs[0].isHpToggle = false;
+                    PlayerUI.halfHPUIs[0].ishalfHpToggle = true;
+                    break;
+
+                case 0:
+                    PlayerUI.halfHPUIs[0].ishalfHpToggle = false;
+                    break;
+            }
         }
 
         PlayerUI.UpdateDisplayUI();

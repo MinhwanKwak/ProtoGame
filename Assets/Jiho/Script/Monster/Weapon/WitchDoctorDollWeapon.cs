@@ -17,7 +17,6 @@ public class WitchDoctorDollWeapon : MonoBehaviour
     private void Update()
     {
        
-
         getTime += Time.deltaTime;
         if (getTime >= 2f)
         {
@@ -42,7 +41,6 @@ public class WitchDoctorDollWeapon : MonoBehaviour
         //{
 
         //}
-        Debug.Log("trigger");
         Destroy(this.gameObject);
     }
 
