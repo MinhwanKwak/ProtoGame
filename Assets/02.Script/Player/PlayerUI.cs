@@ -32,9 +32,13 @@ public class PlayerUI : UIBase
     public ArmorUIToggle[] ArmorUIs;
 
 
+    public Texture2D MouseClick;
+    public Texture2D MouseNonClick;
+
 
     private void Start()
     {
+        Cursor.SetCursor(MouseNonClick, Vector2.zero, CursorMode.Auto);
         for (int i = 0; i < PlayerManager.Instance.Armor; ++i) { ArmorUIs[i].isArmorToggl = true; }
         for (int i = 0; i < PlayerManager.Instance.Hp; ++i) { HpUIs[i].isHpToggle = true; }
         for (int i = 0; i < PlayerManager.Instance.AttackPower; ++i) { AttackUIs[i].IsAttackBufToggle = true; }

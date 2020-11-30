@@ -10,6 +10,7 @@ public class PlayerAnimationEvent : MonoBehaviour
     private void AttackStart1()
     {
         isDamageCheck = true;
+        
         PlayerManager.Instance.playerControll.SetisAttack(true);
         PlayerManager.Instance.playerControll.weapons[(int)WeaponHandStatus.LEFT].MeleeArea.enabled = true;
         PlayerManager.Instance.playerControll.Effects[(int)EffectStatus.ATTACK1].SetActive(true);

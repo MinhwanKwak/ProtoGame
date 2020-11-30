@@ -3901,20 +3901,11 @@ PrefabInstance:
       propertyPath: SfxSlider
       value: 
       objectReference: {fileID: 965455005}
-    - target: {fileID: 1890533483, guid: 9cf068c7102fe9a4384f32a78f6867f5, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 571ea07855149d64fb24ca6237ba88cf, type: 3}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: cameraManager
       value: 
       objectReference: {fileID: 1412683895}
-    - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
-        type: 3}
-      propertyPath: playercontroller
-      value: 
-      objectReference: {fileID: 518346653}
     - target: {fileID: 948533761436056291, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: m_Name
@@ -4461,6 +4452,16 @@ PrefabInstance:
       propertyPath: ArmorUIs.Array.data[4].ArmorUI
       value: 
       objectReference: {fileID: 838005099}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: MouseClick
+      value: 
+      objectReference: {fileID: 2800000, guid: 0e57ad63fb736104dabee61b72cc1394, type: 3}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: MouseNonClick
+      value: 
+      objectReference: {fileID: 2800000, guid: 7fbc89551e9e26448a10420f6475a408, type: 3}
     - target: {fileID: 8740497721016742447, guid: 24c16aa7137b7674f871e3c7b140284c,
         type: 3}
       propertyPath: m_Name

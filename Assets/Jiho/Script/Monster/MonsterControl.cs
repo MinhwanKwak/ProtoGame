@@ -144,6 +144,8 @@ public class MonsterControl : MonsterBasic
     {
         if (((1 << other.gameObject.layer) & HitLayerMask) != 0 && PlayerManager.Instance.playerControll.playerAnimationEvent.GetDamageCheck())
         {
+
+            AudioManager.Instance.PlaySoundSfx("ZombieCollider");
             PlayerManager.Instance.playerControll.playerAnimationEvent.SetDamageCheck(false);
             StartCoroutine(DamageTime());
             StartCoroutine(GameManager.Instance.cameraManager.camerashake.Shake(0.25f, 0.25f));
@@ -152,7 +154,8 @@ public class MonsterControl : MonsterBasic
             StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
 
             // 피격
-            
+            AudioManager.Instance.PlaySoundSfx("ZombieDamage");
+
             MonsterStatusValue.hp -= 1;
 
             if(MonsterStatusValue.hp <= 0 && !IsDead) // 사망
