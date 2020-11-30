@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -137,6 +137,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8c0b3d64d91c554e832cabe8d296381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &77957172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3146986574191302606, guid: 24c16aa7137b7674f871e3c7b140284c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8740497721460016992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47fc18739f92ff488b1547755b35bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &94416834
@@ -21055,6 +21067,11 @@ PrefabInstance:
       propertyPath: cameraManager
       value: 
       objectReference: {fileID: 1412683895}
+    - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 77957172}
     - target: {fileID: 948533761436056291, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: m_Name
@@ -21348,6 +21365,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4743522190224224296, guid: d772ef1945a688046b976b32bfa59bbb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743522190224224296, guid: d772ef1945a688046b976b32bfa59bbb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743522190224224296, guid: d772ef1945a688046b976b32bfa59bbb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743522190224224296, guid: d772ef1945a688046b976b32bfa59bbb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.3420201
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743522190224224296, guid: d772ef1945a688046b976b32bfa59bbb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9396927
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743522190224224296, guid: d772ef1945a688046b976b32bfa59bbb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743522190224224303, guid: d772ef1945a688046b976b32bfa59bbb,
+        type: 3}
+      propertyPath: field of view
+      value: 51
+      objectReference: {fileID: 0}
     - target: {fileID: 4743522190806630572, guid: d772ef1945a688046b976b32bfa59bbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21616,9 +21668,6 @@ PrefabInstance:
       propertyPath: MouseNonClick
       value: 
       objectReference: {fileID: 2800000, guid: 7fbc89551e9e26448a10420f6475a408, type: 3}
-      propertyPath: halfHPUIs.Array.data[0].halfHpUI
-      value: 
-      objectReference: {fileID: 842095197}
     - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
         type: 3}
       propertyPath: halfHPUIs.Array.data[1].halfHpUI
@@ -21639,10 +21688,20 @@ PrefabInstance:
       propertyPath: halfHPUIs.Array.data[4].halfHpUI
       value: 
       objectReference: {fileID: 435128730}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: halfHPUIs.Array.data[0].halfHpUI
+      value: 
+      objectReference: {fileID: 842095197}
     - target: {fileID: 8740497721016742447, guid: 24c16aa7137b7674f871e3c7b140284c,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740497721218633981, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1438463711, guid: 24c16aa7137b7674f871e3c7b140284c, type: 3}
