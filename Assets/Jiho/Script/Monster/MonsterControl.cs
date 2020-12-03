@@ -166,6 +166,11 @@ public class MonsterControl : MonsterBasic
             else if(!IsDead && !IsProgressAttack)
             {
                 animator.SetTrigger("BeAttacked");
+                if(!IsInSight)
+                {
+                    tr.DOLookAt(playerPos.position, 0.2f);
+                }
+                
             }
         }
     }
