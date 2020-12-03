@@ -14,10 +14,14 @@ public class PlayerControll : MonoBehaviour
     public float DashSpeed = 25f;
 
     public float Dashpower = 20f;
+    
+    public int Dashcount = 3;
 
     public float DashTime;
 
     public float DashAttackTime;
+
+    public float DashReloadCoolTime;
 
     public PlayerAnimationEvent playerAnimationEvent;
 
@@ -37,7 +41,7 @@ public class PlayerControll : MonoBehaviour
     
     private string currentState;
 
- 
+    private float DashCooldelTIme;
 
     Vector2 CurrentInput;
     Vector3 CurrentMouseLook;
@@ -57,16 +61,19 @@ public class PlayerControll : MonoBehaviour
     
 
     private bool isAttack = false;
-    
+
+    private bool isSpaceKey = false;
+
     private float h;
     private float v;
+    
     
     public GameObject[] Effects;
     void Start()
     {
         CurrentSpeed = speed;
         CurrentWeapon = weapons[0];
-        
+        StartCoroutine(DashCheck());
     }
     private void FixedUpdate()
     {
@@ -83,17 +90,30 @@ public class PlayerControll : MonoBehaviour
 
     private void Update()
     {
+        DashCooldelTIme += Time.deltaTime;
+        if(DashCooldelTIme > DashReloadCoolTime)
+        {
+            DashCooldelTIme = 0f;
+            if (Dashcount >= 3)
+            {
+                return;
+            }
+            Dashcount++;
+            
+        }
+       
       
     }
 
     private void PlayerMouseCheck()
     {
+        
       
         if (Input.GetMouseButtonDown(1) && playerStatu != PlayerStatus.ATTACK && DashTime <= delTime)
         {
             StartCoroutine(Dash());
         }
-       else if(playerStatu == PlayerStatus.RUN && Input.GetMouseButton(0) && playerStatu != PlayerStatus.ATTACK && DashAttackTime <= delTime)
+       else if(isSpaceKey && Dashcount != 0 &&Input.GetMouseButton(0) && playerStatu != PlayerStatus.ATTACK && DashAttackTime <= delTime)
         {
             StartCoroutine(DashAttack());
         }
@@ -161,7 +181,7 @@ public class PlayerControll : MonoBehaviour
 
      IEnumerator DashAttack()
     {
-
+        Dashcount--;
         delTime = 0f;
 
         animator.SetTrigger("DashAttack");
@@ -193,6 +213,22 @@ public class PlayerControll : MonoBehaviour
     public bool GetAttack()
     {
         return isAttack;
+    }
+
+
+    public IEnumerator DashCheck()
+    {
+        while (true)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                isSpaceKey = true;
+            }
+
+            yield return new WaitForSeconds(0.2f);
+
+            isSpaceKey = false;
+        }
     }
 
     //public int GetDamageUI()
