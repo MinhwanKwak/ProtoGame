@@ -27,7 +27,6 @@ public class MonsterBasic : MonoBehaviour
 
     protected UIHPBar uiHpBar;
 
-    //public DummyCamera Camera;
     public CameraManager Camera;
 
 
