@@ -44,8 +44,8 @@ public class PlayerUI : UIBase
     public Texture2D MouseClick;
     public Texture2D MouseNonClick;
 
-    public Image DashCoolTimeImage;
-    public Image AttackCoolTimeImage;
+    public GameObject DashCoolTimeImage;
+    public GameObject AttackCoolTimeImage;
 
     public Image[] DashChargeIcon;
 
@@ -63,7 +63,8 @@ public class PlayerUI : UIBase
         for (int i = 0; i < PlayerManager.Instance.AttackPower; ++i) { AttackUIs[i].IsAttackBufToggle = true; }
         UpdateDisplayUI();
 
-        
+        DashCoolTimeImage.SetActive(false);
+        AttackCoolTimeImage.SetActive(false);
     }
 
 
@@ -120,34 +121,35 @@ public class PlayerUI : UIBase
     {
         if(IsDashCool)
         {
-            DashCoolTimeImage.GetComponent<GameObject>().SetActive(true);
+            DashCoolTimeImage.SetActive(true);
             StartCoroutine(UpdateCoolTime(DashCoolTimeImage));
         }
         else if(!IsDashCool)
         {
-            DashCoolTimeImage.GetComponent<GameObject>().SetActive(false);
+            DashCoolTimeImage.SetActive(false);
         }
 
         if(IsAttackCool)
         {
-            AttackCoolTimeImage.GetComponent<GameObject>().SetActive(true);
+            AttackCoolTimeImage.SetActive(true);
         }
         else if(!IsAttackCool)
         {
-            AttackCoolTimeImage.GetComponent<GameObject>().SetActive(false);
+            AttackCoolTimeImage.SetActive(false);
         }
         
     }
 
-    IEnumerator UpdateCoolTime(Image image)
+    IEnumerator UpdateCoolTime(GameObject image)
     {
-        while(image.fillAmount > 0)
+        Image CoolImage = image.GetComponent<Image>();
+        CoolImage.fillAmount = 1;
+        while (CoolImage.fillAmount > 0)
         {
-            image.fillAmount -= 1 * Time.deltaTime / SetCoolTime;
+            CoolImage.fillAmount -= 1 * Time.deltaTime / SetCoolTime;
             yield return null;
         }
         yield break;
+        
     }
-
-
 }

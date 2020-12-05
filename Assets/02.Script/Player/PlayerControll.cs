@@ -54,8 +54,6 @@ public class PlayerControll : MonoBehaviour
     WaitForSeconds Attacktime;
     
     [SerializeField]
-    private float AttackDelay = 1f;
-
     public PlayerStatus playerStatu = PlayerStatus.IDLE;
 
     

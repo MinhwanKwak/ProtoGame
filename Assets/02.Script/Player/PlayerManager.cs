@@ -37,14 +37,12 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if(playerControll.playerStatu == PlayerStatus.DASH)
+        if(playerControll.playerStatu == PlayerStatus.DASH && !PlayerUI.IsDashCool)
         {
             PlayerUI.IsDashCool = true;
             PlayerUI.StartCoolTime();
-        }
-        else
-        {
-            PlayerUI.IsDashCool = false;
+            Debug.Log("CheckTimes");
+            //PlayerUI.IsDashCool = false;
         }
     }
 
