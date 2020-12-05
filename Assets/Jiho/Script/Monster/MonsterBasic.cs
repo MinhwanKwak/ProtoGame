@@ -9,6 +9,8 @@ using UnityEngine.AI;
 
 public class MonsterBasic : MonoBehaviour
 {
+    public string thisname;
+
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
@@ -26,14 +28,13 @@ public class MonsterBasic : MonoBehaviour
     public GameObject hpImage;
 
     protected UIHPBar uiHpBar;
-
-    public CameraManager Camera;
+    
 
 
     public Transform HpTransform;
     public HPCanvas hpCanvas;
 
-    public Transform playerPos; // navigation으로 쫓아갈 플레이어 좌표
+  
     protected Transform tr;
     public NavMeshAgent Nav;
 
@@ -99,7 +100,7 @@ public class MonsterBasic : MonoBehaviour
             return;
         }
         else
-            Nav.SetDestination(playerPos.position);
+            Nav.SetDestination(PlayerManager.Instance.playerControll.transform.position);
     }
 
     public virtual void FindTarget()

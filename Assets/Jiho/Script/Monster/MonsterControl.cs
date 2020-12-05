@@ -25,13 +25,13 @@ public class MonsterControl : MonsterBasic
 
         timestop = new WaitForSecondsRealtime(TimeStop);
 
-        GameObject go = Instantiate(hpImage);
-        go.transform.SetParent(hpCanvas.GetAnchorRect());
-        go.transform.localScale = Vector3.one;
-        uiHpBar = go.GetComponent<UIHPBar>();
+        //GameObject go = Instantiate(hpImage);
+        //go.transform.SetParent(hpCanvas.GetAnchorRect());
+        //go.transform.localScale = Vector3.one;
+        //uiHpBar = go.GetComponent<UIHPBar>();
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
         //uiHpBar.image.rectTransform.anchoredPosition = CameraManager.MainCamera.WorldToScreenPoint(HpTransform.position);
-        uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
+        //uiHpBar.UpdatePositionFromWorldPosition(HpTransform.position);
 
         this.monsterStatus = MonsterStatus.IDLE;
     }
@@ -40,7 +40,7 @@ public class MonsterControl : MonsterBasic
     {
         base.Update();
         //uiHpBar.image.rectTransform.anchoredPosition = Camera.GetAnotherCamera().WorldToScreenPoint(HpTransform.position);
-        uiHpBar.image.rectTransform.anchoredPosition = Camera.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         //if (MonsterStatusValue.hp <= 0)
         //{
@@ -70,7 +70,7 @@ public class MonsterControl : MonsterBasic
          
         //Vector3 transform = new Vector3(playerPos.position.x, 0, playerPos.position.z);
         //tr.LookAt(playerPos);
-        tr.DOLookAt(playerPos.position, 0.2f);
+        tr.DOLookAt(PlayerManager.Instance.playerControll.transform.position, 0.2f);
         //tr.DOLookAt(transform, 0.2f);
     }
 
@@ -92,6 +92,9 @@ public class MonsterControl : MonsterBasic
         monsterStatus = MonsterStatus.DEAD;
         Nav.isStopped = true;
         IsDead = true;
+        StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
+        --GameManager.Instance.maps[0].MapMonsterCount;
+        GameManager.Instance.maps[0].CheckClearMonster();
         animator.SetBool("Dead", true);
     }
 
@@ -105,28 +108,28 @@ public class MonsterControl : MonsterBasic
 
     IEnumerator DeadDelay()
     {
-        yield return new WaitForSeconds(1f);
         Destroy(this.hpCanvas.GetComponentInChildren<UIHPBar>().gameObject);
-        Destroy(this.gameObject);
+     
+        yield break;
     }
 
     public override void ApproachToPlayer()
     {
         base.ApproachToPlayer();
-        if (Vector3.Distance(tr.position, playerPos.position) <= MonsterStatusValue.range && IsInSight && !IsProgressAttack && MonsterAttackDelayTime >= 2f)
+        if (Vector3.Distance(tr.position, PlayerManager.Instance.playerControll.transform.position) <= MonsterStatusValue.range && IsInSight && !IsProgressAttack && MonsterAttackDelayTime >= 2f)
         {
             MonsterAttackDelayTime = 0.0f;
             animator.SetTrigger("Attack");
             monsterStatus = MonsterStatus.ATTACK;
             Attack();
         }
-        else if (Vector3.Distance(tr.position, playerPos.position) > MonsterStatusValue.range && IsInSight)
+        else if (Vector3.Distance(tr.position, PlayerManager.Instance.playerControll.transform.position) > MonsterStatusValue.range && IsInSight)
         {
             
             animator.SetTrigger("Run");
             monsterStatus = MonsterStatus.RUN;
             //Nav.isStopped = false;
-            Nav.SetDestination(playerPos.position);
+            Nav.SetDestination(PlayerManager.Instance.playerControll.transform.position);
         }
         else if(!IsProgressAttack)
         {
@@ -168,7 +171,7 @@ public class MonsterControl : MonsterBasic
                 animator.SetTrigger("BeAttacked");
                 if(!IsInSight)
                 {
-                    tr.DOLookAt(playerPos.position, 0.2f);
+                    tr.DOLookAt(PlayerManager.Instance.playerControll.transform.position, 0.2f);
                 }
                 
             }

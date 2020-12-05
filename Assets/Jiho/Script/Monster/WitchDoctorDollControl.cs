@@ -95,7 +95,7 @@ public class WitchDoctorDollControl : MonsterBasic
         
         if(!IsProgressAttack)
         {
-            Attackplace = playerPos.position;
+            Attackplace = PlayerManager.Instance.playerControll.transform.position;
         }
 
         IsProgressAttack = true; // false 처리 해야함. LayerMask 활용

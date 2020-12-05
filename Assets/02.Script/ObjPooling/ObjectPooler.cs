@@ -12,41 +12,41 @@ public class ObjectPooler : MonoBehaviour
         public int size;
     }
 
-
-    #region Singleton
+    
     public static ObjectPooler Instance;
 
     private void Awake()
     {
-        Instance = this;
-    }
-    #endregion
+        if (Instance == null)
+        {
+            Instance = this;
+        }
 
-    public List<Pool> pools;
-
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
-
-    private void Start()
-    {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        foreach(Pool pool in pools)
+        foreach (Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
             for (int i = 0; i < pool.size; ++i)
             {
-               GameObject obj =  Instantiate(pool.prefeb);
+                GameObject obj = Instantiate(pool.prefeb);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
 
-            poolDictionary.Add(pool.tag, objectPool);   
+            poolDictionary.Add(pool.tag, objectPool);
         }
+
     }
+    public List<Pool> pools;
+
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
+
+   
 
 
-    public GameObject SpawnFromPool(string tag ,  Vector3 Position , Quaternion rotation)
+    public GameObject SpawnFromPool(string tag ,Vector3 Position , Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))
         {
@@ -80,11 +80,14 @@ public class ObjectPooler : MonoBehaviour
         yield return new WaitForSeconds(time);
 
 
-        obj.SetActive(false);
-
+        if (obj.active)
+        {
+            obj.SetActive(false);
+        }
         poolDictionary[tag].Enqueue(obj);
-
         
+
+
 
     }
 }

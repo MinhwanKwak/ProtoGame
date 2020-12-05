@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public PlayerManager playerManager;
 
     public static GameManager Instance;
+
+    public Map[] maps;
     private void Awake()
     {
         if(Instance == null)
