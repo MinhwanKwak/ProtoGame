@@ -34,7 +34,20 @@ public class PlayerManager : MonoBehaviour
         maxAttackPower = 5;
 
     }
-    
+
+    private void Update()
+    {
+        if(playerControll.playerStatu == PlayerStatus.DASH)
+        {
+            PlayerUI.IsDashCool = true;
+            PlayerUI.StartCoolTime();
+        }
+        else
+        {
+            PlayerUI.IsDashCool = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         bool ProgressAttackCheck = false;
