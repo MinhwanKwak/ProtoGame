@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct ArmorUIToggle
@@ -43,6 +44,16 @@ public class PlayerUI : UIBase
     public Texture2D MouseClick;
     public Texture2D MouseNonClick;
 
+    public Image DashCoolTimeImage;
+    public Image AttackCoolTimeImage;
+
+    public Image[] DashChargeIcon;
+
+    public bool IsDashCool = false;
+    public bool IsAttackCool = false;
+
+    public float SetCoolTime = 0.0f;
+
 
     private void Start()
     {
@@ -51,6 +62,8 @@ public class PlayerUI : UIBase
         for (int i = 0; i < PlayerManager.Instance.Hp/2; ++i) { HpUIs[i].isHpToggle = true; halfHPUIs[i].ishalfHpToggle = false; }
         for (int i = 0; i < PlayerManager.Instance.AttackPower; ++i) { AttackUIs[i].IsAttackBufToggle = true; }
         UpdateDisplayUI();
+
+        
     }
 
 
@@ -101,6 +114,39 @@ public class PlayerUI : UIBase
                 AttackUIs[i].AttackBuffUI.SetActive(false);
             }
         }
+    }
+
+    public void StartCoolTime()
+    {
+        if(IsDashCool)
+        {
+            DashCoolTimeImage.GetComponent<GameObject>().SetActive(true);
+            StartCoroutine(UpdateCoolTime(DashCoolTimeImage));
+        }
+        else if(!IsDashCool)
+        {
+            DashCoolTimeImage.GetComponent<GameObject>().SetActive(false);
+        }
+
+        if(IsAttackCool)
+        {
+            AttackCoolTimeImage.GetComponent<GameObject>().SetActive(true);
+        }
+        else if(!IsAttackCool)
+        {
+            AttackCoolTimeImage.GetComponent<GameObject>().SetActive(false);
+        }
+        
+    }
+
+    IEnumerator UpdateCoolTime(Image image)
+    {
+        while(image.fillAmount > 0)
+        {
+            image.fillAmount -= 1 * Time.deltaTime / SetCoolTime;
+            yield return null;
+        }
+        yield break;
     }
 
 
