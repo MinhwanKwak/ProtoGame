@@ -9,14 +9,20 @@ public class WitchDoctorDollWeapon : MonoBehaviour
     float bulletSpeed = 10f;
     float getTime = 0.0f;
 
+    GameObject TrailEffect;
+
     private void Start()
     {
         owner = GetComponentInParent<WitchDoctorDollControl>();
+        TrailEffect = ObjectPooler.Instance.SpawnFromPool("WitchDoctorDollTrailEffect", transform.position, Quaternion.identity);
+        TrailEffect.transform.SetParent(this.transform);
+        TrailEffect.transform.localPosition = Vector3.one;
     }
 
     private void Update()
     {
-       
+        TrailEffect.transform.position = transform.position;
+
         getTime += Time.deltaTime;
         if (getTime >= 2f)
         {
@@ -43,7 +49,14 @@ public class WitchDoctorDollWeapon : MonoBehaviour
 
         //}
         owner.IsAttackOneTouch = false;
-        Destroy(this.gameObject);
+
+        StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollTrailEffect", TrailEffect, 0f));
+
+        GameObject hitEffectGo =  ObjectPooler.Instance.SpawnFromPool("WitchDoctorDollHitEffect", transform.position, Quaternion.identity);
+        hitEffectGo.transform.SetParent(this.transform);
+        StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollHitEffect", hitEffectGo, 0.5f));
+
+        //Destroy(this.gameObject);
     }
 
 }
