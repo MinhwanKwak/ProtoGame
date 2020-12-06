@@ -38,8 +38,6 @@ public class PlayerControll : MonoBehaviour
     public LayerMask monsterWeaponLayer;
     
     private float delTime = 0f;
-    
-    private string currentState;
 
     private float DashCooldelTIme;
 

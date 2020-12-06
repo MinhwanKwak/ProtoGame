@@ -35,7 +35,7 @@ public struct AttackUIToggle
 
 public class PlayerUI : UIBase
 {
-    public  AttackUIToggle[] AttackUIs;
+    public AttackUIToggle[] AttackUIs;
     public HpUIToggle[] HpUIs;
     public HalfHPUIToggle[] halfHPUIs;
     public ArmorUIToggle[] ArmorUIs;
@@ -45,9 +45,13 @@ public class PlayerUI : UIBase
     public Texture2D MouseNonClick;
 
     public GameObject DashCoolTimeImage;
+    public GameObject DashCoolTimeSpacebarImage;
     public GameObject AttackCoolTimeImage;
+    public GameObject AttackCoolTimeMouseImage;
 
-    public Image[] DashChargeIcon;
+    public Image[] DashChargeIconUI;
+    public Sprite DashChargeIcon;
+    public Sprite DashDechargeIcon;
 
     public bool IsDashCool = false;
     public bool IsAttackCool = false;
@@ -59,20 +63,61 @@ public class PlayerUI : UIBase
     {
         Cursor.SetCursor(MouseClick, Vector2.zero, CursorMode.Auto);
         for (int i = 0; i < PlayerManager.Instance.Armor; ++i) { ArmorUIs[i].isArmorToggl = true; }
-        for (int i = 0; i < PlayerManager.Instance.Hp/2; ++i) { HpUIs[i].isHpToggle = true; halfHPUIs[i].ishalfHpToggle = false; }
+        for (int i = 0; i < PlayerManager.Instance.Hp / 2; ++i) { HpUIs[i].isHpToggle = true; halfHPUIs[i].ishalfHpToggle = false; }
         for (int i = 0; i < PlayerManager.Instance.AttackPower; ++i) { AttackUIs[i].IsAttackBufToggle = true; }
         UpdateDisplayUI();
 
         DashCoolTimeImage.SetActive(false);
+        DashCoolTimeSpacebarImage.SetActive(false);
         AttackCoolTimeImage.SetActive(false);
+        AttackCoolTimeMouseImage.SetActive(false);
     }
 
+    public void UpdateDashUI(int value)
+    {
+        switch(value)
+        {
+            case 3:
+                //DashChargeIconUI[value].sprite = DashDechargeIcon;
+                DashChargeIconUI[value - 1].sprite = DashChargeIcon;
+                break;
+            case 2:
+                   DashChargeIconUI[value].sprite = DashDechargeIcon;
+                DashChargeIconUI[value - 1].sprite = DashChargeIcon;
+                break;
+            case 1:
+                DashChargeIconUI[value].sprite = DashDechargeIcon;
+                DashChargeIconUI[value - 1].sprite = DashChargeIcon;
+                DashCoolTimeImage.SetActive(false);
+                DashCoolTimeSpacebarImage.SetActive(false);
+                break;
+            case 0:
+                DashChargeIconUI[value].sprite = DashDechargeIcon;
+                DashCoolTimeImage.SetActive(true);
+                DashCoolTimeSpacebarImage.SetActive(true);
+                break;
+        }
+    }
+
+    public void UpdateAttackUI(PlayerStatus status)
+    {
+        if(PlayerManager.Instance.playerControll.GetAttack())
+        {
+            AttackCoolTimeImage.SetActive(true);
+            AttackCoolTimeMouseImage.SetActive(true);
+        }
+        else
+        {
+            AttackCoolTimeImage.SetActive(false);
+            AttackCoolTimeMouseImage.SetActive(false);
+        }
+    }
 
     public void UpdateDisplayUI()
     {
-        for(int i = 0;  i <  PlayerManager.Instance.maxArmor; ++i)
+        for (int i = 0; i < PlayerManager.Instance.maxArmor; ++i)
         {
-           if(ArmorUIs[i].isArmorToggl)
+            if (ArmorUIs[i].isArmorToggl)
             {
                 ArmorUIs[i].ArmorUI.SetActive(true);
             }
@@ -81,7 +126,7 @@ public class PlayerUI : UIBase
                 ArmorUIs[i].ArmorUI.SetActive(false);
             }
         }
-        for (int i = 0; i < PlayerManager.Instance.maxHp-5; ++i)
+        for (int i = 0; i < PlayerManager.Instance.maxHp - 5; ++i)
         {
             if (HpUIs[i].isHpToggle)
             {
@@ -92,9 +137,9 @@ public class PlayerUI : UIBase
                 HpUIs[i].HpUI.SetActive(false);
             }
         }
-        for(int i = 0; i < PlayerManager.Instance.maxHp-5; i++)
+        for (int i = 0; i < PlayerManager.Instance.maxHp - 5; i++)
         {
-            if(halfHPUIs[i].ishalfHpToggle)
+            if (halfHPUIs[i].ishalfHpToggle)
             {
                 halfHPUIs[i].halfHpUI.SetActive(true);
             }
@@ -117,39 +162,16 @@ public class PlayerUI : UIBase
         }
     }
 
-    public void StartCoolTime()
-    {
-        if(IsDashCool)
-        {
-            DashCoolTimeImage.SetActive(true);
-            StartCoroutine(UpdateCoolTime(DashCoolTimeImage));
-        }
-        else if(!IsDashCool)
-        {
-            DashCoolTimeImage.SetActive(false);
-        }
+    //IEnumerator UpdateCoolTime(GameObject image)
+    //{
+    //    Image CoolImage = image.GetComponent<Image>();
+    //    CoolImage.fillAmount = 1;
+    //    while (CoolImage.fillAmount > 0)
+    //    {
+    //        CoolImage.fillAmount -= 1 * Time.deltaTime / SetCoolTime;
+    //        yield return null;
+    //    }
+    //    yield break;
 
-        if(IsAttackCool)
-        {
-            AttackCoolTimeImage.SetActive(true);
-        }
-        else if(!IsAttackCool)
-        {
-            AttackCoolTimeImage.SetActive(false);
-        }
-        
-    }
-
-    IEnumerator UpdateCoolTime(GameObject image)
-    {
-        Image CoolImage = image.GetComponent<Image>();
-        CoolImage.fillAmount = 1;
-        while (CoolImage.fillAmount > 0)
-        {
-            CoolImage.fillAmount -= 1 * Time.deltaTime / SetCoolTime;
-            yield return null;
-        }
-        yield break;
-        
-    }
+    //}
 }

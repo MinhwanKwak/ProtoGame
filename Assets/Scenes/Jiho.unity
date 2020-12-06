@@ -485,7 +485,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 307845618}
   m_Father: {fileID: 1279124202}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1183,7 +1184,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1644624878}
   m_Father: {fileID: 1279124202}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1228,6 +1230,80 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297729509}
+  m_CullTransparentMesh: 0
+--- !u!1 &307845617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307845618}
+  - component: {fileID: 307845620}
+  - component: {fileID: 307845619}
+  m_Layer: 5
+  m_Name: SpaceBarCoolTimeImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &307845618
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307845617}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 121883682}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_SizeDelta: {x: 120, y: 40}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &307845619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307845617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.54901963}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4ec99d82c06c40d4989cb46ad4d02e00, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &307845620
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307845617}
   m_CullTransparentMesh: 0
 --- !u!1 &338673397
 GameObject:
@@ -2263,6 +2339,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
         type: 3}
+      propertyPath: DashDechargeIcon.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: DashChargeIconUI.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
       propertyPath: AttackUIs.Array.data[0].AttackBuffUI
       value: 
       objectReference: {fileID: 960130265}
@@ -2401,6 +2487,43 @@ PrefabInstance:
       propertyPath: SetCoolTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: DashChargeIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 78b29c90cd9c2de4098fdcc9ac0b7e01,
+        type: 3}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: DashDechargeIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: f414b2fd1919858428032370933186d4,
+        type: 3}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: DashChargeIconUI.Array.data[0]
+      value: 
+      objectReference: {fileID: 103347505}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: DashChargeIconUI.Array.data[1]
+      value: 
+      objectReference: {fileID: 65839516}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: DashChargeIconUI.Array.data[2]
+      value: 
+      objectReference: {fileID: 819532393}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: AttackCoolTimeMouseImage
+      value: 
+      objectReference: {fileID: 1644624877}
+    - target: {fileID: 8257686111982158534, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: DashCoolTimeSpacebarImage
+      value: 
+      objectReference: {fileID: 307845617}
     - target: {fileID: 8740497721016742447, guid: 24c16aa7137b7674f871e3c7b140284c,
         type: 3}
       propertyPath: m_Name
@@ -2410,6 +2533,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740497721218633981, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: DashReloadCoolTime
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1438463711, guid: 24c16aa7137b7674f871e3c7b140284c, type: 3}
@@ -21399,6 +21527,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1644624877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644624878}
+  - component: {fileID: 1644624880}
+  - component: {fileID: 1644624879}
+  m_Layer: 5
+  m_Name: LMouseCoolTimeImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1644624878
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644624877}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 297729510}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_SizeDelta: {x: 40, y: 40}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1644624879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644624877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.54901963}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a7b1f8411660971408fe9ca10c8a3258, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1644624880
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644624877}
+  m_CullTransparentMesh: 0
 --- !u!1 &1665262061
 GameObject:
   m_ObjectHideFlags: 0

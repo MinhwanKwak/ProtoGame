@@ -37,13 +37,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if(playerControll.playerStatu == PlayerStatus.DASH && !PlayerUI.IsDashCool)
-        {
-            PlayerUI.IsDashCool = true;
-            PlayerUI.StartCoolTime();
-            Debug.Log("CheckTimes");
-            //PlayerUI.IsDashCool = false;
-        }
+        CheckDashCount();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -143,6 +137,12 @@ public class PlayerManager : MonoBehaviour
 
         PlayerUI.UpdateDisplayUI();
 
+    }
+
+    public void CheckDashCount()
+    {
+        PlayerUI.UpdateDashUI(playerControll.Dashcount);
+        PlayerUI.UpdateAttackUI(playerControll.playerStatu);
     }
 
     public void DeadCheck()
