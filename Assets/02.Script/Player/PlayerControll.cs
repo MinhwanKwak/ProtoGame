@@ -43,13 +43,12 @@ public class PlayerControll : MonoBehaviour
 
     Vector2 CurrentInput;
     Vector3 CurrentMouseLook;
-    Vector3 MoveVec;
 
     Vector3 PlayerBodyVec;
     Vector3 moveValue;
     Vector3 moveNormalized;
 
-    WaitForSeconds Attacktime;
+    public Transform Hittransform;
     
     [SerializeField]
     public PlayerStatus playerStatu = PlayerStatus.IDLE;

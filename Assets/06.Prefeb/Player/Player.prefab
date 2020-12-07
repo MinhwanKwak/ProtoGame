@@ -243,6 +243,7 @@ Transform:
   m_LocalPosition: {x: -0.26198423, y: -0.02900931, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2040043366316843372}
   - {fileID: 6535113255859895363}
   m_Father: {fileID: 3796394219777631529}
   m_RootOrder: 1
@@ -393,6 +394,36 @@ MonoBehaviour:
   maxHp: 0
   maxArmor: 0
   maxAttackPower: 0
+--- !u!1 &2371331521978053979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2040043366316843372}
+  m_Layer: 0
+  m_Name: Hittransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2040043366316843372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371331521978053979}
+  m_LocalRotation: {x: 0.5000001, y: -0.49999925, z: -0.49999982, w: -0.5000008}
+  m_LocalPosition: {x: -0.913, y: 0.482, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9222804472142289157}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2473782039845281288
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +732,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9222804472142289157}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0.000000050823456, y: 0.000000032835555, z: 0}
 --- !u!1 &5137374561004243875
 GameObject:
@@ -1275,7 +1306,7 @@ MonoBehaviour:
   monsterWeaponLayer:
     serializedVersion: 2
     m_Bits: 4096
-  AttackDelay: 1
+  Hittransform: {fileID: 2040043366316843372}
   playerStatu: 0
   Effects:
   - {fileID: 8071110153943414948}
@@ -1328,8 +1359,12 @@ MonoBehaviour:
   MouseClick: {fileID: 0}
   MouseNonClick: {fileID: 0}
   DashCoolTimeImage: {fileID: 0}
+  DashCoolTimeSpacebarImage: {fileID: 0}
   AttackCoolTimeImage: {fileID: 0}
-  DashChargeIcon: []
+  AttackCoolTimeMouseImage: {fileID: 0}
+  DashChargeIconUI: []
+  DashChargeIcon: {fileID: 0}
+  DashDechargeIcon: {fileID: 0}
   IsDashCool: 0
   IsAttackCool: 0
   SetCoolTime: 0
@@ -1407,15 +1442,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b0bc8a1a8f16004983c5aacd2364fb7, type: 3}
---- !u!1 &8188333500373693249 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6893708298721826790, guid: 2b0bc8a1a8f16004983c5aacd2364fb7,
-    type: 3}
-  m_PrefabInstance: {fileID: 3317343966790050983}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1202026690462151096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4514830223917094175, guid: 2b0bc8a1a8f16004983c5aacd2364fb7,
+    type: 3}
+  m_PrefabInstance: {fileID: 3317343966790050983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8188333500373693249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6893708298721826790, guid: 2b0bc8a1a8f16004983c5aacd2364fb7,
     type: 3}
   m_PrefabInstance: {fileID: 3317343966790050983}
   m_PrefabAsset: {fileID: 0}
@@ -1563,6 +1598,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45561bd5e9de291488c4e8d5f72a156c, type: 3}
+--- !u!4 &4338875814203908320 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 732762272352807346, guid: 45561bd5e9de291488c4e8d5f72a156c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3899417949425748306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8740497721602043881 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5715630505211111099, guid: 45561bd5e9de291488c4e8d5f72a156c,
@@ -1575,12 +1616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e132ec3fef91741bce1c177006677f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &4338875814203908320 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 732762272352807346, guid: 45561bd5e9de291488c4e8d5f72a156c,
-    type: 3}
-  m_PrefabInstance: {fileID: 3899417949425748306}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6307528072082783101
 PrefabInstance:
   m_ObjectHideFlags: 0
