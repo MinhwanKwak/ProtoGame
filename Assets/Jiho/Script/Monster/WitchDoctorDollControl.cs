@@ -98,11 +98,12 @@ public class WitchDoctorDollControl : MonsterBasic
         }
 
         IsProgressAttack = true; // false 처리 해야함. LayerMask 활용
-
+        IsAttackOneTouch = false;
         //go = Instantiate(bullet, launchPos);
         go = ObjectPooler.Instance.SpawnFromPool("WitchDoctorDollBullet", launchPos.position, Quaternion.identity);
         go.transform.SetParent(this.transform);
         //Launch(Attackplace);
+        
 
     }
 

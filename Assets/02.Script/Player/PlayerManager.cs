@@ -48,10 +48,10 @@ public class PlayerManager : MonoBehaviour
         {
             ProgressAttackCheck = other.gameObject.GetComponentInParent<MonsterBasic>().IsProgressAttack;
         }
-        if (other.gameObject.name == "Bullet(Clone)")
-        {
-            other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch = false;
-        }
+        //if (other.gameObject.name == "Bullet(Clone)")
+        //{
+        //    other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch = false;
+        //}
 
 
         if (((1 << other.gameObject.layer) & playerControll.monsterWeaponLayer) != 0 && ProgressAttackCheck)
@@ -59,7 +59,6 @@ public class PlayerManager : MonoBehaviour
             if(!other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch)
             {
                 Damage();
-               
             }
 
             other.gameObject.GetComponentInParent<MonsterBasic>().IsAttackOneTouch = true;

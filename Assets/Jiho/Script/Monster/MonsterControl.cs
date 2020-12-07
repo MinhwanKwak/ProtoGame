@@ -97,7 +97,7 @@ public class MonsterControl : MonsterBasic
         monsterStatus = MonsterStatus.DEAD;
         Nav.isStopped = true;
         IsDead = true;
-        StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
+        //StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
         --GameManager.Instance.maps[0].MapMonsterCount;
         GameManager.Instance.maps[0].CheckClearMonster();
         animator.SetBool("Dead", true);

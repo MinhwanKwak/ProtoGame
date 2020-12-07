@@ -62,7 +62,7 @@ public class BossControl : MonsterBasic
         else if (Vector3.Distance(tr.position, PlayerManager.Instance.playerControll.transform.position) > MonsterStatusValue.range && IsInSight)
         {
 
-            animator.SetTrigger("Run");
+            animator.SetTrigger("Walk");
             monsterStatus = MonsterStatus.RUN;
             //Nav.isStopped = false;
             Nav.SetDestination(PlayerManager.Instance.playerControll.transform.position);
@@ -78,6 +78,33 @@ public class BossControl : MonsterBasic
         Time.timeScale = 1f;
 
     }
+    public override void ProcessDead()
+    {
+        base.ProcessDead();
+        monsterStatus = MonsterStatus.DEAD;
+        Nav.isStopped = true;
+        IsDead = true;
+        //StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
+        --GameManager.Instance.maps[0].MapMonsterCount;
+        GameManager.Instance.maps[0].CheckClearMonster();
+        animator.SetBool("Dead", true);
+    }
+
+    public override void Dead()
+    {
+        base.Dead();
+
+        StartCoroutine(DeadDelay());
+
+    }
+
+    IEnumerator DeadDelay()
+    {
+        Destroy(this.hpCanvas.GetComponentInChildren<UIHPBar>().gameObject);
+
+        yield break;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

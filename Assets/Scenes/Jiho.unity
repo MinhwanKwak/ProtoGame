@@ -773,7 +773,7 @@ PrefabInstance:
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.data[4].size
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
@@ -21951,6 +21951,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488516041832977085, guid: b67ee5d000c6be84482c3788011624d6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5580592377655470198, guid: b67ee5d000c6be84482c3788011624d6,
         type: 3}
