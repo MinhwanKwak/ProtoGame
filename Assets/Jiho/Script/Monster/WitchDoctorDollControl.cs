@@ -54,11 +54,17 @@ public class WitchDoctorDollControl : MonsterBasic
 
     }
 
- 
+    void OnDrawGizmos() // 공격 범위 gizmos
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(transform.position, viewRadius);
+    }
+
 
     public void InAttackRange()
     {
         Collider[] InRangeTarget = Physics.OverlapSphere(transform.position, viewRadius, viewTargetMask);
+        
 
         if(InRangeTarget.Length == 0)
         {
