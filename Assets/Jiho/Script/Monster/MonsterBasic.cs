@@ -28,10 +28,13 @@ public class MonsterBasic : MonoBehaviour
     public GameObject hpImage;
 
     protected UIHPBar uiHpBar;
+    public UIHPBar[] uiHpBarArray;
     
 
 
     public Transform HpTransform;
+    public Transform[] HpTransformArray;
+
     public HPCanvas hpCanvas;
 
   

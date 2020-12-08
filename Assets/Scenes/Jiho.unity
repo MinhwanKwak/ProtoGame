@@ -45467,6 +45467,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2798687274847169544, guid: 7680691e641e28e47aee8dc3c3a0e359,
         type: 3}
+      propertyPath: uiHpBargoArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798687274847169544, guid: 7680691e641e28e47aee8dc3c3a0e359,
+        type: 3}
+      propertyPath: uiHpBarArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798687274847169544, guid: 7680691e641e28e47aee8dc3c3a0e359,
+        type: 3}
       propertyPath: Camera
       value: 
       objectReference: {fileID: 1134495572}
@@ -47325,6 +47335,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488516041832977085, guid: b67ee5d000c6be84482c3788011624d6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5580592377655470198, guid: b67ee5d000c6be84482c3788011624d6,
         type: 3}
