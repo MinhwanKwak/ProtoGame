@@ -186,15 +186,17 @@ public class MonsterControl : MonsterBasic
             AudioManager.Instance.PlaySoundSfx("ZombieDamage");
 
             MonsterStatusValue.hp -= 1;
+            StartCoroutine(ObjectPooler.Instance.SpawnBack("MonsterHPUI", uiHpBargoArray[2], 0));
 
-            if(MonsterStatusValue.hp <= 0 && !IsDead) // 사망
+            if (MonsterStatusValue.hp <= 0 && !IsDead) // 사망
             {
                 ProcessDead();
             }
             else if(!IsDead && !IsProgressAttack)
             {
                 animator.SetTrigger("BeAttacked");
-                if(!IsInSight)
+                
+                if (!IsInSight)
                 {
                     tr.DOLookAt(PlayerManager.Instance.playerControll.transform.position, 0.2f);
                 }
