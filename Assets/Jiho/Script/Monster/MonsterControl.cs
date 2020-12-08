@@ -143,12 +143,6 @@ public class MonsterControl : MonsterBasic
         }   
     }
 
-    IEnumerator AttackDelay()
-    {
-        yield return new WaitForSeconds(1.5f);
-    }
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (((1 << other.gameObject.layer) & HitLayerMask) != 0 && PlayerManager.Instance.playerControll.playerAnimationEvent.GetDamageCheck())

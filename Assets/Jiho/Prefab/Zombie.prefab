@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7600cf57f2d59ed4db2de5575945b98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisname: 
   viewRadius: 10
   viewAngle: 120
   viewTargetMask:
@@ -100,10 +101,8 @@ MonoBehaviour:
     range: 3
     tickRate: 5
   hpImage: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676, type: 3}
-  Camera: {fileID: 0}
   HpTransform: {fileID: 7092566185863846220}
   hpCanvas: {fileID: 0}
-  playerPos: {fileID: 0}
   Nav: {fileID: 2798687274847169551}
   animator: {fileID: 6960929488289422659}
   monsterStatus: 0
@@ -112,6 +111,7 @@ MonoBehaviour:
   IsDead: 0
   MonsterAttackDelayTime: 0
   TimeStop: 0
+  uiHpBargo: {fileID: 0}
   hittarget: {fileID: 0}
 --- !u!195 &2798687274847169551
 NavMeshAgent:
@@ -341,7 +341,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 517c2a6cc18e23d478052b65fd62a384,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 517c2a6cc18e23d478052b65fd62a384, type: 3}
@@ -437,7 +437,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 6585c53b691178944b6dca0011935258,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 970683122419487649, guid: 6585c53b691178944b6dca0011935258,
         type: 3}

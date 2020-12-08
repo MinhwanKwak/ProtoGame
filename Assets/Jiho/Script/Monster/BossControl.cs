@@ -7,13 +7,14 @@ using UnityEngine;
 public class BossControl : MonsterBasic
 {
     GameObject uiHpBargo;
-    GameObject hittarget;
+    public GameObject hittarget;
 
     WaitForSecondsRealtime timestop;
     public float TimeStop = 0f;
     protected override void Awake()
     {
         base.Awake();
+        tr = GetComponent<Transform>();
     }
 
     private void Start()
@@ -26,6 +27,7 @@ public class BossControl : MonsterBasic
         uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         this.monsterStatus = MonsterStatus.IDLE;
+        
     }
 
     protected override void Update()
@@ -34,7 +36,11 @@ public class BossControl : MonsterBasic
 
         MonsterAttackDelayTime += Time.deltaTime;
 
-        TracePlayer();
+        if(!IsDead)
+        {
+            TracePlayer();
+        }
+        
 
         if (IsDestination() && !IsInSight)
         {
@@ -45,14 +51,15 @@ public class BossControl : MonsterBasic
     public override void Attack()
     {
         base.Attack();
+        IsProgressAttack = true;
         tr.DOLookAt(PlayerManager.Instance.playerControll.transform.position, 0.4f);
     }
 
     private void TracePlayer()
     {
         //Nav.SetDestination(PlayerManager.Instance.playerControll.transform.position);
-
-        if (Vector3.Distance(tr.position, PlayerManager.Instance.playerControll.transform.position) <= MonsterStatusValue.range && IsInSight && !IsProgressAttack && MonsterAttackDelayTime >= 2f)
+        IsInSight = true;
+        if (Vector3.Distance(tr.position, PlayerManager.Instance.playerControll.transform.position) <= MonsterStatusValue.range && IsInSight && !IsProgressAttack)
         {
             MonsterAttackDelayTime = 0.0f;
             animator.SetTrigger("Attack");
@@ -85,9 +92,9 @@ public class BossControl : MonsterBasic
         Nav.isStopped = true;
         IsDead = true;
         //StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
-        --GameManager.Instance.maps[0].MapMonsterCount;
-        GameManager.Instance.maps[0].CheckClearMonster();
-        animator.SetBool("Dead", true);
+        //--GameManager.Instance.maps[0].MapMonsterCount;
+        //GameManager.Instance.maps[0].CheckClearMonster();
+        animator.SetTrigger("Dead");
     }
 
     public override void Dead()
