@@ -33,10 +33,10 @@ public class WitchDoctorDollWeapon : MonoBehaviour
 
     private void Update()
     {
-        //if (isPool)
-        //{
-        //    rePooling();
-        //}
+        if (isPool)
+        {
+            rePooling();
+        }
 
         TrailEffect.transform.position = transform.position;
 
@@ -47,6 +47,7 @@ public class WitchDoctorDollWeapon : MonoBehaviour
             //Destroy(this.gameObject);
             getTime = 0f;
             StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollBullet", owner.go, 0f));
+            isPool = true;
             //isHit = false;
         }
     }
@@ -63,7 +64,12 @@ public class WitchDoctorDollWeapon : MonoBehaviour
     public void rePooling()
     {
         isHit = false;
+        isPool = false;
         TrailEffect = ObjectPooler.Instance.SpawnFromPool("WitchDoctorDollTrailEffect", transform.position, Quaternion.identity);
+        TrailEffect.transform.SetParent(this.transform);
+        TrailEffect.transform.localPosition = Vector3.one;
+
+        player = FindObjectOfType<PlayerControll>();
     }
 
     public void Launch()
@@ -89,12 +95,11 @@ public class WitchDoctorDollWeapon : MonoBehaviour
 
 
             StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollHitEffect", hitEffectGo, 0.5f));
-//            isPool = true;
+            //isPool = true;
             //StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollBullet", owner.go, 0f));
 
         }
 
         
     }
-
 }

@@ -45,6 +45,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: HitEffect
-    prefeb: {fileID: 4354833114140384515, guid: e795d3ccfac234843b21e75c7a2690be,
+    prefeb: {fileID: 7931703291771404523, guid: fff0f63e01b1362459aaf5ec5e85c5c0,
       type: 3}
-    size: 20
+    size: 10
+  - tag: MonsterHPUI
+    prefeb: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676,
+      type: 3}
+    size: 10
+  - tag: WitchDoctorDollTrailEffect
+    prefeb: {fileID: 7986581489130836067, guid: 3d6a148e93564564ea3d62bfb57cc6f6,
+      type: 3}
+    size: 10
+  - tag: WitchDoctorDollHitEffect
+    prefeb: {fileID: 2882971825524861596, guid: 84db43e318602d249bc07a5b7a4e7a45,
+      type: 3}
+    size: 10
+  - tag: WitchDoctorDollBullet
+    prefeb: {fileID: 194754164632851910, guid: 0789e6fad0f649e4e8afb225e6278dbe, type: 3}
+    size: 5
