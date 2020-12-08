@@ -37,5 +37,6 @@ public class BossAnimationEvent : MonoBehaviour
     public void BossDead()
     {
         monster.Dead();
+        
     }
 }

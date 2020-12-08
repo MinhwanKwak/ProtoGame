@@ -95,7 +95,7 @@ public class MonsterBasic : MonoBehaviour
     public virtual void Dead() // 죽음
     {
         monsterStatus = MonsterStatus.DEAD;
-        animator.SetBool("Dead", false);
+        animator.SetBool("Dead", true);
     }
     public virtual void ApproachToPlayer() // 플레이어를 쫓아감
     {
