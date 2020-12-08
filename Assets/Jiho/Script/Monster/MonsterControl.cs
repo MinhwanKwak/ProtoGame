@@ -67,11 +67,16 @@ public class MonsterControl : MonsterBasic
         base.Update();
 
         //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        uiHpBarArray[0].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        uiHpBarArray[1].image.rectTransform.anchoredPosition = uiHpBarArray[0].image.rectTransform.anchoredPosition + new Vector2(40,0);
+        uiHpBarArray[2].image.rectTransform.anchoredPosition = uiHpBarArray[0].image.rectTransform.anchoredPosition - new Vector2(40,0);
+        //uiHpBarArray[1].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position + Vector3.right);
+        //uiHpBarArray[2].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position - Vector3.right);
 
-        for (int i = 0; i < uiHpBargoArray.Length; i++)
-        {
-            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransformArray[i].position);
-        }
+        //for (int i = 0; i < uiHpBargoArray.Length; i++)
+        //{
+        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransformArray[i].position);
+        //}
 
         if (monsterStatus == MonsterStatus.DEAD)
         {
