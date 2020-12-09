@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Map[] maps;
+
+    public int CurrentMap = 0;
     private void Awake()
     {
         if(Instance == null)

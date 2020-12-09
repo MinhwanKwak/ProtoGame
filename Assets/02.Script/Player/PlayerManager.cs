@@ -10,8 +10,6 @@ public class PlayerManager : MonoBehaviour
      public PlayerUI PlayerUI;
      public static PlayerManager Instance;
 
-
-
     [Range(0, 10)]
     public int Hp;
     [Range(0, 5)]
@@ -66,6 +64,8 @@ public class PlayerManager : MonoBehaviour
 
             //check player에 armor가 있는지 없는지 hp 가 있는지 
             //check후 ui에 표시 
+            
+
         }
 
     }

@@ -8,6 +8,8 @@ public class GronudChecker : MonoBehaviour
 
     public LayerMask groundlayer;
 
+    public LayerMask TrapLayer;
+
     private bool isGroundCheck = false;
     // Update is called once per frame
     void Update()
@@ -30,8 +32,12 @@ public class GronudChecker : MonoBehaviour
           Animator groundAnimator =   other.gameObject.GetComponent<Animator>();
           groundAnimator.SetTrigger("GroundDown");
         }
-      
-       
+        if (((1 << other.gameObject.layer) & TrapLayer) != 0)
+        {
+            Animator groundAnimator = other.gameObject.GetComponent<Animator>();
+            groundAnimator.SetTrigger("TrapOn");
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
