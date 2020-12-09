@@ -48805,20 +48805,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorAnim: {fileID: 29429614}
   MonsterRespawns:
-  - name: ZombieMonster
-    RespawnPosition: {x: -6, y: 2, z: 13}
-  - name: ZombieMonster
-    RespawnPosition: {x: -14, y: 2, z: 13}
-  - name: ZombieMonster
-    RespawnPosition: {x: -7, y: 2, z: 13}
-  - name: ZombieMonster
-    RespawnPosition: {x: -7, y: 2, z: 13}
-  - name: ZombieMonster
-    RespawnPosition: {x: -7, y: 2, z: 13}
-  - name: ZombieMonster
-    RespawnPosition: {x: -7, y: 2, z: 13}
-  - name: BossMonster
-    RespawnPosition: {x: -7, y: 2, z: 13}
+  - name: 
+    RespawnPosition: {x: 0, y: 0, z: 0}
+  - name: 
+    RespawnPosition: {x: 0, y: 0, z: 0}
+  - name: 
+    RespawnPosition: {x: 0, y: 0, z: 0}
   MapMonsterCount: 0
 --- !u!1001 &948533761355174553
 PrefabInstance:
@@ -48945,6 +48937,11 @@ PrefabInstance:
       propertyPath: maps.Array.data[0]
       value: 
       objectReference: {fileID: 2144079155}
+    - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: CurrentMap
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 948533761436056291, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: m_Name
