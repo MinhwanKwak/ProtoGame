@@ -94,7 +94,7 @@ public class BossControl : MonsterBasic
         //StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
         //--GameManager.Instance.maps[0].MapMonsterCount;
         //GameManager.Instance.maps[0].CheckClearMonster();
-        animator.SetTrigger("Dead");
+        animator.SetBool("Dead", true);
     }
 
     public override void Dead()
