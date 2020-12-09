@@ -5,7 +5,6 @@ using UnityEngine;
 public class WitchDoctorDollControl : MonsterBasic
 {
     public GameObject bullet;
-    public WitchDoctorDollWeapon Weapon;
     public Transform launchPos;
 
     public Vector3 Attackplace;
@@ -20,7 +19,9 @@ public class WitchDoctorDollControl : MonsterBasic
     {
         base.Awake();
 
-        Weapon = bullet.GetComponent<WitchDoctorDollWeapon>();
+        
+        
+
     }
 
     // Start is called before the first frame update
@@ -38,11 +39,18 @@ public class WitchDoctorDollControl : MonsterBasic
     {
         //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
+        if (IsProgressAttack && !go.activeSelf)
+        {
+            go.GetComponent<WitchDoctorDollWeapon>().isPool = true;
+
+        }
     }
 
     private void FixedUpdate()
     {
         InAttackRange(); // 공격범위 안에 드는 지 체크
+
+
 
         getTime += Time.deltaTime;
 
@@ -89,10 +97,6 @@ public class WitchDoctorDollControl : MonsterBasic
                     Attack();
                 }
             }
-            else
-            {
-                Debug.Log("null target");
-            }
         }
 
     }
@@ -113,8 +117,7 @@ public class WitchDoctorDollControl : MonsterBasic
         go = ObjectPooler.Instance.SpawnFromPool("WitchDoctorDollBullet", launchPos.position, Quaternion.identity);
         go.transform.SetParent(this.transform);
         //Launch(Attackplace);
-        
-
+        StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollBullet", go, 2.0f));
     }
 
     public void Launch() // 투사체 발사

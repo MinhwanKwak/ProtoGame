@@ -11,7 +11,6 @@ public class WitchDoctorDollWeapon : MonoBehaviour
     
 
     float bulletSpeed = 10f;
-    float getTime = 0.0f;
 
     GameObject TrailEffect;
 
@@ -19,7 +18,8 @@ public class WitchDoctorDollWeapon : MonoBehaviour
 
     bool isHit = false;
 
-    bool isPool = false;
+    public bool isPool = false;
+    //float getTime = 0;
 
     private void Start()
     {
@@ -33,29 +33,36 @@ public class WitchDoctorDollWeapon : MonoBehaviour
 
     private void Update()
     {
+        //isPool = true;
+
         if (isPool)
         {
             rePooling();
         }
 
-        TrailEffect.transform.position = transform.position;
+      
 
-        getTime += Time.deltaTime;
-        if (getTime >= 2f)
-        {
 
-            //Destroy(this.gameObject);
-            getTime = 0f;
-            StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollBullet", owner.go, 0f));
-            isPool = true;
-            //isHit = false;
-        }
+        //getTime += Time.deltaTime;
+        //if (getTime >= 3.0f)
+        //{
+        //    getTime = 0.0f;
+        //    StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollBullet", owner.go, 0f));
+        //    isPool = true;
+
+        //}
+
+        //isHit = false;
+
+
+
     }
 
     private void FixedUpdate()
     {
         if(!isHit)
         {
+            
             Launch();
         }
         
@@ -63,19 +70,26 @@ public class WitchDoctorDollWeapon : MonoBehaviour
 
     public void rePooling()
     {
+        owner = GetComponentInParent<WitchDoctorDollControl>();
         isHit = false;
         isPool = false;
-        TrailEffect = ObjectPooler.Instance.SpawnFromPool("WitchDoctorDollTrailEffect", transform.position, Quaternion.identity);
-        TrailEffect.transform.SetParent(this.transform);
-        TrailEffect.transform.localPosition = Vector3.one;
+        if(!TrailEffect.activeSelf)
+        {
+            TrailEffect = ObjectPooler.Instance.SpawnFromPool("WitchDoctorDollTrailEffect", transform.position, Quaternion.identity);
+            TrailEffect.transform.SetParent(this.transform);
+            TrailEffect.transform.localPosition = Vector3.one;
+
+        }
 
         player = FindObjectOfType<PlayerControll>();
     }
 
     public void Launch()
     {
+        owner = GetComponentInParent<WitchDoctorDollControl>();
         Vector3 getDirection = (owner.Attackplace - owner.launchPos.position).normalized;
         transform.position += (getDirection * Time.deltaTime * bulletSpeed);
+        TrailEffect.transform.position = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -98,8 +112,13 @@ public class WitchDoctorDollWeapon : MonoBehaviour
             //isPool = true;
             //StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollBullet", owner.go, 0f));
 
+            return;
+
         }
 
         
+       
+
+
     }
 }

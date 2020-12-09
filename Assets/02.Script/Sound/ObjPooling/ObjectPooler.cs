@@ -80,10 +80,12 @@ public class ObjectPooler : MonoBehaviour
         yield return new WaitForSeconds(time);
 
 
-        if (obj.active)
+        //if (obj.active)
+        if (obj.activeSelf)
         {
             obj.SetActive(false);
         }
+
         poolDictionary[tag].Enqueue(obj);
         
 
