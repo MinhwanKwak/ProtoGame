@@ -21,10 +21,10 @@ public class BossControl : MonsterBasic
     {
         timestop = new WaitForSecondsRealtime(TimeStop);
 
-        uiHpBargo = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
-        uiHpBargo.transform.SetParent(hpCanvas.GetAnchorRect());
-        uiHpBar = uiHpBargo.GetComponent<UIHPBar>();
-        uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //uiHpBargo = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
+        //uiHpBargo.transform.SetParent(hpCanvas.GetAnchorRect());
+        //uiHpBar = uiHpBargo.GetComponent<UIHPBar>();
+        //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         this.monsterStatus = MonsterStatus.IDLE;
         
@@ -32,7 +32,7 @@ public class BossControl : MonsterBasic
 
     protected override void Update()
     {
-        uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+       // uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         MonsterAttackDelayTime += Time.deltaTime;
 

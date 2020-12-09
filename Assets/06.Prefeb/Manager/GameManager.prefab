@@ -1432,6 +1432,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 0}
   playerManager: {fileID: 0}
+  maps: []
+  CurrentMap: 0
 --- !u!1001 &8783247889748785389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1443,17 +1445,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: objectPooler
-      objectReference: {fileID: 0}
-    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
-        type: 3}
-      propertyPath: pools.Array.data[0].prefeb
-      value: 
-      objectReference: {fileID: 7931703291771404523, guid: fff0f63e01b1362459aaf5ec5e85c5c0,
-        type: 3}
-    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
-        type: 3}
-      propertyPath: pools.Array.data[0].size
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8416527338904048631, guid: 720c38810e36ab14b90b4c19549082e2,
         type: 3}

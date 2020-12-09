@@ -26,17 +26,17 @@ public class WitchDoctorDollControl : MonsterBasic
     // Start is called before the first frame update
     void Start()
     {
-        GameObject go = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
-        go.transform.SetParent(hpCanvas.GetAnchorRect());
-        uiHpBar = go.GetComponent<UIHPBar>();
-        uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //GameObject go = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
+        //go.transform.SetParent(hpCanvas.GetAnchorRect());
+        //uiHpBar = go.GetComponent<UIHPBar>();
+        //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         this.monsterStatus = MonsterStatus.IDLE;
     }
 
     protected override void Update()
     {
-        uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
     }
 
@@ -88,6 +88,10 @@ public class WitchDoctorDollControl : MonsterBasic
                 {
                     Attack();
                 }
+            }
+            else
+            {
+                Debug.Log("null target");
             }
         }
 
