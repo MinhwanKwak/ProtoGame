@@ -678,12 +678,14 @@ MonoBehaviour:
   wasInSight: 0
   MonsterStatusValue:
     monsterName: 
-    hp: 15
-    maxHp: 15
+    hp: 10
+    maxHp: 10
     range: 4.5
     tickRate: 0
   hpImage: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676, type: 3}
+  uiHpBarArray: []
   HpTransform: {fileID: 9124616270238830003}
+  HpTransformArray: []
   hpCanvas: {fileID: 0}
   Nav: {fileID: 4854752436540261872}
   animator: {fileID: 3642005130013077329}
@@ -692,6 +694,7 @@ MonoBehaviour:
   IsAttackOneTouch: 0
   IsDead: 0
   MonsterAttackDelayTime: 0
+  hittarget: {fileID: 0}
   TimeStop: 0
 --- !u!195 &4854752436540261872
 NavMeshAgent:
