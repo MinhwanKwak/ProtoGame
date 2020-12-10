@@ -116,8 +116,14 @@ public class MonsterControl : MonsterBasic
         Nav.isStopped = true;
         IsDead = true;
         //StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
-        //--GameManager.Instance.maps[0].MapMonsterCount;
-        //GameManager.Instance.maps[0].CheckClearMonster();
+       for(int i  = 0; i  < GameManager.Instance.maps.Length; ++i)
+        {
+            if (gameObject.tag == GameManager.Instance.maps[i].tag)
+            {
+                --GameManager.Instance.maps[i].MapMonsterCount;
+            }
+        }
+
         animator.SetBool("Dead", true);
     }
 

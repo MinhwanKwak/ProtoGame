@@ -24,7 +24,9 @@ public class Map : MonoBehaviour
         MapMonsterCount = MonsterRespawns.Length;
         for (int i = 0; i  < MonsterRespawns.Length; ++i)
         {
-            ObjectPooler.Instance.SpawnFromPool(MonsterRespawns[i].name, MonsterRespawns[i].RespawnPosition,Quaternion.identity);
+         GameObject obj = ObjectPooler.Instance.SpawnFromPool(MonsterRespawns[i].name, MonsterRespawns[i].RespawnPosition,Quaternion.identity);
+         obj.tag = gameObject.tag;
+         obj.transform.parent = gameObject.transform;
         }
     }
 
