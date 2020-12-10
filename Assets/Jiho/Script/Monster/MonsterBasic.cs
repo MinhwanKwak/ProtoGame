@@ -35,7 +35,7 @@ public class MonsterBasic : MonoBehaviour
     public Transform HpTransform;
     public Transform[] HpTransformArray;
 
-    public HPCanvas hpCanvas;
+    protected HPCanvas hpCanvas;
     protected Vector2 hpUIInterval = new Vector2(40, 0);
 
     protected Transform tr;
@@ -55,6 +55,11 @@ public class MonsterBasic : MonoBehaviour
     protected virtual void Awake()
     {
         IsInSight = false;
+    }
+
+    protected virtual void Start()
+    {
+        hpCanvas = FindObjectOfType<HPCanvas>();
     }
     protected virtual void Update()
     {

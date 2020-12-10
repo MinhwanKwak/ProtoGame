@@ -22,12 +22,20 @@ public class MonsterControl : MonsterBasic
         tr = GetComponent<Transform>();
     }
 
-    void Start()
+    protected override void Start()
     {
-
+        base.Start();
         timestop = new WaitForSecondsRealtime(TimeStop);
 
-        uiHpBarArray =  new UIHPBar [(int)MonsterStatusValue.maxHp];
+        //for(int i = 0; i < MonsterStatusValue.maxHp; i++)
+        //{
+        //    uiHpBarArray[i] = new UIHPBar();
+        //}
+
+        uiHpBargoArray = new GameObject[(int)MonsterStatusValue.maxHp];
+        uiHpBarArray = new UIHPBar[(int)MonsterStatusValue.maxHp];
+        
+ 
         //GameObject go = Instantiate(hpImage);
         //go.transform.SetParent(hpCanvas.GetAnchorRect());
         //go.transform.localScale = Vector3.one;
@@ -40,18 +48,19 @@ public class MonsterControl : MonsterBasic
         //uiHpBar = uiHpBargo.GetComponent<UIHPBar>();
 
 
-        //for (int i = 0; i < MonsterStatusValue.maxHp; i++)
-        //{
-        //    uiHpBargoArray[i] = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
-        //    uiHpBargoArray[i].transform.SetParent(hpCanvas.GetAnchorRect());
-        //    uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
-        //}
-        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
-        //{
-        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
-        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
-        //}
+        for (int i = 0; i < MonsterStatusValue.maxHp; i++)
+        {
+            uiHpBargoArray[i] = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
+            uiHpBargoArray[i].transform.SetParent(hpCanvas.GetAnchorRect());
+            uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
+        }
+        for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        {
+            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+            uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        }
+
         //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransformArray[0].position);
         //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransformArray[1].position);
         //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransformArray[2].position);
@@ -63,12 +72,12 @@ public class MonsterControl : MonsterBasic
     {
         base.Update();
 
-        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
-        //{
-        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
-        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
-        //}
+        for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        {
+            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+            uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        }
     }
 
    
@@ -185,7 +194,11 @@ public class MonsterControl : MonsterBasic
             AudioManager.Instance.PlaySoundSfx("ZombieDamage");
 
             MonsterStatusValue.hp -= 1;
-            //StartCoroutine(ObjectPooler.Instance.SpawnBack("MonsterHPUI", uiHpBargoArray[(int)MonsterStatusValue.hp], 0));
+
+            if (!IsDead)
+            {
+                StartCoroutine(ObjectPooler.Instance.SpawnBack("MonsterHPUI", uiHpBargoArray[(int)MonsterStatusValue.hp], 0));
+            }
 
             if (MonsterStatusValue.hp <= 0 && !IsDead) // 사망
             {
@@ -201,6 +214,7 @@ public class MonsterControl : MonsterBasic
                 }
                 
             }
+  
         }
     }
 
