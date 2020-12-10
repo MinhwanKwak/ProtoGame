@@ -131,25 +131,26 @@ public class MonsterControl : MonsterBasic
         Nav.isStopped = true;
         IsDead = true;
         //StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
-        --GameManager.Instance.maps[0].MapMonsterCount;
-        GameManager.Instance.maps[0].CheckClearMonster();
+        //--GameManager.Instance.maps[0].MapMonsterCount;
+        //GameManager.Instance.maps[0].CheckClearMonster();
         animator.SetBool("Dead", true);
     }
 
     public override void Dead()
     {
         base.Dead();
-        
-        StartCoroutine(DeadDelay());
+
+        StartCoroutine(ObjectPooler.Instance.SpawnBack("Zombie", gameObject, 0));
+        //StartCoroutine(DeadDelay());
         
     }
 
-    IEnumerator DeadDelay()
-    {
-        Destroy(this.hpCanvas.GetComponentInChildren<UIHPBar>().gameObject);
+    //IEnumerator DeadDelay()
+    //{
+        //Destroy(this.hpCanvas.GetComponentInChildren<UIHPBar>().gameObject);
      
-        yield break;
-    }
+        //yield break;
+    //}
 
     public override void ApproachToPlayer()
     {
