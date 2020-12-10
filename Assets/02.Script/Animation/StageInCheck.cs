@@ -6,11 +6,13 @@ public class StageInCheck : MonoBehaviour
 {
    public LayerMask PlayerLayer;
 
+    public Animator DoorAnim;
+
     private IEnumerator OnTriggerEnter(Collider other)
     {
         if ((1 << (other.gameObject.layer) & PlayerLayer) != 0)
         {
-            GameManager.Instance.maps[0].DoorAnim.SetTrigger("InStage");
+            DoorAnim.SetTrigger("InStage");
             yield break;
         }
     }

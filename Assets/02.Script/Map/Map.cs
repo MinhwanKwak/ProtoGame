@@ -11,7 +11,7 @@ public class MonsterRespawn
 public class Map : MonoBehaviour
 {
 
-    public Animator DoorAnim;
+    public Animator[] DoorAnim;
 
     public MonsterRespawn[] MonsterRespawns;
 
@@ -24,7 +24,7 @@ public class Map : MonoBehaviour
         MapMonsterCount = MonsterRespawns.Length;
         for (int i = 0; i  < MonsterRespawns.Length; ++i)
         {
-            ObjectPooler.Instance.SpawnFromPool(MonsterRespawns[i].name, MonsterRespawns[i].RespawnPosition, Quaternion.identity);
+            ObjectPooler.Instance.SpawnFromPool(MonsterRespawns[i].name, MonsterRespawns[i].RespawnPosition,Quaternion.identity);
         }
     }
 
@@ -32,13 +32,13 @@ public class Map : MonoBehaviour
     {
         if(MapMonsterCount <= 0)
         {
-            DoorAnim.SetTrigger("DoorOpen");
+            DoorAnim[0].SetTrigger("DoorOpen");
         }
     }
 
    public void CheckInStage()
     {
-        DoorAnim.SetTrigger("DoorClose");
+        DoorAnim[1].SetTrigger("DoorClose");
     }
 
     private IEnumerator OnCollisionEnter(Collision collision)

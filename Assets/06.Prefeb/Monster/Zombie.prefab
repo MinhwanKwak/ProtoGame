@@ -78,8 +78,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757950994005514191}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.79, y: 0.63, z: 10.61}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 177033378312673062}
@@ -88,7 +88,7 @@ Transform:
   - {fileID: 5251748038814064681}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1757950994005514189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +122,9 @@ MonoBehaviour:
     range: 3
     tickRate: 5
   hpImage: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676, type: 3}
+  uiHpBarArray: []
   HpTransform: {fileID: 6691869095803560585}
+  HpTransformArray: []
   hpCanvas: {fileID: 0}
   Nav: {fileID: 1757950994005514186}
   animator: {fileID: 6785130647059818118}
@@ -133,6 +135,7 @@ MonoBehaviour:
   MonsterAttackDelayTime: 0
   TimeStop: 0
   uiHpBargo: {fileID: 0}
+  uiHpBargoArray: []
   hittarget: {fileID: 3496367266684518578}
 --- !u!195 &1757950994005514186
 NavMeshAgent:
