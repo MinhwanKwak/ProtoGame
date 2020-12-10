@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -330,10 +330,10 @@ RectTransform:
   m_Father: {fileID: 716023798}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 969.41547, y: 914.88196}
+  m_SizeDelta: {x: 0, y: 914.88196}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &427139603
 MonoBehaviour:
@@ -830,8 +830,9 @@ GameObject:
   - component: {fileID: 1151482543}
   - component: {fileID: 1151482542}
   - component: {fileID: 1151482546}
+  - component: {fileID: 1151482547}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: StartUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -930,6 +931,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d580cdf788f3ddb4b831eab30e8f3eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1151482547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151482541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443c22f0a0aa37b4bb11ac2582e67f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartGameButton: {fileID: 0}
 --- !u!1 &1333517292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1157,7 @@ GameObject:
   - component: {fileID: 1488740505}
   - component: {fileID: 1488740504}
   - component: {fileID: 1488740506}
+  - component: {fileID: 1488740507}
   m_Layer: 5
   m_Name: GameStartButton
   m_TagString: Untagged
@@ -1260,6 +1275,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1488740507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488740502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1607671529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1494,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -180}
-  m_SizeDelta: {x: 130, y: 40}
+  m_SizeDelta: {x: 120, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1686701773
 MonoBehaviour:

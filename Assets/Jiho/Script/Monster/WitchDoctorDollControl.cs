@@ -25,7 +25,7 @@ public class WitchDoctorDollControl : MonsterBasic
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         //GameObject go = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
         //go.transform.SetParent(hpCanvas.GetAnchorRect());
