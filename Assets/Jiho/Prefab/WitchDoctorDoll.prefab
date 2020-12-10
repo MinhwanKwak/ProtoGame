@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db301f63be05837439842dc62998b45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisname: 
   viewRadius: 10
   viewAngle: 0
   viewTargetMask:
@@ -61,15 +62,15 @@ MonoBehaviour:
   wasInSight: 0
   MonsterStatusValue:
     monsterName: WitchDoctorDoll
-    hp: 0
-    maxHp: 0
+    hp: 3
+    maxHp: 3
     range: 0
     tickRate: 0
   hpImage: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676, type: 3}
-  Camera: {fileID: 0}
+  uiHpBarArray: []
   HpTransform: {fileID: 1827873535765284671}
+  HpTransformArray: []
   hpCanvas: {fileID: 0}
-  playerPos: {fileID: 0}
   Nav: {fileID: 0}
   animator: {fileID: 0}
   monsterStatus: 0
@@ -78,7 +79,6 @@ MonoBehaviour:
   IsDead: 0
   MonsterAttackDelayTime: 0
   bullet: {fileID: 194754164632851910, guid: 0789e6fad0f649e4e8afb225e6278dbe, type: 3}
-  Weapon: {fileID: 0}
   launchPos: {fileID: 7277750495141109233}
   Attackplace: {x: 0, y: 0, z: 0}
   go: {fileID: 0}
