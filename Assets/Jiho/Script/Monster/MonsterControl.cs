@@ -122,6 +122,7 @@ public class MonsterControl : MonsterBasic
             if (gameObject.tag == GameManager.Instance.maps[i].tag)
             {
                 --GameManager.Instance.maps[i].MapMonsterCount;
+                return;
             }
         }
 
