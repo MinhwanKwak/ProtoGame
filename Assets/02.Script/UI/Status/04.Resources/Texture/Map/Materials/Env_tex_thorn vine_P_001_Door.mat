@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Time: -0.39
+    - Time: -1.12
     - Vector1_ADCC316B: 0.01
     - Vector1_C8482A72: 30
     - Vector_1: 30

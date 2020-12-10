@@ -1432,7 +1432,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 0}
   playerManager: {fileID: 0}
-  maps: []
+  maps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   CurrentMap: 0
 --- !u!1001 &8783247889748785389
 PrefabInstance:
@@ -1445,6 +1448,113 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: objectPooler
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[1].tag
+      value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[1].prefeb
+      value: 
+      objectReference: {fileID: 1757950994005514191, guid: b1937fec47aef174eaa2fff627ef88d2,
+        type: 3}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[1].size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[2].tag
+      value: WitchDoctorDoll
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[2].prefeb
+      value: 
+      objectReference: {fileID: 1827873535108198270, guid: 706baa9f757acd249b197dc91e376b76,
+        type: 3}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[3].tag
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[3].prefeb
+      value: 
+      objectReference: {fileID: 4488516041832977085, guid: b67ee5d000c6be84482c3788011624d6,
+        type: 3}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[4].tag
+      value: MonsterHPUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[4].prefeb
+      value: 
+      objectReference: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676,
+        type: 3}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[4].size
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[5].tag
+      value: WitchDoctorDollTrailEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[5].prefeb
+      value: 
+      objectReference: {fileID: 7986581489130836067, guid: 3d6a148e93564564ea3d62bfb57cc6f6,
+        type: 3}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[5].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[6].tag
+      value: WitchDoctorDollHitEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[6].prefeb
+      value: 
+      objectReference: {fileID: 2882971825524861596, guid: 84db43e318602d249bc07a5b7a4e7a45,
+        type: 3}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[6].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[7].tag
+      value: WitchDoctorDollBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[7].prefeb
+      value: 
+      objectReference: {fileID: 194754164632851910, guid: 0789e6fad0f649e4e8afb225e6278dbe,
+        type: 3}
+    - target: {fileID: 8416527338904048630, guid: 720c38810e36ab14b90b4c19549082e2,
+        type: 3}
+      propertyPath: pools.Array.data[7].size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8416527338904048631, guid: 720c38810e36ab14b90b4c19549082e2,
         type: 3}
