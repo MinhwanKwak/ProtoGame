@@ -138,23 +138,25 @@ public class MonsterControl : MonsterBasic
                 --GameManager.Instance.maps[i].MapMonsterCount;
             }
         }
+
         animator.SetBool("Dead", true);
     }
 
     public override void Dead()
     {
         base.Dead();
-        
-        StartCoroutine(DeadDelay());
+
+        StartCoroutine(ObjectPooler.Instance.SpawnBack("Zombie", gameObject, 0));
+        //StartCoroutine(DeadDelay());
         
     }
 
-    IEnumerator DeadDelay()
-    {
-        Destroy(this.hpCanvas.GetComponentInChildren<UIHPBar>().gameObject);
+    //IEnumerator DeadDelay()
+    //{
+        //Destroy(this.hpCanvas.GetComponentInChildren<UIHPBar>().gameObject);
      
-        yield break;
-    }
+        //yield break;
+    //}
 
     public override void ApproachToPlayer()
     {
