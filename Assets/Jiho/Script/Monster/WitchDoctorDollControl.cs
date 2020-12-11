@@ -18,7 +18,7 @@ public class WitchDoctorDollControl : MonsterBasic
 
     public GameObject hittarget;
 
-    public GameObject AttackRangeImage;
+    //public GameObject AttackRangeImage;
 
     public float TimeStop = 0f;
 
@@ -172,7 +172,9 @@ public class WitchDoctorDollControl : MonsterBasic
         if(!IsProgressAttack)
         {
             Attackplace = PlayerManager.Instance.playerControll.transform.position;
-            AttackRangeImage.transform.position = Attackplace;
+            GameObject go = ObjectPooler.Instance.SpawnFromPool("WitchDoctorDollRange", transform.position, Quaternion.Euler(90,0,0));
+            go.transform.position = Attackplace + new Vector3(0,0.1f,0);
+            StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollRange", go, 2.0f));
         }
 
         IsProgressAttack = true; // false 처리 해야함. LayerMask 활용
