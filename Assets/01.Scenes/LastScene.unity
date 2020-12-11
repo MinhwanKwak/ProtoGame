@@ -5065,6 +5065,11 @@ PrefabInstance:
       objectReference: {fileID: 965455005}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
+      propertyPath: pools.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
       propertyPath: pools.Array.data[1].size
       value: 60
       objectReference: {fileID: 0}
@@ -5102,6 +5107,22 @@ PrefabInstance:
         type: 3}
       propertyPath: pools.Array.data[4].size
       value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[8].tag
+      value: WitchDoctorDollRange
+      objectReference: {fileID: 0}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[8].prefeb
+      value: 
+      objectReference: {fileID: 7260809728793076612, guid: c921f74b01b0b434195895831a646516,
+        type: 3}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[8].size
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
