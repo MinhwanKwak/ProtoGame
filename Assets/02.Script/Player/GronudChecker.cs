@@ -30,14 +30,20 @@ public class GronudChecker : MonoBehaviour
         if (((1 << other.gameObject.layer) & groundlayer) != 0)
         {
           Animator groundAnimator =   other.gameObject.GetComponent<Animator>();
-          groundAnimator.SetTrigger("GroundDown");
+            if (groundAnimator != null)
+            {
+                groundAnimator.SetTrigger("GroundDown");
+            }
         }
         if (((1 << other.gameObject.layer) & TrapLayer) != 0)
         {
             Animator groundAnimator = other.gameObject.GetComponent<Animator>();
-            groundAnimator.SetTrigger("TrapOn");
+            if (groundAnimator != null)
+            {
+                groundAnimator.SetTrigger("TrapOn");
+            }
         }
-
+         
     }
 
     private void OnTriggerExit(Collider other)
@@ -45,7 +51,10 @@ public class GronudChecker : MonoBehaviour
         if (((1 << other.gameObject.layer) & groundlayer) != 0)
         {
             Animator groundAnimator = other.gameObject.GetComponent<Animator>();
-            groundAnimator.SetTrigger("GroundUp");
+            if (groundAnimator != null)
+            {
+                groundAnimator.SetTrigger("GroundUp");
+            }
         }
 
     }
