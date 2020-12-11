@@ -373,7 +373,7 @@ Transform:
   - {fileID: 153996859}
   - {fileID: 384543297}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 36.75, y: 179.99998, z: 0}
 --- !u!95 &691835316
 Animator:
@@ -394,75 +394,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &1385574045
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.135554
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.14
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7d7b10b43f6c38d4696e5c53e4cc16df,
-        type: 3}
-      propertyPath: m_Name
-      value: zombie_ani_hit_modify20201208
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7d7b10b43f6c38d4696e5c53e4cc16df, type: 3}
 --- !u!1001 &1937207880
 PrefabInstance:
   m_ObjectHideFlags: 0
