@@ -5113,7 +5113,7 @@ PrefabInstance:
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.data[1].size
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
@@ -5128,22 +5128,22 @@ PrefabInstance:
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.data[0].size
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.data[7].size
-      value: 40
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.data[6].size
-      value: 40
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.data[5].size
-      value: 40
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
@@ -5355,6 +5355,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1906948298713839319, guid: 78bb85ead0ea33049bd9afbd25622223,
+        type: 3}
+      propertyPath: m_TagString
+      value: Level2-1
+      objectReference: {fileID: 0}
     - target: {fileID: 3488840662580501770, guid: 78bb85ead0ea33049bd9afbd25622223,
         type: 3}
       propertyPath: DoorAnim.Array.size
@@ -6159,6 +6164,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stage1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291557034138266625, guid: 78bb85ead0ea33049bd9afbd25622223,
+        type: 3}
+      propertyPath: m_TagString
+      value: Level2-3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220370618874327911, guid: 78bb85ead0ea33049bd9afbd25622223,
+        type: 3}
+      propertyPath: m_TagString
+      value: Level2-2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8170115979750542111, guid: 78bb85ead0ea33049bd9afbd25622223, type: 3}
