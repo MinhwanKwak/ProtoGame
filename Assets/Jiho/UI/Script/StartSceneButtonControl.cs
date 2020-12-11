@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class StartSceneButtonControl : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class StartSceneButtonControl : MonoBehaviour
         if (Application.isPlaying)
         {
 #if UNITY_EDITOR
+            DOTween.Kill(this);
             EditorApplication.isPlaying = false;
 #else
             Application.Quit();
