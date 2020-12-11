@@ -127,20 +127,20 @@ public class MonsterControl : MonsterBasic
         IsDead = true;
 
 
-        animator.SetBool("Dead", true);
+        
         //StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
-        for (int i  = 0; i  < GameManager.Instance.maps.Length; ++i)
-        {
-            if (gameObject.tag == GameManager.Instance.maps[i].tag)
-            {
-                --GameManager.Instance.maps[i].MapMonsterCount;
-                if(GameManager.Instance.maps[i].MapMonsterCount <= 0)
-                {
-                    GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
-                    return;
-                }
-            }
-        }
+        //for (int i  = 0; i  < GameManager.Instance.maps.Length; ++i)
+        //{
+        //    if (gameObject.tag == GameManager.Instance.maps[i].tag)
+        //    {
+        //        --GameManager.Instance.maps[i].MapMonsterCount;
+        //        if(GameManager.Instance.maps[i].MapMonsterCount <= 0)
+        //        {
+        //            GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
+        //            return;
+        //        }
+        //    }
+        //}
     }
 
     public override void Dead()

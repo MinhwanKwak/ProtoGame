@@ -15,13 +15,18 @@ public class WitchDoctorDollControl : MonsterBasic
 
     float getTime = 0.0f;
 
+    public GameObject uiHpBargo;
+    public GameObject[] uiHpBargoArray;
+
+    public GameObject hittarget;
+
+    public float TimeStop = 0f;
+
+    WaitForSecondsRealtime timestop;
+
     protected override void Awake()
     {
         base.Awake();
-
-        
-        
-
     }
 
     // Start is called before the first frame update
@@ -31,6 +36,25 @@ public class WitchDoctorDollControl : MonsterBasic
         //go.transform.SetParent(hpCanvas.GetAnchorRect());
         //uiHpBar = go.GetComponent<UIHPBar>();
         //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+
+        base.Start();
+        timestop = new WaitForSecondsRealtime(TimeStop);
+
+        uiHpBargoArray = new GameObject[(int)MonsterStatusValue.maxHp];
+        uiHpBarArray = new UIHPBar[(int)MonsterStatusValue.maxHp];
+
+        for (int i = 0; i < MonsterStatusValue.maxHp; i++)
+        {
+            uiHpBargoArray[i] = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
+            uiHpBargoArray[i].transform.SetParent(hpCanvas.GetAnchorRect());
+            uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
+        }
+        for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        {
+            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+            uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        }
 
         this.monsterStatus = MonsterStatus.IDLE;
     }
@@ -44,13 +68,18 @@ public class WitchDoctorDollControl : MonsterBasic
             go.GetComponent<WitchDoctorDollWeapon>().isPool = true;
 
         }
+
+        for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        {
+            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+            uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        }
     }
 
     private void FixedUpdate()
     {
         InAttackRange(); // 공격범위 안에 드는 지 체크
-
-
 
         getTime += Time.deltaTime;
 
@@ -92,7 +121,7 @@ public class WitchDoctorDollControl : MonsterBasic
             {
                 IsInSight = true;
                 // 공격
-                if (!IsProgressAttack)
+                if (!IsProgressAttack && monsterStatus != MonsterStatus.DEAD)
                 {
                     Attack();
                 }
@@ -120,11 +149,40 @@ public class WitchDoctorDollControl : MonsterBasic
         StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDollBullet", go, 2.0f));
     }
 
-    public void Launch() // 투사체 발사
+    public override void ProcessDead()
     {
-        Vector3 getDirection = (Attackplace - launchPos.position).normalized;
-        //go.transform.Translate(getDirection * Time.deltaTime * bulletSpeed);
-        go.transform.position += (getDirection * Time.deltaTime * bulletSpeed);
+        monsterStatus = MonsterStatus.DEAD;
+
+        for (int i = 0; i < GameManager.Instance.maps.Length; ++i)
+        {
+            if (gameObject.tag == GameManager.Instance.maps[i].tag)
+            {
+                --GameManager.Instance.maps[i].MapMonsterCount;
+                if (GameManager.Instance.maps[i].MapMonsterCount <= 0)
+                {
+                    GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
+                    return;
+                }
+            }
+        }
+
+        StartCoroutine(WitchDoctorDollDead());
+    }
+
+    IEnumerator WitchDoctorDollDead()
+    {
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDoll", gameObject, 0));
+    }
+
+    IEnumerator DamageTime()
+    {
+        Time.timeScale = 0f;
+
+        yield return timestop;
+
+        Time.timeScale = 1f;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -138,10 +196,22 @@ public class WitchDoctorDollControl : MonsterBasic
             //Effect.transform.parent = hittarget.transform;
             //StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
 
+            PlayerManager.Instance.playerControll.playerAnimationEvent.SetDamageCheck(false);
+            StartCoroutine(DamageTime());
+            StartCoroutine(GameManager.Instance.cameraManager.camerashake.Shake(0.25f, 0.25f));
+            GameObject Effect = ObjectPooler.Instance.SpawnFromPool("HitEffect", hittarget.transform.position, hittarget.transform.rotation);
+            Effect.transform.parent = hittarget.transform;
+            StartCoroutine(ObjectPooler.Instance.SpawnBack("HitEffect", Effect, 0.7f));
+
             // 피격
             MonsterStatusValue.hp -= 1;
 
-            if (MonsterStatusValue.hp <= 0) // 사망
+            if(monsterStatus != MonsterStatus.DEAD)
+            {
+                StartCoroutine(ObjectPooler.Instance.SpawnBack("MonsterHPUI", uiHpBargoArray[(int)MonsterStatusValue.hp], 0));
+            }
+
+            if (MonsterStatusValue.hp <= 0 && monsterStatus != MonsterStatus.DEAD) // 사망
             {
                 ProcessDead();
             }

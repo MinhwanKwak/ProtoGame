@@ -125,7 +125,6 @@ MonoBehaviour:
   uiHpBarArray: []
   HpTransform: {fileID: 6691869095803560585}
   HpTransformArray: []
-  hpCanvas: {fileID: 0}
   Nav: {fileID: 1757950994005514186}
   animator: {fileID: 6785130647059818118}
   monsterStatus: 0
@@ -242,7 +241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6911844754026460677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.43, z: 0}
+  m_LocalPosition: {x: 0.5, y: -0.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1757950994005514188}

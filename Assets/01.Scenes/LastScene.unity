@@ -5138,6 +5138,16 @@ PrefabInstance:
       propertyPath: DoorAnim.Array.data[0]
       value: 
       objectReference: {fileID: 1278589746}
+    - target: {fileID: 7007750626430327071, guid: 8dc566a5f0f1cf4419369b747f1c85ef,
+        type: 3}
+      propertyPath: MonsterRespawns.Array.data[0].name
+      value: WitchDoctorDoll
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007750626430327071, guid: 8dc566a5f0f1cf4419369b747f1c85ef,
+        type: 3}
+      propertyPath: MonsterRespawns.Array.data[1].name
+      value: Boss
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dc566a5f0f1cf4419369b747f1c85ef, type: 3}
 --- !u!1001 &8454158000381874962

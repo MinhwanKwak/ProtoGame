@@ -6,25 +6,62 @@ using UnityEngine;
 
 public class BossControl : MonsterBasic
 {
-    GameObject uiHpBargo;
     public GameObject hittarget;
 
     WaitForSecondsRealtime timestop;
     public float TimeStop = 0f;
+
+
+    public GameObject uiHpBargo;
+    public GameObject[] uiHpBargoArray;
     protected override void Awake()
     {
         base.Awake();
         tr = GetComponent<Transform>();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        uiHpBargoArray = new GameObject[(int)MonsterStatusValue.maxHp];
+        uiHpBarArray = new UIHPBar[(int)MonsterStatusValue.maxHp];
         timestop = new WaitForSecondsRealtime(TimeStop);
 
-        //uiHpBargo = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
-        //uiHpBargo.transform.SetParent(hpCanvas.GetAnchorRect());
-        //uiHpBar = uiHpBargo.GetComponent<UIHPBar>();
-        //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        for (int i = 0; i < MonsterStatusValue.maxHp; i++)
+        {
+            uiHpBargoArray[i] = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
+            uiHpBargoArray[i].transform.SetParent(hpCanvas.GetAnchorRect());
+            uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
+        }
+        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        //{
+        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        //}
+
+        for (int i = 0; i < MonsterStatusValue.maxHp; i += 5)
+        {
+            if (i >= 4)
+            {
+                uiHpBarArray[i].image.rectTransform.anchoredPosition = uiHpBarArray[0].image.rectTransform.anchoredPosition + new Vector2(0, 25f);
+                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+                uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+                uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
+                uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
+            }
+            else
+            {
+                uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+                uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+                uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
+                uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
+            }
+
+        }
+
+
 
         this.monsterStatus = MonsterStatus.IDLE;
         
@@ -40,12 +77,32 @@ public class BossControl : MonsterBasic
         {
             TracePlayer();
         }
-        
 
-        if (IsDestination() && !IsInSight)
+        for (int i = 0; i < MonsterStatusValue.maxHp; i += 5)
         {
+            if(i >= 4)
+            {
+                uiHpBarArray[i].image.rectTransform.anchoredPosition = uiHpBarArray[0].image.rectTransform.anchoredPosition + new Vector2(0, 25f);
+                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+                uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+                uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
+                uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
+            }
+            else
+            {
+                uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+                uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+                uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
+                uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
+            }
 
         }
+
+        //if (IsDestination() && !IsInSight)
+        //{
+
+        //}
     }
 
     public override void Attack()
@@ -94,23 +151,15 @@ public class BossControl : MonsterBasic
         //StartCoroutine(ObjectPooler.Instance.SpawnBack(thisname, gameObject, 0f)); //test 지워두됨
         //--GameManager.Instance.maps[0].MapMonsterCount;
         //GameManager.Instance.maps[0].CheckClearMonster();
-        animator.SetBool("Dead", true);
+        //animator.SetBool("Dead", true);
     }
 
     public override void Dead()
     {
         base.Dead();
-
-        StartCoroutine(DeadDelay());
-
+        StartCoroutine(ObjectPooler.Instance.SpawnBack("Boss", gameObject, 0));
     }
 
-    IEnumerator DeadDelay()
-    {
-        Destroy(this.hpCanvas.GetComponentInChildren<UIHPBar>().gameObject);
-
-        yield break;
-    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -131,11 +180,16 @@ public class BossControl : MonsterBasic
 
             MonsterStatusValue.hp -= 1;
 
-            if (MonsterStatusValue.hp <= 0 && !IsDead) // 사망
+            if (monsterStatus != MonsterStatus.DEAD)
+            {
+                StartCoroutine(ObjectPooler.Instance.SpawnBack("MonsterHPUI", uiHpBargoArray[(int)MonsterStatusValue.hp], 0));
+            }
+
+            if (MonsterStatusValue.hp <= 0 && monsterStatus != MonsterStatus.DEAD) // 사망
             {
                 ProcessDead();
             }
-            else if (!IsDead && !IsProgressAttack)
+            else if (monsterStatus != MonsterStatus.DEAD && !IsProgressAttack)
             {
                 animator.SetTrigger("BeAttacked");
                 if (!IsInSight)

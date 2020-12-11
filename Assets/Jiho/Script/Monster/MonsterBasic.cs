@@ -94,7 +94,20 @@ public class MonsterBasic : MonoBehaviour
 
     public virtual void ProcessDead()
     {
+        animator.SetBool("Dead", true);
 
+        for (int i = 0; i < GameManager.Instance.maps.Length; ++i)
+        {
+            if (gameObject.tag == GameManager.Instance.maps[i].tag)
+            {
+                --GameManager.Instance.maps[i].MapMonsterCount;
+                if (GameManager.Instance.maps[i].MapMonsterCount <= 0)
+                {
+                    GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
+                    return;
+                }
+            }
+        }
     }
 
     public virtual void Dead() // 죽음
