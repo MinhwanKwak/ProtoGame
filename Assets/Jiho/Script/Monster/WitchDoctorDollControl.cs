@@ -158,6 +158,7 @@ public class WitchDoctorDollControl : MonsterBasic
                 if (!IsProgressAttack && monsterStatus != MonsterStatus.DEAD)
                 {
                     Attack();
+                    Debug.Log("Attack");
                 }
             }
         }
