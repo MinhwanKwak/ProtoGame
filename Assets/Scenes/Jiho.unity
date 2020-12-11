@@ -739,7 +739,7 @@ PrefabInstance:
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
@@ -805,6 +805,17 @@ PrefabInstance:
       propertyPath: pools.Array.data[4].size
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[5].tag
+      value: WitchDoctorDollRange
+      objectReference: {fileID: 0}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[5].prefeb
+      value: 
+      objectReference: {fileID: 7260809728793076612, guid: c921f74b01b0b434195895831a646516,
+        type: 3}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: cameraManager
@@ -45695,7 +45706,7 @@ PrefabInstance:
     - target: {fileID: 2798687274847169546, guid: 7680691e641e28e47aee8dc3c3a0e359,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2901577842620094542, guid: 7680691e641e28e47aee8dc3c3a0e359,
         type: 3}
