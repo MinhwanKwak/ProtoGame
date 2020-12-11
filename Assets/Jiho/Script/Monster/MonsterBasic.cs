@@ -79,6 +79,9 @@ public class MonsterBasic : MonoBehaviour
     }
     protected virtual void Update()
     {
+        if (IsDead || monsterStatus == MonsterStatus.DEAD)
+            return;
+
         MonsterAttackDelayTime += Time.deltaTime;
 
         //if(IsPatrol)
