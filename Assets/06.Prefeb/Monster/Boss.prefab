@@ -674,6 +674,9 @@ MonoBehaviour:
   HitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  PatrolPointMask:
+    serializedVersion: 2
+    m_Bits: 0
   IsInSight: 0
   wasInSight: 0
   MonsterStatusValue:
@@ -1091,7 +1094,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 239378781582670930, guid: bd1bfd33785a2e14ebe1665c45d1fc63, type: 3}
+  - {fileID: 2100000, guid: 1cc3b83749d75bc409a18f85679ef1fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

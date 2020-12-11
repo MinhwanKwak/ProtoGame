@@ -16,6 +16,8 @@ public class MonsterControl : MonsterBasic
     public GameObject[] uiHpBargoArray;
 
     public GameObject hittarget;
+
+    Collider[] colliders;
     protected override void Awake()
     {
         MonsterStatusValue.Initialize();
@@ -238,6 +240,11 @@ public class MonsterControl : MonsterBasic
             if (MonsterStatusValue.hp <= 0 && !IsDead) // 사망
             {
                 ProcessDead();
+                colliders = this.gameObject.GetComponentsInChildren<Collider>();
+                for(int i = 0; i < colliders.Length; i++)
+                {
+                    colliders[i].enabled = false;
+                }
             }
             else if(!IsDead && !IsProgressAttack)
             {

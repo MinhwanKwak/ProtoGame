@@ -113,6 +113,9 @@ MonoBehaviour:
   HitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  PatrolPointMask:
+    serializedVersion: 2
+    m_Bits: 16384
   IsInSight: 0
   wasInSight: 0
   MonsterStatusValue:
