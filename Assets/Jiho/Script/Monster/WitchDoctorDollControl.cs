@@ -9,8 +9,6 @@ public class WitchDoctorDollControl : MonsterBasic
 
     public Vector3 Attackplace;
 
-    float bulletSpeed = 10f;
-
     public GameObject go;
 
     float getTime = 0.0f;
@@ -19,6 +17,8 @@ public class WitchDoctorDollControl : MonsterBasic
     public GameObject[] uiHpBargoArray;
 
     public GameObject hittarget;
+
+    public GameObject AttackRangeImage;
 
     public float TimeStop = 0f;
 
@@ -49,12 +49,34 @@ public class WitchDoctorDollControl : MonsterBasic
             uiHpBargoArray[i].transform.SetParent(hpCanvas.GetAnchorRect());
             uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
         }
-        for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+
+        int Center = (int)MonsterStatusValue.maxHp / 2;
+
+        for (int i = 0; i < MonsterStatusValue.maxHp; i++)
         {
-            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
-            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-            uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+            uiHpBargoArray[i] = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
+            uiHpBargoArray[i].transform.SetParent(hpCanvas.GetAnchorRect());
+            uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
         }
+
+        uiHpBarArray[Center].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+
+        for (int i = Center; i < (int)MonsterStatusValue.maxHp - 1; i++)
+        {
+            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+        }
+
+        for (int i = Center; i < 0; i--)
+        {
+            uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition - hpUIInterval;
+        }
+
+        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        //{
+        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        //}
 
         this.monsterStatus = MonsterStatus.IDLE;
     }
@@ -69,12 +91,24 @@ public class WitchDoctorDollControl : MonsterBasic
 
         }
 
-        for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        int Center = (int)MonsterStatusValue.maxHp / 2;
+        uiHpBarArray[Center].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        for (int i = Center; i < (int)MonsterStatusValue.maxHp - 1; i++)
         {
-            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
             uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-            uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
         }
+
+        for (int i = Center; i > 0; i--)
+        {
+            uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition - hpUIInterval;
+        }
+
+        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        //{
+        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        //}
     }
 
     private void FixedUpdate()
@@ -138,6 +172,7 @@ public class WitchDoctorDollControl : MonsterBasic
         if(!IsProgressAttack)
         {
             Attackplace = PlayerManager.Instance.playerControll.transform.position;
+            AttackRangeImage.transform.position = Attackplace;
         }
 
         IsProgressAttack = true; // false 처리 해야함. LayerMask 활용

@@ -37,6 +37,7 @@ public class MonsterBasic : MonoBehaviour
 
     protected HPCanvas hpCanvas;
     protected Vector2 hpUIInterval = new Vector2(40, 0);
+    protected Vector2 hpUIVerticalInterval = new Vector2(0, -30);
 
     protected Transform tr;
     public NavMeshAgent Nav;
