@@ -20,6 +20,8 @@ public class MonsterBasic : MonoBehaviour
 
     public LayerMask HitLayerMask;
 
+    public LayerMask PatrolPointMask;
+
     public bool IsInSight; // 시야에 들어와있을 때
     public bool wasInSight; // 시야에 들어온 적이 있는지
 
@@ -30,8 +32,6 @@ public class MonsterBasic : MonoBehaviour
     protected UIHPBar uiHpBar;
     public UIHPBar[] uiHpBarArray;
     
-
-
     public Transform HpTransform;
     public Transform[] HpTransformArray;
 
@@ -53,6 +53,14 @@ public class MonsterBasic : MonoBehaviour
 
     public float MonsterAttackDelayTime = 0.0f;
 
+    Vector3 OriginSpawnPoint;
+    GameObject[] PatrolPoint = new GameObject[4];
+
+    int PatrolNum = 0;
+
+    protected bool IsPatrol = true;
+    protected bool IsTrace = false;
+
     protected virtual void Awake()
     {
         IsInSight = false;
@@ -61,11 +69,30 @@ public class MonsterBasic : MonoBehaviour
     protected virtual void Start()
     {
         hpCanvas = FindObjectOfType<HPCanvas>();
+        OriginSpawnPoint = transform.position;
+
+
+        PatrolPoint[0] = ObjectPooler.Instance.SpawnFromPool("PatrolPoint", OriginSpawnPoint + new Vector3(10, 0, 5), Quaternion.identity);
+        PatrolPoint[1] = ObjectPooler.Instance.SpawnFromPool("PatrolPoint", OriginSpawnPoint + new Vector3(5, 0, 10), Quaternion.identity);
+        PatrolPoint[2] = ObjectPooler.Instance.SpawnFromPool("PatrolPoint", OriginSpawnPoint + new Vector3(-10, 0, 5), Quaternion.identity);
+        PatrolPoint[3] = ObjectPooler.Instance.SpawnFromPool("PatrolPoint", OriginSpawnPoint + new Vector3(5, 0, -10), Quaternion.identity);
     }
     protected virtual void Update()
     {
         MonsterAttackDelayTime += Time.deltaTime;
 
+        //if(IsPatrol)
+        //{
+        //    Patrol();
+        //}
+        //else if(IsTrace)
+        //{
+        //    FindTarget();
+        //}
+        if(!IsInSight)
+        {
+            Patrol();
+        }
         FindTarget();
         if (IsDestination() && !IsInSight)
         {
@@ -155,8 +182,46 @@ public class MonsterBasic : MonoBehaviour
                 //IsInSight = false;
 
                 StartCoroutine(OutSight());
+                // 이후 다시 순찰지역으로 돌아가야 한다
                 DOTween.Kill(this.gameObject);
             }
+        }
+    }
+
+    public virtual void Patrol()
+    {
+        Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, 30, PatrolPointMask);
+        for (int i = 0; i < targetInViewRadius.Length; i++)
+        {
+            Transform target = targetInViewRadius[i].transform;
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+
+            float dstToTarget = Vector3.Distance(transform.position, target.position);
+
+            Debug.DrawRay(transform.position, dirToTarget,Color.blue, dstToTarget);
+             if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, viewObstacleMask)) // 레이캐스트를 쏘았는데 obstacleMask가 아닐 때 참
+             {
+                int Randnumber = Random.Range(0, 4);
+ 
+                while(PatrolNum == Randnumber)
+                {
+                    Randnumber = Random.Range(0, 4);
+                }
+                PatrolNum = Randnumber;
+
+                if(IsDestination())
+                {
+                    Nav.SetDestination(PatrolPoint[PatrolNum].transform.position);
+                    return;
+                }
+             }
+            
+              else if (wasInSight)
+              {
+
+
+                    DOTween.Kill(this.gameObject);
+              }
         }
     }
 
