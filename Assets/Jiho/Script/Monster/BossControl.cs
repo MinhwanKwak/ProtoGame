@@ -39,29 +39,33 @@ public class BossControl : MonsterBasic
         //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
         //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
         //}
+        int Center = (int)MonsterStatusValue.maxHp / 2;
 
-        for (int i = 0; i < MonsterStatusValue.maxHp; i += 5)
+        uiHpBarArray[Center].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+
+        int fortimes = 0;
+        for (int i = Center; i < (int)MonsterStatusValue.maxHp - 1; i++)
         {
-            if (i >= 4)
+            fortimes++;
+            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+            if (fortimes <= 3)
             {
-                uiHpBarArray[i].image.rectTransform.anchoredPosition = uiHpBarArray[0].image.rectTransform.anchoredPosition + new Vector2(0, 25f);
-                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-                uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
-                uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
-                uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
-            }
-            else
-            {
-                uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
-                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-                uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
-                uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
-                uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
+                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition += hpUIVerticalInterval;
+                fortimes = 0;
             }
 
         }
 
-
+        for (int i = Center; i > 0; i--)
+        {
+            fortimes++;
+            uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition - hpUIInterval;
+            if (fortimes <= 3)
+            {
+                uiHpBarArray[i - 1].image.rectTransform.anchoredPosition += hpUIVerticalInterval;
+                fortimes = 0;
+            }
+        }
 
         this.monsterStatus = MonsterStatus.IDLE;
         
@@ -78,25 +82,52 @@ public class BossControl : MonsterBasic
             TracePlayer();
         }
 
-        for (int i = 0; i < MonsterStatusValue.maxHp; i += 5)
-        {
-            if(i >= 4)
-            {
-                uiHpBarArray[i].image.rectTransform.anchoredPosition = uiHpBarArray[0].image.rectTransform.anchoredPosition + new Vector2(0, 25f);
-                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-                uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
-                uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
-                uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
-            }
-            else
-            {
-                uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
-                uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-                uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
-                uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
-                uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
-            }
+        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 5)
+        //{
+        //    if(i >= 4)
+        //    {
+        //        uiHpBarArray[i].image.rectTransform.anchoredPosition = uiHpBarArray[0].image.rectTransform.anchoredPosition + new Vector2(0, 25f);
+        //        uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+        //        uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        //        uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
+        //        uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
+        //    }
+        //    else
+        //    {
+        //        uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //        uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+        //        uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        //        uiHpBarArray[i + 3].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 3);
+        //        uiHpBarArray[i + 4].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 4);
+        //    }
 
+        //}
+
+
+        int Center = (int)MonsterStatusValue.maxHp / 2;
+        uiHpBarArray[Center].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+
+        int fortimes = 0;
+        for (int i = Center; i < (int)MonsterStatusValue.maxHp - 1; i++)
+        {
+            fortimes++;
+            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+            //if (fortimes == 3)
+            //{
+            //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[Center].image.rectTransform.anchoredPosition + hpUIVerticalInterval;
+            //    fortimes = 0;
+            //}
+        }
+
+        for (int i = Center; i > 0; i--)
+        {
+            fortimes++;
+            uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition - hpUIInterval;
+            //if (fortimes == 3)
+            //{
+            //    uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[Center].image.rectTransform.anchoredPosition + hpUIVerticalInterval;
+            //    fortimes = 0;
+            //}
         }
 
         //if (IsDestination() && !IsInSight)

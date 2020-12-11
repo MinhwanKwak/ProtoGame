@@ -34,8 +34,8 @@ public class MonsterControl : MonsterBasic
 
         uiHpBargoArray = new GameObject[(int)MonsterStatusValue.maxHp];
         uiHpBarArray = new UIHPBar[(int)MonsterStatusValue.maxHp];
-        
- 
+
+
         //GameObject go = Instantiate(hpImage);
         //go.transform.SetParent(hpCanvas.GetAnchorRect());
         //go.transform.localScale = Vector3.one;
@@ -47,6 +47,8 @@ public class MonsterControl : MonsterBasic
         //uiHpBargo.transform.SetParent(hpCanvas.GetAnchorRect());
         //uiHpBar = uiHpBargo.GetComponent<UIHPBar>();
 
+        int Center = (int)MonsterStatusValue.maxHp / 2;
+
 
         for (int i = 0; i < MonsterStatusValue.maxHp; i++)
         {
@@ -54,12 +56,27 @@ public class MonsterControl : MonsterBasic
             uiHpBargoArray[i].transform.SetParent(hpCanvas.GetAnchorRect());
             uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
         }
-        for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+
+        uiHpBarArray[Center].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+
+        for(int i = Center; i<(int)MonsterStatusValue.maxHp-1;i++)
         {
-            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
-            uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-            uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+            uiHpBarArray[i+1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
         }
+
+        for(int i = Center; i>0; i--)
+        {
+            uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition - hpUIInterval;
+        }
+
+        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        //{
+        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        //}
+
+       
 
         //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransformArray[0].position);
         //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransformArray[1].position);
@@ -72,11 +89,22 @@ public class MonsterControl : MonsterBasic
     {
         base.Update();
 
-        for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
+        //{
+        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
+        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        //}
+        int Center = (int)MonsterStatusValue.maxHp / 2;
+        uiHpBarArray[Center].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        for (int i = Center; i < (int)MonsterStatusValue.maxHp-1; i++)
         {
-            uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
             uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-            uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
+        }
+
+        for (int i = Center; i > 0; i--)
+        {
+            uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition - hpUIInterval;
         }
 
     }
