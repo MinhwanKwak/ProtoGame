@@ -27,7 +27,6 @@ public class Map : MonoBehaviour
         {
          GameObject obj = ObjectPooler.Instance.SpawnFromPool(MonsterRespawns[i].name, MonsterRespawns[i].RespawnPosition, MonsterRespawns[i].RotationPosition);
          obj.tag = gameObject.tag;
-         obj.transform.parent = gameObject.transform;
         }
     }
 

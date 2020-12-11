@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 986129619297981225}
   - component: {fileID: 8139245973708761375}
   - component: {fileID: 2578557616942454246}
-  - component: {fileID: -524289566878383560}
   m_Layer: 0
   m_Name: Env_mesh_foxtail_001
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-524289566878383560
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4320137801835847994}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5434825305684571783, guid: 4032481880cbb2b4e84a2f4037402051, type: 3}

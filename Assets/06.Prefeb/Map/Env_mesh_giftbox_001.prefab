@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8176386727905460506}
   - component: {fileID: 874642634416143148}
   - component: {fileID: 6854429965593790421}
-  - component: {fileID: 5513207768134375050}
   m_Layer: 0
   m_Name: Env_mesh_giftbox_001
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &5513207768134375050
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125947056238686985}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 455319719591705625, guid: c08a5558c0ae1c242bfed6c75e6ca560, type: 3}

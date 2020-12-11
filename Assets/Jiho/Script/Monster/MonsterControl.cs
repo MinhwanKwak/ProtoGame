@@ -221,7 +221,7 @@ public class MonsterControl : MonsterBasic
 
             AudioManager.Instance.PlaySoundSfx("ZombieCollider");
             PlayerManager.Instance.playerControll.playerAnimationEvent.SetDamageCheck(false);
-            StartCoroutine(DamageTime());
+           // StartCoroutine(DamageTime());
             StartCoroutine(GameManager.Instance.cameraManager.camerashake.Shake(0.25f, 0.25f));
             GameObject Effect = ObjectPooler.Instance.SpawnFromPool("HitEffect", hittarget.transform.position, hittarget.transform.rotation);
             Effect.transform.parent = hittarget.transform;

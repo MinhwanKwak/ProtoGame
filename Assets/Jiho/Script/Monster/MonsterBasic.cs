@@ -161,7 +161,7 @@ public class MonsterBasic : MonoBehaviour
         Quaternion RotateviewAngle = Quaternion.Euler(0, viewAngle / 2, 0);
         Vector3 forwardVector = transform.forward;
         Vector3 viewAngleVector = RotateviewAngle * forwardVector;
-
+        
         Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, viewTargetMask);
         for (int i = 0; i < targetInViewRadius.Length; i++)
         {
