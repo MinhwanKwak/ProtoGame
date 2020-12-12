@@ -8,11 +8,11 @@ public class BossAnimationEvent : MonoBehaviour
 
     public void StartBossAttack()
     {
-        if (!monster.IsInSight)
-        {
-            monster.animator.SetTrigger("Idle");
-            monster.monsterStatus = MonsterStatus.IDLE;
-        }
+        //if (!monster.IsInSight)
+        //{
+        //    monster.animator.SetTrigger("Idle");
+        //    monster.monsterStatus = MonsterStatus.IDLE;
+        //}
         monster.Nav.isStopped = true;
     }
 

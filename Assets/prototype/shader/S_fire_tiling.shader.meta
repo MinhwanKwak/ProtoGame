@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 0f6b5a0475b54854795b735dbe037a8c
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _T_Tile_0430_01_normal: {fileID: 2800000, guid: 6999259216c3ea549bc215373d0a1ac0,
+      type: 3}
+  - _T_fx_d_noise_38: {fileID: 2800000, guid: 7425ab4917e7e674c9ca4b4f562e457d, type: 3}
+  - _T_fx_d_noise_037: {fileID: 2800000, guid: 7425ab4917e7e674c9ca4b4f562e457d, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

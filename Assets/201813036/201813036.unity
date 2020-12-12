@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 781682619a3a9c24abc558785f9cf2f5, type: 2}
---- !u!95 &29429614 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4165545381139309935, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
-    type: 3}
-  m_PrefabInstance: {fileID: 4165545381151828481}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &30294115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4743522190942734481, guid: d772ef1945a688046b976b32bfa59bbb,
@@ -1651,7 +1645,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2012883980}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &665219249
 Animator:
@@ -3124,7 +3118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2012883981}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &1283811164
 Animator:
@@ -3303,6 +3297,7 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 2048
+  DoorAnim: {fileID: 0}
 --- !u!64 &1369522264
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3964,7 +3959,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2012883979}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &1886392905
 Animator:
@@ -18382,6 +18377,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3754402227413809715, guid: 665dd10efd07f3a4e8e5a65318183b8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.78
+      objectReference: {fileID: 0}
     - target: {fileID: 3754402227413984652, guid: 665dd10efd07f3a4e8e5a65318183b8f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -22476,6 +22476,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754402227795161246, guid: 665dd10efd07f3a4e8e5a65318183b8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: 3754402227796100213, guid: 665dd10efd07f3a4e8e5a65318183b8f,
         type: 3}
@@ -48723,14 +48728,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fa79f15c2cfe647bd92a586dfde3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DoorAnim: {fileID: 29429614}
+  DoorAnim:
+  - {fileID: 0}
   MonsterRespawns:
   - name: 
     RespawnPosition: {x: 0, y: 0, z: 0}
+    RotationPosition: {x: 0, y: 0, z: 0, w: 0}
   - name: 
     RespawnPosition: {x: 0, y: 0, z: 0}
+    RotationPosition: {x: 0, y: 0, z: 0, w: 0}
   - name: 
     RespawnPosition: {x: 0, y: 0, z: 0}
+    RotationPosition: {x: 0, y: 0, z: 0, w: 0}
   MapMonsterCount: 0
 --- !u!1001 &948533761355174553
 PrefabInstance:

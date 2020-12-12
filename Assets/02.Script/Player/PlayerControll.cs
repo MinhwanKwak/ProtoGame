@@ -36,6 +36,7 @@ public class PlayerControll : MonoBehaviour
     public float CurrentSpeed;
 
     public LayerMask monsterWeaponLayer;
+    public LayerMask bossWeaponLayer;
     
     private float delTime = 0f;
 

@@ -90,6 +90,8 @@ public class MonsterControl : MonsterBasic
     protected override void Update()
     {
         base.Update();
+        if (IsDead || monsterStatus == MonsterStatus.DEAD)
+            return;
 
         //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
         //{

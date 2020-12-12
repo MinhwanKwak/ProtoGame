@@ -27,8 +27,8 @@ TagManager:
   - EnemyWeapon
   - Trap
   - PatrolPoint
-  - 
-  - 
+  - Obstacle
+  - BossWeapon
   - 
   - 
   - 
