@@ -4914,10 +4914,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -5072,7 +5072,7 @@ PrefabInstance:
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
@@ -5129,6 +5129,22 @@ PrefabInstance:
         type: 3}
       propertyPath: pools.Array.data[8].size
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[9].tag
+      value: PatrolPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[9].prefeb
+      value: 
+      objectReference: {fileID: 8270158365494364760, guid: 6dfaafee52c2c6d4793bd3c4862431dd,
+        type: 3}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[9].size
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
