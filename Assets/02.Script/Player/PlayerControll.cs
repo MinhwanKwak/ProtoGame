@@ -73,15 +73,18 @@ public class PlayerControll : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        delTime += Time.deltaTime;
+        if (playerStatu != PlayerStatus.DEAD)
+        {
+            delTime += Time.deltaTime;
 
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
-        
-        CurrentInput = new Vector2(h, v);
-        
-        PlayerMouseCheck();
-        PlayerMoveCheck();
+            h = Input.GetAxisRaw("Horizontal");
+            v = Input.GetAxisRaw("Vertical");
+
+            CurrentInput = new Vector2(h, v);
+
+            PlayerMouseCheck();
+            PlayerMoveCheck();
+        }
     }
 
     private void Update()
@@ -103,9 +106,7 @@ public class PlayerControll : MonoBehaviour
 
     private void PlayerMouseCheck()
     {
-        
-      
-        if (Input.GetMouseButtonDown(1) && playerStatu != PlayerStatus.ATTACK && DashTime <= delTime)
+        if((Input.GetKeyDown("space")) && playerStatu != PlayerStatus.ATTACK && DashTime <= delTime)
         {
             StartCoroutine(Dash());
         }

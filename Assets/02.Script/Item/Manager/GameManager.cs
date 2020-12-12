@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     public Map[] maps;
 
+    public GameObject VictoryUI;
+    public GameObject LoseUI;
+
     public int CurrentMap = 0;
     private void Awake()
     {

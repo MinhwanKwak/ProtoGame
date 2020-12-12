@@ -61,7 +61,7 @@ public class PlayerUI : UIBase
 
     private void Start()
     {
-        Cursor.SetCursor(MouseClick, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(MouseClick, Vector2.zero, CursorMode.ForceSoftware);
         for (int i = 0; i < PlayerManager.Instance.Armor; ++i) { ArmorUIs[i].isArmorToggl = true; }
         for (int i = 0; i < PlayerManager.Instance.Hp / 2; ++i) { HpUIs[i].isHpToggle = true; halfHPUIs[i].ishalfHpToggle = false; }
         for (int i = 0; i < PlayerManager.Instance.AttackPower; ++i) { AttackUIs[i].IsAttackBufToggle = true; }

@@ -136,7 +136,14 @@ public class MonsterBasic : MonoBehaviour
                 --GameManager.Instance.maps[i].MapMonsterCount;
                 if (GameManager.Instance.maps[i].MapMonsterCount <= 0)
                 {
-                    GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
+                    if (GameManager.Instance.maps[i].DoorAnim[0] != null)
+                    {
+                        GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
+                    }
+                    if(i + 1 == GameManager.Instance.maps.Length)
+                    {
+                        PlayerManager.Instance.Vicitory();
+                    }
                     return;
                 }
             }

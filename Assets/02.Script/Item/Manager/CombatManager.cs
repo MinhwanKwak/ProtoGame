@@ -19,13 +19,13 @@ public class CombatManager : MonoBehaviour
     }
     private void Update()
     {
-        if (PlayerManager.Instance.playerControll.playerStatu != PlayerStatus.RUN)
+        if (PlayerManager.Instance.playerControll.playerStatu != PlayerStatus.RUN && PlayerManager.Instance.playerControll.playerStatu != PlayerStatus.DEAD)
         {
             Attack();
         }
         if(Input.GetMouseButtonUp(0))
         {
-            Cursor.SetCursor(PlayerManager.Instance.PlayerUI.MouseClick, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(PlayerManager.Instance.PlayerUI.MouseClick, Vector2.zero, CursorMode.ForceSoftware);
         }
     }
 
@@ -34,7 +34,7 @@ public class CombatManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !PlayerManager.Instance.playerControll.GetAttack())
         {
 
-            Cursor.SetCursor(PlayerManager.Instance.PlayerUI.MouseNonClick, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(PlayerManager.Instance.PlayerUI.MouseNonClick, Vector2.zero, CursorMode.ForceSoftware);
             AudioManager.Instance.PlaySoundSfx("WieldSword");
             inputReceived = true;
             CanReciveInput = false;

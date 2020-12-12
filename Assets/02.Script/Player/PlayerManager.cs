@@ -147,8 +147,20 @@ public class PlayerManager : MonoBehaviour
     {
         if(Hp <= 0)
         {
+            playerControll.animator.SetTrigger("Dead");
+            GameManager.Instance.LoseUI.SetActive(true);
+            Destroy(gameObject, 1.5f);
+            playerControll.playerStatu = PlayerStatus.DEAD;
             Debug.Log("Dead");
         }
+    }
+
+    public void Vicitory()
+    {
+        playerControll.playerStatu = PlayerStatus.DEAD;
+        GameManager.Instance.VictoryUI.SetActive(true);
+        Destroy(gameObject, 1.5f);
+        Debug.Log("Victory");
     }
 
 }
