@@ -127,7 +127,8 @@ public class MonsterBasic : MonoBehaviour
     {
         animator.StopPlayback();
         animator.SetBool("Dead", true);
-
+        IsDead = true;
+        monsterStatus = MonsterStatus.DEAD;
         for (int i = 0; i < GameManager.Instance.maps.Length; ++i)
         {
             if (gameObject.tag == GameManager.Instance.maps[i].tag)
