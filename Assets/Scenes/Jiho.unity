@@ -709,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: pools.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
@@ -796,6 +796,17 @@ PrefabInstance:
       propertyPath: pools.Array.data[6].prefeb
       value: 
       objectReference: {fileID: 8270158365494364760, guid: 6dfaafee52c2c6d4793bd3c4862431dd,
+        type: 3}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[7].tag
+      value: BossHitEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 948533761355655963, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: pools.Array.data[7].prefeb
+      value: 
+      objectReference: {fileID: 6398559599756881419, guid: 8ac42a3ae4960704ca08e724c26db4f5,
         type: 3}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}

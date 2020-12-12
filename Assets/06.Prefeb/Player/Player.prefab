@@ -1410,6 +1410,9 @@ MonoBehaviour:
   monsterWeaponLayer:
     serializedVersion: 2
     m_Bits: 4096
+  bossWeaponLayer:
+    serializedVersion: 2
+    m_Bits: 69632
   Hittransform: {fileID: 2040043366316843372}
   playerStatu: 0
   Effects:
