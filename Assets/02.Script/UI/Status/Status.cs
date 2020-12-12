@@ -19,6 +19,7 @@ public enum PlayerStatus
     RUN,
     DASH,
     DASHATTACK,
+    DEAD,
 }
 
 

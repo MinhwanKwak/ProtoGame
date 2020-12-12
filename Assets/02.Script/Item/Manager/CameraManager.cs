@@ -46,27 +46,30 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        CameraRay = MainCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (GroupPlane.Raycast(CameraRay, out rayLength))
+        if (PlayerManager.Instance.playerControll != null)
         {
-            pointTolook = CameraRay.GetPoint(rayLength);
+            CameraRay = MainCamera.ScreenPointToRay(Input.mousePosition);
 
-            Playerlook = pointTolook - PlayerTransform.position;
+            if (GroupPlane.Raycast(CameraRay, out rayLength))
+            {
+                pointTolook = CameraRay.GetPoint(rayLength);
 
-            CameraMousepos = new Vector3(Mathf.Clamp(Playerlook.x, -Cameraoffsetpos, Cameraoffsetpos), 0f, Mathf.Clamp(Playerlook.z, -Cameraoffsetpos, Cameraoffsetpos));
+                Playerlook = pointTolook - PlayerTransform.position;
 
-            CameraFinal = Vector3.SmoothDamp(CameraFinal, CameraMousepos, ref Velocity, CameraSmoothspeed);
+                CameraMousepos = new Vector3(Mathf.Clamp(Playerlook.x, -Cameraoffsetpos, Cameraoffsetpos), 0f, Mathf.Clamp(Playerlook.z, -Cameraoffsetpos, Cameraoffsetpos));
 
-            transform.position = CameraFinal + PlayerBodyTransform.transform.position;
-         
-            transform.eulerAngles = Vector3.zero;
+                CameraFinal = Vector3.SmoothDamp(CameraFinal, CameraMousepos, ref Velocity, CameraSmoothspeed);
 
-            PlayerManager.Instance.playerControll.SetMousePointLook(Playerlook);
+                transform.position = CameraFinal + PlayerBodyTransform.transform.position;
 
-            PlayerBodyTransform.LookAt(new Vector3(pointTolook.x, PlayerBodyTransform.position.y, pointTolook.z));
+                transform.eulerAngles = Vector3.zero;
+
+                PlayerManager.Instance.playerControll.SetMousePointLook(Playerlook);
+
+                PlayerBodyTransform.LookAt(new Vector3(pointTolook.x, PlayerBodyTransform.position.y, pointTolook.z));
 
 
+            }
         }
     }
 
