@@ -209,7 +209,7 @@ public class WitchDoctorDollControl : MonsterBasic
 
     IEnumerator WitchDoctorDollDead()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(ObjectPooler.Instance.SpawnBack("WitchDoctorDoll", gameObject, 0));
     }
 

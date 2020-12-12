@@ -125,6 +125,7 @@ public class MonsterBasic : MonoBehaviour
 
     public virtual void ProcessDead()
     {
+        animator.StopPlayback();
         animator.SetBool("Dead", true);
 
         for (int i = 0; i < GameManager.Instance.maps.Length; ++i)
@@ -214,15 +215,13 @@ public class MonsterBasic : MonoBehaviour
 
                 if(IsDestination())
                 {
-                    Nav.SetDestination(PatrolPoint[PatrolNum].transform.position);
+                    StartCoroutine(PatrolDelay());
                     return;
                 }
              }
             
               else if (wasInSight)
               {
-
-
                     DOTween.Kill(this.gameObject);
               }
         }
@@ -235,6 +234,13 @@ public class MonsterBasic : MonoBehaviour
         yield return new WaitForSeconds(5f);
         wasInSight = false;
         IsInSight = false;
+    }
+
+    IEnumerator PatrolDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetTrigger("Run");
+        Nav.SetDestination(PatrolPoint[PatrolNum].transform.position);
     }
 
     public bool IsDestination() // 네비게이션 도착했는지 안했는지
