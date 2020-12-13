@@ -114,11 +114,11 @@ public class PlayerControll : MonoBehaviour
 
     private void PlayerMouseCheck()
     {
-        if((Input.GetKeyDown("space")) && playerStatu != PlayerStatus.ATTACK && DashTime <= delTime)
+        if(Input.GetKeyDown("space") && Dashcount != 0 && playerStatu != PlayerStatus.ATTACK && DashTime <= delTime)
         {
             StartCoroutine(Dash());
         }
-       else if(isSpaceKey && Dashcount != 0 &&Input.GetMouseButton(0) && playerStatu != PlayerStatus.ATTACK && DashAttackTime <= delTime)
+       else if(isSpaceKey && Input.GetMouseButton(0) && playerStatu != PlayerStatus.ATTACK && DashAttackTime <= delTime)
         {
             StartCoroutine(DashAttack());
         }
@@ -169,7 +169,8 @@ public class PlayerControll : MonoBehaviour
 
     IEnumerator Dash()
     {
-            delTime = 0f;
+        Dashcount--;
+        delTime = 0f;
 
             animator.SetTrigger("Dash");
             Effects[0].SetActive(true);
@@ -203,7 +204,7 @@ public class PlayerControll : MonoBehaviour
 
      IEnumerator DashAttack()
     {
-        Dashcount--;
+        //Dashcount--;
         delTime = 0f;
 
         animator.SetTrigger("DashAttack");

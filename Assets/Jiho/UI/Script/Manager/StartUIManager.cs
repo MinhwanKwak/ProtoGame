@@ -79,7 +79,7 @@ public class StartUIManager : MonoBehaviour
 
     public void StartButtonEnter()
     {
-        SelectSwordImg.transform.DOMove(StartGameButton.transform.position, 0.4f);
+        SelectSwordImg.transform.DOMove(StartGameButton.transform.position, 0.3f);
         StartGameButton.transform.DOScale(StartButtonRaiseScale, 0.5f);
     }
 
@@ -110,7 +110,7 @@ public class StartUIManager : MonoBehaviour
     IEnumerator DelayStart()
     {
         yield return DelayTime;
-
+        DOTween.Kill(this.gameObject);
         SceneManager.LoadSceneAsync("LastScene", LoadSceneMode.Single);
     }
 
@@ -122,7 +122,7 @@ public class StartUIManager : MonoBehaviour
 
     public void EndButtonEnter()
     {
-        SelectSwordImg.transform.DOMove(EndGameButton.transform.position, 0.4f);
+        SelectSwordImg.transform.DOMove(EndGameButton.transform.position, 0.3f);
         EndGameButton.transform.DOScale(EndButtonRaiseScale, 0.5f);
     } 
 
@@ -171,7 +171,7 @@ public class StartUIManager : MonoBehaviour
 
     public void SettingButtonEnter()
     {
-        SelectSwordImg.transform.DOMove(SettingButton.transform.position, 0.4f);
+        SelectSwordImg.transform.DOMove(SettingButton.transform.position, 0.3f);
         SettingButton.transform.DOScale(SettingButtonRaiseScale, 0.5f);
         
     }
@@ -200,7 +200,7 @@ public class StartUIManager : MonoBehaviour
 
     public void CreatorButtonEnter()
     {
-        SelectSwordImg.transform.DOMove(CreatorButton.transform.position, 0.4f);
+        SelectSwordImg.transform.DOMove(CreatorButton.transform.position, 0.3f);
         CreatorButton.transform.DOScale(CreatorButtonRaiseScale, 0.5f);
     }
 
