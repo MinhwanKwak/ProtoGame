@@ -76,11 +76,14 @@ public class BossControl : MonsterBasic
        // uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         MonsterAttackDelayTime += Time.deltaTime;
-
-        if(!IsDead)
+        if (GameManager.Instance.maps[3].MapMonsterCount <= 0 && !IsDead)
         {
             TracePlayer();
         }
+        //if(!IsDead)
+        //{
+        //    TracePlayer();
+        //}
 
         //for (int i = 0; i < MonsterStatusValue.maxHp; i += 5)
         //{

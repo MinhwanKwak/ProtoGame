@@ -33,7 +33,7 @@ public class WitchDoctorDollWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (owner.IsUIon(GameManager.Instance.uiManager.IsUIOn))
+        if (GameManager.Instance.uiManager.IsUIOn)
         {
             return;
         }
