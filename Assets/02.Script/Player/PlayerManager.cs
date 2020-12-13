@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
                 Damage();
             }
 
-            if (other.gameObject.GetComponentInParent<BossControl>().name == "Boss")
+            if (other.gameObject.GetComponentInParent<BossControl>() != null && other.gameObject.GetComponentInParent<BossControl>().name == "Boss")
             {
                 GameObject go = ObjectPooler.Instance.SpawnFromPool("BossHitEffect", playerControll.Hittransform.position, Quaternion.identity);
                 go.transform.SetParent(playerControll.Hittransform);

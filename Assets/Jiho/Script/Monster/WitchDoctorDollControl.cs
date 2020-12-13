@@ -83,7 +83,7 @@ public class WitchDoctorDollControl : MonsterBasic
 
     protected override void Update()
     {
-        if (IsUIon(GameManager.Instance.uiManager.IsUIOn))
+        if (GameManager.Instance.uiManager.IsUIOn)
         {
             return;
         }
