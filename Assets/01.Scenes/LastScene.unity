@@ -260,6 +260,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageInCheck
       objectReference: {fileID: 0}
+    - target: {fileID: 4661763764501041790, guid: e2b8c221e5c8cc24385915b2d6aabc9c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4661763764501041791, guid: e2b8c221e5c8cc24385915b2d6aabc9c,
         type: 3}
       propertyPath: DoorAnim
@@ -6241,6 +6246,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3289494477740798604, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289494478967586823, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4165545381139309932, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6300,6 +6315,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stage2_2Out
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165545381139309933, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485904658043129056, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9faf5a2d0bea08a4fa8284ab5802c186, type: 3}
@@ -6702,6 +6727,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3289494477740798604, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289494478967586823, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4165545381139309932, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6761,6 +6796,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stage1In
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165545381139309933, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485904658043129056, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9faf5a2d0bea08a4fa8284ab5802c186, type: 3}
@@ -7029,6 +7074,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3289494477740798604, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289494478967586823, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4165545381139309932, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7088,6 +7143,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stage2_1Out
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165545381139309933, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485904658043129056, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9faf5a2d0bea08a4fa8284ab5802c186, type: 3}
@@ -7282,6 +7347,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3289494477740798604, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289494478967586823, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4165545381139309932, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7341,6 +7416,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stage1Out
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165545381139309933, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485904658043129056, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9faf5a2d0bea08a4fa8284ab5802c186, type: 3}
@@ -7803,6 +7888,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3289494477740798604, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289494478967586823, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4165545381139309932, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7862,6 +7957,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stage2_3Out
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165545381139309933, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485904658043129056, guid: 9faf5a2d0bea08a4fa8284ab5802c186,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9faf5a2d0bea08a4fa8284ab5802c186, type: 3}
@@ -10447,6 +10552,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CullingMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740497721218633981, guid: 24c16aa7137b7674f871e3c7b140284c,
+        type: 3}
+      propertyPath: RayDistance
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24c16aa7137b7674f871e3c7b140284c, type: 3}

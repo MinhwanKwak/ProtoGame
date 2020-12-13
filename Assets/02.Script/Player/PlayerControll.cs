@@ -183,7 +183,7 @@ public class PlayerControll : MonoBehaviour
 
         for (int i = 0; i < hits.Length; ++i)
         {
-            if (hits[i].transform.gameObject.tag == "Finish")
+            if (hits[i].transform.gameObject.tag == "Door")
             {
                 isWall = true;
             }
