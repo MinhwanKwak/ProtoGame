@@ -33,6 +33,10 @@ public class WitchDoctorDollWeapon : MonoBehaviour
 
     private void Update()
     {
+        if (owner.IsUIon(GameManager.Instance.uiManager.IsUIOn))
+        {
+            return;
+        }
         //isPool = true;
 
         if (isPool)
@@ -115,10 +119,6 @@ public class WitchDoctorDollWeapon : MonoBehaviour
             return;
 
         }
-
-        
-       
-
 
     }
 }

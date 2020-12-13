@@ -83,7 +83,10 @@ public class WitchDoctorDollControl : MonsterBasic
 
     protected override void Update()
     {
-        //uiHpBar.image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
+        if (IsUIon(GameManager.Instance.uiManager.IsUIOn))
+        {
+            return;
+        }
 
         if (IsProgressAttack && !go.activeSelf)
         {

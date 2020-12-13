@@ -79,6 +79,12 @@ public class MonsterBasic : MonoBehaviour
     }
     protected virtual void Update()
     {
+        if (IsUIon(GameManager.Instance.uiManager.IsUIOn))
+        {
+            return;
+        }
+            
+
         if (IsDead || monsterStatus == MonsterStatus.DEAD)
             return;
 
@@ -264,5 +270,17 @@ public class MonsterBasic : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public bool IsUIon(bool uion)
+    {
+        if (uion)
+        {
+            Nav.isStopped = true;
+        }
+        else
+            Nav.isStopped = false;
+
+        return uion;
     }
 }
