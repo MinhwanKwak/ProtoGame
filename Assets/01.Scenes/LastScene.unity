@@ -9255,6 +9255,11 @@ PrefabInstance:
       propertyPath: LoseUI
       value: 
       objectReference: {fileID: 1343820024}
+    - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
+        type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 2091668346}
     - target: {fileID: 948533761436056291, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: m_Name
