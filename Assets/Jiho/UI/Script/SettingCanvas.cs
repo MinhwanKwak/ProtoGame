@@ -27,7 +27,7 @@ public class SettingCanvas : MonoBehaviour
 
     Vector3 ContinueButtonDecreaseScale;
     Vector3 EndButtonDecreaseScale;
-    Vector3 SettingButtonDecreaseScale;;
+    Vector3 SettingButtonDecreaseScale;
 
     public Vector3 catHeadOriginPosition;
     public Vector3 catChinOriginPosition;

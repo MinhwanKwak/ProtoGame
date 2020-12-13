@@ -4324,6 +4324,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1406155264199937758, guid: 665dd10efd07f3a4e8e5a65318183b8f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1539624526543130965, guid: 665dd10efd07f3a4e8e5a65318183b8f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -46875,6 +46880,8 @@ MonoBehaviour:
   EndGameButton: {fileID: 1201204646}
   SettingButton: {fileID: 1525133730}
   SelectSwordImg: {fileID: 2050243963}
+  catHeadOriginPosition: {x: 0, y: 0, z: 0}
+  catChinOriginPosition: {x: 0, y: 0, z: 0}
   BackPanel: {fileID: 283807733}
   Panel: {fileID: 1615941922}
   SoundUIPanel: {fileID: 1935627104}
@@ -48982,7 +48989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1615941923
 RectTransform:
   m_ObjectHideFlags: 0
