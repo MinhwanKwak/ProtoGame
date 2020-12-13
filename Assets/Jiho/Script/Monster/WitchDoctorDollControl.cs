@@ -194,6 +194,8 @@ public class WitchDoctorDollControl : MonsterBasic
     {
         monsterStatus = MonsterStatus.DEAD;
 
+        StartCoroutine(WitchDoctorDollDead());
+
         for (int i = 0; i < GameManager.Instance.maps.Length; ++i)
         {
             if (gameObject.tag == GameManager.Instance.maps[i].tag)
@@ -205,9 +207,7 @@ public class WitchDoctorDollControl : MonsterBasic
                     return;
                 }
             }
-        }
-
-        StartCoroutine(WitchDoctorDollDead());
+        }        
     }
 
     IEnumerator WitchDoctorDollDead()

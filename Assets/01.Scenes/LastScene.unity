@@ -9269,27 +9269,27 @@ PrefabInstance:
         type: 3}
       propertyPath: maps.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 847316317}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: maps.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2014515274}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: maps.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3488840664275231821}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: maps.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3488840664275231820}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: maps.Array.data[4]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3488840664275231819}
     - target: {fileID: 948533761436056290, guid: 9cf068c7102fe9a4384f32a78f6867f5,
         type: 3}
       propertyPath: VictoryUI
