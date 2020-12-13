@@ -196,18 +196,26 @@ public class WitchDoctorDollControl : MonsterBasic
 
         StartCoroutine(WitchDoctorDollDead());
 
-        for (int i = 0; i < GameManager.Instance.maps.Length; ++i)
-        {
-            if (gameObject.tag == GameManager.Instance.maps[i].tag)
-            {
-                --GameManager.Instance.maps[i].MapMonsterCount;
-                if (GameManager.Instance.maps[i].MapMonsterCount <= 0)
-                {
-                    GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
-                    return;
-                }
-            }
-        }        
+        MapCountCheck();
+        //for (int i = 0; i < GameManager.Instance.maps.Length; ++i)
+        //{
+        //    if (gameObject.tag == GameManager.Instance.maps[i].tag)
+        //    {
+        //        --GameManager.Instance.maps[i].MapMonsterCount;
+        //        if (GameManager.Instance.maps[i].MapMonsterCount <= 0)
+        //        {
+        //            if (GameManager.Instance.maps[i].DoorAnim[0] != null)
+        //            {
+        //                GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
+        //            }
+        //            if (i + 1 == GameManager.Instance.maps.Length)
+        //            {
+        //                PlayerManager.Instance.Vicitory();
+        //            }
+        //            return;
+        //        }
+        //    }
+        //}
     }
 
     IEnumerator WitchDoctorDollDead()

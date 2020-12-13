@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Map[] maps;
+    public int mapCount = 0;
 
     public GameObject VictoryUI;
     public GameObject LoseUI;

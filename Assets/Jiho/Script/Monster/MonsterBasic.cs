@@ -135,6 +135,12 @@ public class MonsterBasic : MonoBehaviour
         animator.SetBool("Dead", true);
         IsDead = true;
         monsterStatus = MonsterStatus.DEAD;
+
+        MapCountCheck();
+    }
+
+    public virtual void MapCountCheck()
+    {
         for (int i = 0; i < GameManager.Instance.maps.Length; ++i)
         {
             if (gameObject.tag == GameManager.Instance.maps[i].tag)
@@ -146,7 +152,7 @@ public class MonsterBasic : MonoBehaviour
                     {
                         GameManager.Instance.maps[i].DoorAnim[0].SetTrigger("DoorOpen");
                     }
-                    if(i + 1 == GameManager.Instance.maps.Length)
+                    if (i + 1 == GameManager.Instance.maps.Length)
                     {
                         PlayerManager.Instance.Vicitory();
                     }
