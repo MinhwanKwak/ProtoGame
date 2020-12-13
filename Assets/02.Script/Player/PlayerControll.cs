@@ -50,19 +50,27 @@ public class PlayerControll : MonoBehaviour
     Vector3 moveNormalized;
 
     public Transform Hittransform;
+
+    Transform test;
+
     
     [SerializeField]
     public PlayerStatus playerStatu = PlayerStatus.IDLE;
 
-    
+    private Vector3 DashVec;
 
     private bool isAttack = false;
 
     private bool isSpaceKey = false;
 
+    public bool isWall = false;
+
     private float h;
     private float v;
-    
+
+
+    RaycastHit[] hits;
+   public float RayDistance = 5f;
     
     public GameObject[] Effects;
     void Start()
@@ -161,19 +169,36 @@ public class PlayerControll : MonoBehaviour
 
     IEnumerator Dash()
     {
-        delTime = 0f;
+            delTime = 0f;
 
-        animator.SetTrigger("Dash");
-        Effects[0].SetActive(true);
+            animator.SetTrigger("Dash");
+            Effects[0].SetActive(true);
 
-        playerStatu = PlayerStatus.DASH;
-        transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower, 0, CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
+            playerStatu = PlayerStatus.DASH;
 
+
+      RaycastHit[]hits = Physics.BoxCastAll(transform.position, transform.lossyScale / 2, PlayerBody.forward, transform.rotation, RayDistance);
+
+
+        for (int i = 0; i < hits.Length; ++i)
+        {
+            if (hits[i].transform.gameObject.tag == "Finish")
+            {
+                isWall = true;
+            }
+        }
+        
+        if (!isWall)
+        {
+            transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower, 0, CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
+        }
 
         float ReTime = DashTime - 0.2f;
+
         yield return new WaitForSeconds(ReTime);
         Effects[0].SetActive(false);
         playerStatu = PlayerStatus.IDLE;
+        isWall = false;
     }
 
      IEnumerator DashAttack()
@@ -185,8 +210,9 @@ public class PlayerControll : MonoBehaviour
         Effects[4].SetActive(true);
         playerStatu = PlayerStatus.DASHATTACK;
 
-        transform.position += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower, 0, CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
-
+        DashVec = transform.position;
+        DashVec += new Vector3(CurrentMouseLook.normalized.x * DashSpeed * Time.deltaTime * Dashpower, 0, CurrentMouseLook.normalized.z * DashSpeed * Time.deltaTime * Dashpower);
+        transform.position = DashVec;
 
         float ReTime = DashAttackTime - 0.2f;
         yield return new WaitForSeconds(ReTime);
@@ -242,7 +268,24 @@ public class PlayerControll : MonoBehaviour
     //        GetDamageUI();
     //    }
     //}
+    private void OnDrawGizmos()
+    {
+        
+        
+            RaycastHit hit;
+            // Physics.BoxCast (레이저를 발사할 위치, 사각형의 각 좌표의 절판 크기, 발사 방향, 충돌 결과, 회전 각도, 최대 거리)
+            bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, PlayerBody.forward, out hit, transform.rotation, RayDistance);
 
-
-
+            Gizmos.color = Color.red;
+            if (isHit)
+            {
+                Gizmos.DrawRay(transform.position, transform.forward * hit.distance);
+                Gizmos.DrawWireCube(transform.position + transform.forward * hit.distance, transform.lossyScale);
+            }
+            else
+            {
+                Gizmos.DrawRay(transform.position, transform.forward * RayDistance);
+            }
+        
+    }
 }
