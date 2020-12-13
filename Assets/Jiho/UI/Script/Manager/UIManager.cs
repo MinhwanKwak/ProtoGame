@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
             if (!settingCanvas.BackPanel.activeSelf)
             {
                 settingCanvas.BackPanel.SetActive(true);
+                //Time.timeScale = 0;
             }
             else if (settingCanvas.BackPanel.activeSelf)
             {
@@ -33,6 +34,7 @@ public class UIManager : MonoBehaviour
                 settingCanvas.EndGameButton.image.color = color;
                 settingCanvas.catHead.transform.position = settingCanvas.catHeadOriginPosition;
                 settingCanvas.catChin.transform.position = settingCanvas.catChinOriginPosition;
+                //Time.timeScale = 1;
 
             }
         }

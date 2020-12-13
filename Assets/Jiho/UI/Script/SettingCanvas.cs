@@ -37,8 +37,8 @@ public class SettingCanvas : MonoBehaviour
     Vector3 RaiseScale = new Vector3(0.2f, 0.2f, 0);
     Vector3 DecreaseScale = new Vector3(0.2f, 0.2f, 0);
 
-    WaitForSeconds DelayTime = new WaitForSeconds(0.7f);
-    WaitForSeconds DownShowTime = new WaitForSeconds(0.3f);
+    WaitForSecondsRealtime DelayTime = new WaitForSecondsRealtime(0.7f);
+    WaitForSecondsRealtime DownShowTime = new WaitForSecondsRealtime(0.3f);
 
     public GameObject BackPanel;
     public GameObject Panel;
