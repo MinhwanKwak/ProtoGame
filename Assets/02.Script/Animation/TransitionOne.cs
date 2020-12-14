@@ -17,7 +17,7 @@ public class TransitionOne : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(CombatManager.instance.inputReceived)
+        if(CombatManager.instance.inputReceived && !PlayerManager.Instance.playerControll.GetAttack())
         {
             animator.SetTrigger("AttackTwo");
             CombatManager.instance.InputManager();
