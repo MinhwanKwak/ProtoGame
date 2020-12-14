@@ -120,8 +120,8 @@ MonoBehaviour:
   wasInSight: 0
   MonsterStatusValue:
     monsterName: Monster
-    hp: 3
-    maxHp: 3
+    hp: 2
+    maxHp: 2
     range: 3
     tickRate: 5
   hpImage: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676, type: 3}

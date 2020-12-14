@@ -61,12 +61,15 @@ MonoBehaviour:
   HitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  PatrolPointMask:
+    serializedVersion: 2
+    m_Bits: 0
   IsInSight: 0
   wasInSight: 0
   MonsterStatusValue:
     monsterName: WitchDoctorDoll
-    hp: 3
-    maxHp: 3
+    hp: 2
+    maxHp: 2
     range: 0
     tickRate: 0
   hpImage: {fileID: 7580012008942254215, guid: 87e22e31a442d2b4eb8469e4d1010676, type: 3}
@@ -87,7 +90,6 @@ MonoBehaviour:
   uiHpBargo: {fileID: 0}
   uiHpBargoArray: []
   hittarget: {fileID: 5299756746650267717}
-  AttackRangeImage: {fileID: 7133968569231767938}
   TimeStop: 0
 --- !u!136 &1968055576776109950
 CapsuleCollider:
@@ -267,12 +269,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c921f74b01b0b434195895831a646516, type: 3}
---- !u!1 &7133968569231767938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7260809728793076612, guid: c921f74b01b0b434195895831a646516,
-    type: 3}
-  m_PrefabInstance: {fileID: 559397875305748998}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &755756212486320518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 990683213401664384, guid: c921f74b01b0b434195895831a646516,
