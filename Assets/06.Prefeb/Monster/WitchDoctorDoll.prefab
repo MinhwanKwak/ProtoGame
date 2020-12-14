@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisname: 
-  viewRadius: 10
+  viewRadius: 20
   viewAngle: 0
   viewTargetMask:
     serializedVersion: 2
