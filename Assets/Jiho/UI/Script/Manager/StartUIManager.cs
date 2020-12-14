@@ -38,7 +38,7 @@ public class StartUIManager : MonoBehaviour
     Vector3 RaiseScale = new Vector3(0.2f, 0.2f, 0);
     Vector3 DecreaseScale = new Vector3(0.2f, 0.2f, 0);
 
-    WaitForSeconds DelayTime = new WaitForSeconds(0.7f);
+    WaitForSeconds DelayTime = new WaitForSeconds(0.5f);
     WaitForSeconds DownShowTime = new WaitForSeconds(0.3f);
 
     private void Awake()

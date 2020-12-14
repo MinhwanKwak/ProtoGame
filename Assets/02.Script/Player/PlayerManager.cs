@@ -30,12 +30,20 @@ public class PlayerManager : MonoBehaviour
         maxHp = 10;
         maxArmor = 5;
         maxAttackPower = 5;
-
     }
 
     private void Update()
     {
         CheckDashCount();
+        if(transform.position.y <= -10)
+        {
+            playerControll.animator.SetTrigger("Dead");
+            GameManager.Instance.LoseUI.SetActive(true);
+            Destroy(gameObject, 1.5f);
+            playerControll.playerStatu = PlayerStatus.DEAD;
+            Debug.Log("Dead");
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
