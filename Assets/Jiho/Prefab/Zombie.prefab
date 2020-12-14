@@ -88,7 +88,7 @@ MonoBehaviour:
     m_Bits: 2048
   viewObstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   HitLayerMask:
     serializedVersion: 2
     m_Bits: 1024

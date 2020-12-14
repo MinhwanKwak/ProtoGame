@@ -59,6 +59,8 @@ public class MonsterControl : MonsterBasic
             uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
         }
 
+
+
         uiHpBarArray[Center].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
 
         for(int i = Center; i<(int)MonsterStatusValue.maxHp-1;i++)

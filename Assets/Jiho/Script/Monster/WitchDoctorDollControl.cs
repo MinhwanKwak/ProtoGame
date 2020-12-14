@@ -43,13 +43,6 @@ public class WitchDoctorDollControl : MonsterBasic
         uiHpBargoArray = new GameObject[(int)MonsterStatusValue.maxHp];
         uiHpBarArray = new UIHPBar[(int)MonsterStatusValue.maxHp];
 
-        for (int i = 0; i < MonsterStatusValue.maxHp; i++)
-        {
-            uiHpBargoArray[i] = ObjectPooler.Instance.SpawnFromPool("MonsterHPUI", transform.position, Quaternion.identity);
-            uiHpBargoArray[i].transform.SetParent(hpCanvas.GetAnchorRect());
-            uiHpBarArray[i] = uiHpBargoArray[i].GetComponent<UIHPBar>();
-        }
-
         int Center = (int)MonsterStatusValue.maxHp / 2;
 
         for (int i = 0; i < MonsterStatusValue.maxHp; i++)
@@ -70,13 +63,6 @@ public class WitchDoctorDollControl : MonsterBasic
         {
             uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition - hpUIInterval;
         }
-
-        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
-        //{
-        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
-        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
-        //}
 
         this.monsterStatus = MonsterStatus.IDLE;
     }
@@ -106,12 +92,6 @@ public class WitchDoctorDollControl : MonsterBasic
             uiHpBarArray[i - 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition - hpUIInterval;
         }
 
-        //for (int i = 0; i < MonsterStatusValue.maxHp; i += 3)
-        //{
-        //    uiHpBarArray[i].image.rectTransform.anchoredPosition = GameManager.Instance.cameraManager.GetMainCamera().WorldToScreenPoint(HpTransform.position);
-        //    uiHpBarArray[i + 1].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + hpUIInterval;
-        //    uiHpBarArray[i + 2].image.rectTransform.anchoredPosition = uiHpBarArray[i].image.rectTransform.anchoredPosition + (hpUIInterval * 2);
-        //}
     }
 
     private void FixedUpdate()

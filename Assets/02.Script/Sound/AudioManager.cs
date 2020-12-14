@@ -95,17 +95,21 @@ public class AudioManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("BGMGroundSound", BgmSlider.value);
 
-        float sound = PlayerPrefs.GetFloat("BGMGroundSound");
+        //float sound = PlayerPrefs.GetFloat("BGMGroundSound");
 
-        if (sound == -40f)
-        {
-            MasterMixer.SetFloat("BGM", -80);
+        MasterMixer.SetFloat("BGM", Mathf.Log(Mathf.Lerp(0.001f, 1, (float)System.Convert.ToDouble(BgmSlider.value))) * 20);
 
-        }
-        else
-        {
-            MasterMixer.SetFloat("BGM", sound);
-        }
+        //MasterMixer.SetFloat("BGM", sound);
+
+        //if (sound == -40f)
+        //{
+        //    MasterMixer.SetFloat("BGM", -80);
+
+        //}
+        //else
+        //{
+        //    MasterMixer.SetFloat("BGM", sound);
+        //}
 
     }
 
@@ -114,17 +118,19 @@ public class AudioManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("SFXGroundSound", SfxSlider.value);
 
-        float sound = PlayerPrefs.GetFloat("SFXGroundSound");
+        //float sound = PlayerPrefs.GetFloat("SFXGroundSound");
 
-        if (sound == -40f)
-        {
-            MasterMixer.SetFloat("SFX", -80);
+        MasterMixer.SetFloat("SFX", Mathf.Log(Mathf.Lerp(0.001f, 1, (float)System.Convert.ToDouble(SfxSlider.value))) * 20);
 
-        }
-        else
-        {
-            MasterMixer.SetFloat("SFX", sound);
-        }
+        //if (sound == -40f)
+        //{
+        //    MasterMixer.SetFloat("SFX", -80);
+
+        //}
+        //else
+        //{
+        //    MasterMixer.SetFloat("SFX", sound);
+        //}
 
     }
 }
